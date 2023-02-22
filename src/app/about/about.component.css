@@ -22,13 +22,23 @@
 }
 
 #about .about-descr .p-heading {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
   text-align: left;
+  color: black;
+  text-align: center;
 }
 
 #about .about-descr .separator {
-  max-width: 80%;
   margin-bottom: 0;
   text-align: left;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+  font-size: 15px;
+}
+
+.heading{
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
 }
