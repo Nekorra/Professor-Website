@@ -8,6 +8,7 @@
 #about .div-img-bg {
   padding-bottom: 30px;
   border: 20px solid #b8a07e;
+  border-radius: 50px;
 }
 
 #about .div-img-bg .about-img img {
@@ -17,6 +18,7 @@
   margin-left: 40px;
   height: 400px;
   object-fit: cover;
+  border-radius: 50px;
 }
 
 #about .about-descr .p-heading {
