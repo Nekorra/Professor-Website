@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+  padding: 0; 
+  margin: 0; 
+  box-sizing: border-box;
+}
+
+#researchCarousel{
+    height: 50vh;
+    
+}
+
+.w-100{
+    height: 50vh;
+  
+}
+
+
+.AM{
+    height: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+} 
+.carousel-indicators{
+    filter: invert(100%);
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    filter: invert(100%);
+
+}
