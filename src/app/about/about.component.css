@@ -42,3 +42,16 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
 }
+#expandButton{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #b8a07e; 
+}
+#expandButton:hover{
+  color: #b8a07eab;
+}
+
+#more {
+  display: none;
+}

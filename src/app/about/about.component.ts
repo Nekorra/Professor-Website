@@ -9,6 +9,8 @@ import { locale as french } from '../shared/i18n/fr';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
+
+
 export class AboutComponent implements OnInit {
   mapMarker: any;
   building: any;
@@ -32,4 +34,25 @@ export class AboutComponent implements OnInit {
     this.home = awesom.faLaptopHouse;
   }
 
+  expand() {
+    var dots = document.getElementById("dots");
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("expandButton");
+
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more";
+      moreText.style.display = "none";
+      btnText.style.fontSize = "15px";
+      btnText.style.display = "inline";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less";
+      moreText.style.display = "inline";
+      btnText.style.display = "none";
+    }
+    
+  }
+  
 }
+
