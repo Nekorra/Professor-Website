@@ -158,8 +158,8 @@
   font-weight: 800;
   position: absolute;
   left: 50%;
-  top: 57%; 
-  transform: translate(-50%, -57%);
+  top: 60%; 
+  transform: translate(-50%, -60%);
   animation: fadeIn 4.5s;
 }
 
