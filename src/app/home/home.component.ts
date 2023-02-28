@@ -1,27 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { TranslationLoaderService } from '../service/translation-loader.service';
-import { locale as english } from '../shared/i18n/en';
-import { locale as french } from '../shared/i18n/fr';
-import Typed from 'typed.js';
+import { Component, OnInit, HostListener } from '@angular/core';
+import * as awesom from '@fortawesome/free-solid-svg-icons';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  mapMarker: any;
+  building: any;
+  mobile: any;
+  email: any;
+  birthday: any;
+  badge: any;
+  home: any;
+  hidden: boolean = false;
+  
+  constructor() {
+  }
 
-  constructor(private _translationLoaderService: TranslationLoaderService) {
-    this._translationLoaderService.loadTranslations(english, french);
-  }
+  @HostListener('window:scroll', ['$event']) getScrollHeight(event: any) {
+    if(window.pageYOffset <= 100 )
+     this.hidden = false;
+    else
+      this.hidden = true;
+ }
+  
   ngOnInit(): void {
-    var options = {
-      strings: ['Professor Homayoun.', 'a Researcher.', 'an Innovator.', 'a Teacher.',],
-      typeSpeed: 80,
-      backSpeed: 50,
-      loop: true,
-    };
-    
-    var typed = new Typed('.typed', options);
-    typed.reset(true)
+    this.mapMarker = awesom.faMapMarker;
+    this.building = awesom.faCity;
+    this.email = awesom.faMailBulk;
+    this.mobile = awesom.faMobile;
+    this.birthday = awesom.faBirthdayCake;
+    this.badge = awesom.faGraduationCap;
+    this.home = awesom.faLaptopHouse;
   }
+
+  expand() {
+    var dots = document.getElementById("dots");
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("expandButton");
+
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more";
+      moreText.style.display = "none";
+      btnText.style.fontSize = "15px";
+      btnText.style.display = "inline";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less";
+      moreText.style.display = "inline";
+      btnText.style.display = "none";
+    }
+    
+  }
+
 }

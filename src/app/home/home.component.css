@@ -183,3 +183,248 @@
   transform: translate(-50%, -95%);
   animation: fadeIn 4.5s;
 }
+
+#about {
+  width: 100%;
+  height: auto;
+  background: #f7f7f7;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+#about .div-img-bg {
+  padding-bottom: 30px;
+  border: 20px solid #b8a07e;
+  border-radius: 50px;
+}
+
+#about .div-img-bg .about-img img {
+  width: 100%;
+  box-shadow: 0px 0px 85px 0px rgba(0, 0, 0, 0.14);
+  margin-top: -60px;
+  margin-left: 40px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+#about .about-descr .p-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  text-align: left;
+  color: black;
+  text-align: center;
+}
+
+#about .about-descr .separator {
+  margin-bottom: 0;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+  font-size: 15px;
+}
+
+.heading{
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+}
+#expandButton{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #b8a07e; 
+}
+#expandButton:hover{
+  color: #b8a07eab;
+}
+
+#more {
+  display: none;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+#researchCarousel{
+    height: 60vh !important;
+
+}
+
+.w-100{
+    height: 50vh;
+    color: #b8a07e;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+
+.AM{
+    height: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: invert(66%) sepia(21%) saturate(447%) hue-rotate(356deg) brightness(94%) contrast(89%);
+} 
+.carousel-indicators{
+    filter: invert(66%) sepia(21%) saturate(447%) hue-rotate(356deg) brightness(94%) contrast(89%);
+    z-index: 0;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    filter: invert(66%) sepia(21%) saturate(447%) hue-rotate(356deg) brightness(94%) contrast(89%);
+
+}
+
+
+
+nav {
+  position: fixed;
+  top: 0;
+  background: #fff;
+  z-index: 1000;
+  width: 100%;
+  padding: 20px;
+  display: none;
+  -webkit-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18);
+  box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18);
+}
+
+.nav-menu {
+  float: right;
+  line-height: 32px;
+  margin-bottom: 0;
+  padding-top: 16px;
+}
+
+nav ul li {
+  float: left;
+  margin-right: 15px;
+  font-family: 'Poppins', sans-serif;
+  margin-left: 40px;
+}
+
+nav ul li a {
+  padding: 2px 0 0 0;
+  position: relative;
+  display: block;
+  font-size: 15px;
+  color: #999999;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  line-height: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+
+nav ul li a:hover{
+  color: black;
+  font-size: 16px;
+}
+
+.logo {
+  float: left;
+  padding-left: 20%;
+}
+
+.logo img {
+  width: 30%;
+  height: 30%;
+}
+.logo img:hover{
+  height: 50%;
+}
+
+.responsive {
+  display: none;
+  font-size: 23px;
+}
+
+.active {
+  color: #afafaf;
+}
+
+.main-nav {
+  display: block !important;
+  position: relative;
+}
+
+#container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.navbar-expand-lg{
+  animation: fadeIn 0.75s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; } 
+}
+
+
+body{
+  background-color: #25274d;
+}
+
+#contact{
+  padding: 4%;
+  height: 60vh;
+  font-family: 'Poppins', sans-serif;
+}
+.title{
+  padding-bottom: 1%;
+}
+.col-md-3{
+  background: #1478a7;
+  padding: 4%;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.contact-info h2{
+  margin-bottom: 10%;
+}
+
+.col-md-9{
+  background: #fff;
+  padding: 3%;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.contact-form label{
+  font-weight:600;
+}
+
+.contact-form button{
+  background:#149ddd;
+  color: #fff;
+  font-weight: 600;
+  width: 25%;
+  margin-top: 10px;
+}
+
+.contact-form button:focus{
+  box-shadow:none;
+}
+
+
+h3,h4{
+  color: white;
+}
+
+.form-group{
+  padding: 2%;
+  
+}

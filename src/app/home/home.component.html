@@ -1,4 +1,27 @@
-<section>
+<header *ngIf="hidden">
+  <nav class="main-nav navbar-expand-lg">
+      <div class="row">
+        <div style="padding-right: 20%;">
+          <div class="logo">
+            <a href="index.html"><img src="https://ece.ucdavis.edu/sites/g/files/dgvnsk8091/files/ece_logo_125px.png" alt="logo"></a>
+          </div>
+  
+  
+          <ul class="nav-menu list-unstyled">
+            <li><a href="#home" class="smooth-scroll">Home</a></li>
+            <li><a href="#about" class="smooth-scroll">About</a></li>
+            <li><a href="/awards" class="smooth-scroll">Awards</a></li>
+            <li><a href="#journal" class="smooth-scroll">Blog</a></li>
+            <li><a href="#contact" class="smooth-scroll">Contact</a></li>
+          </ul>
+  
+        </div>
+      </div>
+    </nav>
+</header>
+
+
+<section id="home">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <div id="header" class="home">
@@ -28,4 +51,219 @@
 
 
 
+
+
+<section id="about">
+  <div data-aos="fade-up">
+    <div id="about" class="paddsection">
+      
+        <div class="container">
+          <div class="row justify-content-between">
+    
+            <div class="col-lg-4 ">
+              <div class="div-img-bg">
+                <div class="about-img">
+                  <img src="../../assets/images/profile.png" class="img-responsive" alt="me">
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-lg-7">
+              <div class="about-descr">
+    
+                <p class="p-heading"><b>Houman Homayoun</b> is a Professor in the Department of Electrical and Computer Engineering at the University of California, Davis. He leads the National Science Foundation Center for Hardware and Embedded Systems Security and Trust. Under his direction, <b>CHEST</b> tackles some of the most pressing security challenges facing the world today, helping to ensure the safety and reliability of hardware and embedded systems.</p>
+
+                <h1 class="heading">History <div class="line"></div></h1>
+                
+
+                <p class="separator">Prior to his current position, Houman Homayoun held an Associate Professorship in the Department of Electrical and Computer Engineering at George Mason University. He was also a recipient of the Computing Innovation (CI) Fellowship from the CRA-CCC, during which he spent two years at the University of California, San Diego. Dr. Homayoun completed his Ph.D. in Computer Science at the University of California, Irvine, where he was awarded the prestigious four-year Computer Science Department Chair Fellowship. His educational background also includes an MS in computer engineering from the University of Victoria and a BS in electrical engineering from the Sharif University of Technology. 
+                
+                  <button id="expandButton" (click)="expand()">Continue Reading</button><span id="dots" style="color: #b8a07e">...</span>
+                  <span id="more">
+                    Houman Homayoun is an accomplished computer engineer and currently holds the position of Professor in the Department of Electrical and Computer Engineering at the University of California, Davis. He also serves as the director of the National Science Foundation Center for Hardware and Embedded Systems Security and Trust (CHEST). Prior to his appointment at UC Davis, Houman was an Associate Professor at George Mason University (GMU). He was also recognized as an NSF Computing Innovation (CI) Fellow awarded by the CRA-CCC and spent two years at the University of California, San Diego from 2010 to 2012.
+
+                    Houman holds a Ph.D. in Computer Science from the University of California, Irvine, which he earned in 2010. During his time at UCI, he received a four-year fellowship from the Computer Science Department. He also received an MS degree in computer engineering from the University of Victoria in 2005 and a BS degree in electrical engineering from the Sharif University of Technology in 2003.
+                    
+                    Houman's research focuses on hardware security and trust, applied machine learning and AI, data-intensive computing, and heterogeneous computing. He has published more than 200 technical papers in prestigious conferences and journals on these subjects and has directed over $10M in research funding from NSF, DARPA, AFRL, NIST, US Congress, and various industrial sponsors. His work has received numerous best paper awards and nominations, including GLSVLSI 2016, ICCAD 2019, ICDM 2019, DCAS 2020, ISVLSI 2020, ICCAD 2020, and DATE 2022.
+                    
+                    Houman's CHEST center has received congressional support for research in hardware security, which was included in the 2021 National Defense Authorization Act. He has also served as a Member of the Advisory Committee, Cybersecurity Research and Technology Commercialization working group in the Commonwealth of Virginia, and as a core group member of the hardware security body of knowledge development team supported by the Department of Defense. In addition, he was recognized as the recipient of the 2010 National Science Foundation computing innovation fellow award by CCC/CRA and has been serving as an Associate Editor of IEEE Transactions on VLSI since 2017. Houman has also chaired and co-chaired major conferences in ACM, including the Great Lake Symposium on VLSI. <button id="expandButton" (click)="expand()">Read Less...</button>
+                </span>
+              </p>
+    
+              </div>
+    
+            </div>
+            
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+</section>
+
+
+
+<section id="researchCarousel">
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  data-interval="2000">
+
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      
+    </ol>
+
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <div class="d-block w-100"> <img src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/256/external-machine-learning-smart-devices-smashingstocks-mixed-smashing-stocks.png" class="AM"> <h1>Applied Machine Learning</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"> <img src="https://img.icons8.com/dotty/480/null/cyber-security.png" class="AM"/><h1>Hardware Security and Trust</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/ios-filled/200/machine-learning.png" class="AM"/><h1>Adversarial Machine Learning</h1></div>
+      </div>
+      
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/glyph-neue/200/null/security-shield-green.png" class="AM"/><h1>Cybersecurity</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/ios-filled/200/null/big-data.png" class="AM"/><h1>Big Data Computing</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/200/null/external-algorithm-data-science-and-cyber-security-flatart-icons-outline-flatarticons.png" class="AM"/><h1>Algorithms for Energy-Efficient Acceleration of Big Data</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/external-flaticons-lineal-flat-icons/200/null/external-processors-computer-programming-flaticons-lineal-flat-icons-2.png" class="AM"/><h1>Heterogeneous Computing</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/ios/200/null/wearable-technology.png" class="AM"/><h1>Accelerating Wearable Biomedical Computing</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/windows/200/null/product-architecture.png" class="AM"/><h1>Heterogeneous Architecture Mapping and Scheduling</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/ios/200/null/chip-card-blocked.png" class="AM"/><h1>Emerging STT Logic for Enhancing Hardware Security and Trust</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/external-smashingstocks-detailed-outline-smashing-stocks/200/null/external-3d-design-ui-ux-user-interface-smashingstocks-detailed-outline-smashing-stocks.png" class="AM"/><h1>3D Integration and Design</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/ios/200/null/android-l-battery--v1.png" class="AM"/><h1>Low Power and Thermal Aware Design</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/ios/200/null/memory-slot.png" class="AM"/><h1>DRAM Memory Management for Emerging Big Data Applications</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/external-outline-black-m-oki-orlando/200/null/external-memory-allocation-programming-outline-outline-black-m-oki-orlando.png" class="AM"/><h1>Emerging Memory Technologies (non-volatile STTRAM, PCM, and volatile HMC</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/ios/200/null/dashboard.png" class="AM"/><h1>Performance Characterization of Emerging Applications</h1></div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-block w-100"><img src="https://img.icons8.com/material-outlined/200/null/energy-efficiency-g.png" class="AM"/><h1>Energy Efficiency and Power Management in Enterprise Datacenter</h1></div>
+      </div>
+
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    
+  </div>
+
+  <script>
+    AOS.init();
+  </script>
+
+</section>
+
+<section id="contact">
+  <div class="container mb-5">
+
+        <div class="row"  data-aos="fade-up"
+        data-aos-anchor-placement="top-center">
+
+          <h2 class="title"><strong >{{'Contact Form' | translate}}</strong></h2>
+          <span class="bar-title mb-5"></span>
+
+            <div class="col-md-3 col-lg-3">
+                <div class="contact-info">
+                    <img src="assets/images/contact-image.png" alt="image" />
+                    <h4>{{'Contact Me' | translate}}</h4>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="contact-form">
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="identite">{{'Name: ' | translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="identite" placeholder="{{'Full Name' | translate}}"
+                                name="fname">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">{{'Email: ' | translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" placeholder="{{'username@email.com' | translate}}" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="object">{{'Subject: ' | translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="object" placeholder="{{'Subject' | translate}}"
+                                name="object">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="comment">{{'Message: ' | translate}}</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="5" id="comment" placeholder="{{'Type Here' | translate}}"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">{{'Send Message' | translate}}</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+      </div>
+  </div>
+</section>
 

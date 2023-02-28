@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { AppComponent } from './app.component';
-import { CurriculumVitaeComponent } from './curriculum-vitae/curriculum-vitae.component';
-import { ProjectsComponent } from './projects/projects.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { HomeComponent } from './home/home.component';
+import { AwardsComponent } from './awards/awards.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent }, 
-  { path: 'projects', component: ProjectsComponent }, 
-  { path: 'cv', component: CurriculumVitaeComponent }, 
-  { path: 'about', component: AboutComponent }];
+  { path: '', component: HomeComponent },
+  { path: 'awards', component: AwardsComponent },
+  { path: 'home', component: HomeComponent }];
 
 @NgModule({
   imports: [
