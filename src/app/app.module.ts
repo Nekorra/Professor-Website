@@ -13,12 +13,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AwardsComponent } from './awards/awards.component';
+import { PublicationsComponent } from './publications/publications.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AwardsComponent
+    AwardsComponent,
+    PublicationsComponent
   ],
   imports: [
     CommonModule,
