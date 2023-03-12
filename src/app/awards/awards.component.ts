@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestapiService } from '../services/restapi.service';
 
 @Component({
   selector: 'app-awards',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AwardsComponent implements OnInit {
 
-  constructor() { }
+  awardsData: any[] = [];
 
-  ngOnInit(): void {
+  constructor(
+    private RestapiService: RestapiService,
+  ) {}
+
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    console.log("here");
+    this.RestapiService.getData("https://Nekorra.github.io/prof-data/honors.json").subscribe((res) => {
+      console.log(res);
+      this.awardsData = res["awards"];
+    })
+
+  
   }
 
 }

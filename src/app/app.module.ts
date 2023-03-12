@@ -6,7 +6,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,16 +14,16 @@ import { MatInputModule } from '@angular/material/input';
 import { AwardsComponent } from './awards/awards.component';
 import { PublicationsComponent } from './publications/publications.component';
 
+import { HttpClientModule } from "@angular/common/http";
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AwardsComponent,
-    PublicationsComponent
+    PublicationsComponent,
   ],
   imports: [
-    CommonModule,
-    BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     TranslateModule, 
@@ -35,9 +34,11 @@ import { PublicationsComponent } from './publications/publications.component';
     MatFormFieldModule,
     MatInputModule,
     TranslateModule.forRoot(),
+    HttpClientModule,
+    BrowserModule
   ],
   providers: [
-   
+    BrowserModule
   ],
   bootstrap: [AppComponent]
 })

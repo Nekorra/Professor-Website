@@ -47,22 +47,21 @@
        
 
         <ul> 
-          <li>
+          <div *ngFor="let journals of journalsData">
+            <li >
               <div class="card">
 
                 <div class="card-header">
-                  <b>Hardware Trojan Detection Using Machine Learning: A Tutorial</b>
+                  <b>{{journals.title}}</b>
                 </div>
                 <br>
                 <div class="card-body">
 
-                  <h5 class="card-title"><b>Journal:</b> TECS | <b>Citations:</b> 50</h5>
+                  <h5 class="card-title"><b>Journal:</b> {{journals.journal}} | <b>Citations:</b> 50</h5>
                   <br> 
                   
                   <p class="card-text">
-                    Kevin Immanuel Gubbi, Banafsheh Saber Latibari, Anirudh Srikanth, Tyler Sheaves, 
-                    Sayed Arash Beheshti-Shirazi, Sai Manoj Pd, Satareh Rafatirad, Avesta Sasan, Houman Homayoun, Soheil 
-                    Salehi.
+                    {{journals.authors}}
                   </p>
                   <br>
 
@@ -72,59 +71,9 @@
               
             </div>
           </li>
-
-          <li>
-            <div class="card">
-
-              <div class="card-header">
-                <b>Adaptive performance modeling of data-intensive workloads for resource provisioning in virtualized environment</b>
-              </div>
-              <br>
-              <div class="card-body">
-
-                <h5 class="card-title"><b>Journal:</b> TOMPECS | <b>Citations:</b> 49</h5>
-                <br> 
-                
-                <p class="card-text">
-                  Hosein Mohamamdi Makrani, Hossein Sayadi, Najmeh Nazari, Sai Mnoj Pudukotai 
-                  Dinakarrao, Avesta Sasan, Tinoosh Mohsenin, Setareh Rafatirad, Houman Homayoun.
-                </p>
-                <br>
-
-                <a href="https://dl.acm.org/doi/10.1145/3442696" target="\blank" class="btn btn-primary"><b>Learn More</b></a>
-                
-            </div>
-            
-          </div>
-        </li>
-
-        <li>
-          <div class="card">
-
-            <div class="card-header">
-              <b>Imitating functional operations for mitigating side-channel leakage</b>
-            </div>
-            <br>
-            <div class="card-body">
-
-              <h5 class="card-title"><b>Journal:</b> TCAD | <b>Citations:</b> 48</h5>
-              <br> 
-              
-              <p class="card-text">
-                Abhijitt Dhavlle, Setareh Rafatirad, Khaled Khasawneh, Houman Homayoun, Sai Manoj Pudukotai Dinakarrao.
-              </p>
-              <br>
-
-              <a href="https://ieeexplore.ieee.org/document/9392010" target="\blank" class="btn btn-primary"><b>Learn More</b></a>
-              
-          </div>
-          
         </div>
-      </li>
 
         </ul>
-
-        
       </div>
 
       <br>
@@ -132,82 +81,38 @@
       <div class="confrencesLinks">
         <h1 class="title"><b>Conferences: </b></h1>
         <br>
-
-        <ul> 
-          <li>
-              <div class="card">
-
-                <div class="card-header">
-                  <b>HeteroScore: Evaluating and Mitigating Cloud Security Threats Brought by Heterogeneity</b>
-                </div>
-                <br>
-                <div class="card-body">
-
-                  <h5 class="card-title"><b>Conference:</b> NDSS | <b>Citations:</b> 181</h5>
-                  <br> 
-                  
-                  <p class="card-text">
-                    Chongzhou Fang, Najmeh Nazari, Behnam Omidi, Han Wang, Aditya Puri, Manish Arora, Setareh Rafatirad, Houman Homayoun and Khaled N. Khasawneh.
-                  </p>
+        <div *ngFor="let years of conferenceYears; let indOfelement = index;">
+          <h1 class="title"><b> {{years}} </b></h1>
+          <ul> 
+            <div *ngFor="let conferences of conferencesData[indOfelement]['entries']">
+              <li>
+                <div class="card">
+  
+                  <div class="card-header">
+                    <b>{{conferences.title}}</b>
+                  </div>
                   <br>
-
-                  <a href="https://www.ndss-symposium.org/ndss-paper/heteroscore-evaluating-and-mitigating-cloud-security-threats-brought-by-heterogeneity/" target="\blank" class="btn btn-primary"><b>Learn More</b></a>
-                  
-              </div>
-              
-            </div>
-          </li>
-
-          <li>
-            <div class="card">
-
-              <div class="card-header">
-                <b>Prevent Over-fitting and Redundancy in Physiological Signal Analyses for Stress Detection</b>
-              </div>
-              <br>
-              <div class="card-body">
-
-                <h5 class="card-title"><b>Conference:</b> BIBM | <b>Citations:</b> 180</h5>
-                <br> 
+                  <div class="card-body">
+  
+                    <h5 class="card-title"><b>Conference:</b> {{conferences.journal}} | <b>Citations:</b> 181</h5>
+                    <br> 
+                    
+                    <p class="card-text">
+                      {{conferences.authors}}
+                    </p>
+                    <br>
+  
+                    <a href="https://www.ndss-symposium.org/ndss-paper/heteroscore-evaluating-and-mitigating-cloud-security-threats-brought-by-heterogeneity/" target="\blank" class="btn btn-primary"><b>Learn More</b></a>
+                    
+                </div>
                 
-                <p class="card-text">
-                  Ruijie Fang, Ruoyu Zhang, Elahe Hosseini, Anna M Parenteau, Sally Hang, Setareh Rafatirad, Camelia E Hostinar, Mahdi Orooji, Houman Homayoun
-                </p>
-                <br>
-
-                <a href="https://ieeexplore.ieee.org/document/9995121" target="\blank" class="btn btn-primary"><b>Learn More</b></a>
-                
+              </div>
+            </li>
             </div>
             
-          </div>
-        </li>
-
-        <li>
-          <div class="card">
-
-            <div class="card-header">
-              <b>A Low Cost EDA-based Stress Detection Using Machine Learning</b>
-            </div>
-            <br>
-            <div class="card-body">
-
-              <h5 class="card-title"><b>Conference:</b> BIBM | <b>Citations:</b> 179</h5>
-              <br> 
-              
-              <p class="card-text">
-                Abhijitt Dhavlle, Setareh Rafatirad, Khaled Khasawneh, Houman Homayoun, Sai Manoj Pudukotai Dinakarrao.
-              </p>
-              <br>
-
-              <a href="https://ieeexplore.ieee.org/document/9995093" target="\blank" class="btn btn-primary"><b>Learn More</b></a>
-              
-          </div>
-          
+          </ul>
         </div>
-      </li>
-      
-
-        </ul>
+        
 
         
 
