@@ -27,7 +27,7 @@ export class PublicationsComponent implements OnInit {
       this.journalsData = res["journals"];
     })
 
-    this.RestapiService.getData("http://localhost:3000/publications.json").subscribe((res) => {
+    this.RestapiService.getData("https://Nekorra.github.io/prof-data/publications.json").subscribe((res) => {
       console.log(res);
       this.conferencesData = res["conferences"];
       this.getYears();
