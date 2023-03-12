@@ -34,42 +34,14 @@
     </svg>
 
     <div class="container">
-        <div class="researchCard">
-            <h1 class="cardTitle"> A.S.E.E.C </h1>
-            <br>
-            <p class="cardDescription">At ASEEC lab, our research focuses on hardware security, big data computing, and 
-                heterogeneous architectures design and optimization to develop secure and energy-efficient computer systems. 
-                We aim to address the challenges of security and energy-efficiency in emerging domains like big data analytics, 
-                IoT, biomedical computing, and wearable imaging and vision. Our approach involves collaborating with other disciplines, 
-                such as machine learning and cybersecurity, to tackle these challenges at various levels of abstraction, from 
-                software to circuit and technology levels. Ultimately, our goal is to architect computer systems for Secure 
-                and Sustainable Computing.</p>
-        </div>
-
-            <div class="researchCard">
-                <h1 class="cardTitle"> AI-Based Stress Detection </h1>
-                <br>
-                <p class="cardDescription">Our research uses machine learning algorithms to categorize stress into acute threat, 
-                    potential threat, and sustain threat. We propose a framework called Machine Learning Pipe, which involves 
-                    pre-processing, feature extraction, dimension reduction, feature selection, and cross-validation. Over 300 
-                    time-domain and frequency-domain features are extracted and reduced using manifold dimension reduction and 
-                    Chi-square feature selection methods. Three machine learning algorithms are used and performance is evaluated 
-                    using ROC Curve and PR Curve. Additionally, a confusion matrix is generated to calculate accuracy, precision, 
-                    recall, and F-1 score.
-                </p>
-            </div>
+      <div *ngFor="let research of researchData">
+        <div class="researchCard" >
+          <h1 class="cardTitle"> {{research.title}} </h1>
+          <br>
+          <p class="cardDescription">{{research.content}}</p>
+      </div>
+      </div>
         
-            <div class="researchCard">
-                <h1 class="cardTitle"> Machine Learning-Based Hardware Trojan Detection </h1>
-                <br>
-                <p class="cardDescription">The ASEEC lab in UC Davis focuses on hardware security and supply chain security of 
-                    Integrated Circuits and intellectual property blocks. Our research includes the development of countermeasures 
-                    and mitigation solutions to Hardware Security threats such as Hardware Trojans, Side-Channel attacks, IP theft, 
-                    IC piracy, and counterfeiting. We have proposed and presented several solutions in relevant conferences, including 
-                    LUT-based logic-locking, machine learning-based HT detection, and side-channel attack mitigation using CMOS and 
-                    STT-MRAM devices. </p>
-            </div>
-       
     </div>
         
         
