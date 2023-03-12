@@ -15,6 +15,7 @@ import { AwardsComponent } from './awards/awards.component';
 import { PublicationsComponent } from './publications/publications.component';
 
 import { HttpClientModule } from "@angular/common/http";
+import { ResearchComponent } from './research/research.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HttpClientModule } from "@angular/common/http";
     HomeComponent,
     AwardsComponent,
     PublicationsComponent,
+    ResearchComponent,
   ],
   imports: [
     AppRoutingModule,
