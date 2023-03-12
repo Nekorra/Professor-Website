@@ -3,7 +3,7 @@
 *{
   padding: 0; 
   margin: 0; 
-  box-sizing: border-box !important;
+
 }
 
 
@@ -152,4 +152,36 @@ nav {
   to{
     fill:black; 
   }
+}
+
+.container{
+    display: grid;
+    grid-template-columns:auto auto;
+    grid-gap: 10%;
+    margin: 0 auto;
+    top: 35%;
+    transform: translateY(35%);
+}
+
+.researchCard{
+    height: 60vh;
+    box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc;
+    border-radius: 10%;
+    transition: 0.5s;
+}
+
+.researchCard:hover{
+    background: #eee;
+    box-shadow: 0 8px 8px -4px green;
+}
+
+.cardTitle{
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+    font-weight: 900;
+    margin-top: 5%;
 }

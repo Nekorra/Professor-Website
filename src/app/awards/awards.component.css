@@ -146,12 +146,6 @@ nav {
     transform: translate(-50%, 50%);
     opacity: 1;
    }
-.title{
-        text-align: center;
-        font-family: 'Poppins', sans-serif;
-        padding-top: 1%;
-        font-size: 100px;
- }
 
 .grid-container {
     margin-top: 10%;
