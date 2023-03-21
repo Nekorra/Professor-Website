@@ -16,6 +16,7 @@ import { PublicationsComponent } from './publications/publications.component';
 
 import { HttpClientModule } from "@angular/common/http";
 import { ResearchComponent } from './research/research.component';
+import { StudentsComponent } from './students/students.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ResearchComponent } from './research/research.component';
     AwardsComponent,
     PublicationsComponent,
     ResearchComponent,
+    StudentsComponent,
   ],
   imports: [
     AppRoutingModule,

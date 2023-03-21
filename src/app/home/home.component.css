@@ -387,7 +387,7 @@ body{
   padding-bottom: 1%;
 }
 .col-md-3{
-  background: #1478a7;
+  background: #b8a07e;
   padding: 4%;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -409,7 +409,7 @@ body{
 }
 
 .contact-form button{
-  background:#149ddd;
+  background:#b8a07ee0;
   color: #fff;
   font-weight: 600;
   width: 25%;
