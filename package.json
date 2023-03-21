@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng b --prod --base-href https://zinedineBenkhider.github.io/portfolio/ && npx ngh --dir=dist/my-portfolio"
+    "deploy": "ng b --prod --base-href https://zinedineBenkhider.github.io/portfolio/ && npx ngh --dir=dist/my-portfolio",
+    "dev": "tinacms dev -c \"npm run start\""
   },
   "private": true,
   "dependencies": {
@@ -26,12 +27,14 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@ngx-translate/core": "^11.0.1",
+    "@tinacms/cli": "^1.3.3",
     "@types/aos": "^3.0.3",
     "aos": "^2.3.4",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.3",
     "rxjs": "~6.6.0",
+    "tinacms": "^1.3.3",
     "tslib": "^2.0.0",
     "typed.js": "^2.0.11",
     "venobox": "^1.9.1",
