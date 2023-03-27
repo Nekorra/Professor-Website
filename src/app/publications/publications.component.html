@@ -47,7 +47,7 @@
        
 
         <ul> 
-          <div *ngFor="let journals of journalsData">
+          <div *ngFor="let journals of journalsData; let ind = index;">
             <li >
               <div class="card">
 
@@ -57,7 +57,7 @@
                 <br>
                 <div class="card-body">
 
-                  <h5 class="card-title"><b>Journal:</b> {{journals.journal}} | <b>Citations:</b> 50</h5>
+                  <h5 class="card-title"><b>Journal:</b> {{journals.journal}} | <b>Entry Number:</b> {{journalsData.length-ind}}</h5>
                   <br> 
                   
                   <p class="card-text">
@@ -84,7 +84,7 @@
         <div *ngFor="let years of conferenceYears; let indOfelement = index;">
           <h1 class="title"><b> {{years}} </b></h1>
           <ul> 
-            <div *ngFor="let conferences of conferencesData[indOfelement]['entries']">
+            <div *ngFor="let conferences of conferencesData[indOfelement]['entries']; let y = index">
               <li>
                 <div class="card">
   
@@ -94,7 +94,7 @@
                   <br>
                   <div class="card-body">
   
-                    <h5 class="card-title"><b>Conference:</b> {{conferences.journal}} | <b>Citations:</b> 181</h5>
+                    <h5 class="card-title"><b>Conference:</b> {{conferences.journal}} | <b>Entry Number:</b> {{conferencesData[indOfelement]['entries'].length - y}}</h5>
                     <br> 
                     
                     <p class="card-text">

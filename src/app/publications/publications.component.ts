@@ -10,6 +10,7 @@ export class PublicationsComponent implements OnInit {
   journalsData: any[] = [];
   conferencesData: any[] = [];
   conferenceYears: any[] = [];
+  lengthOfConference: number = 0;
 
   constructor(
     private RestapiService: RestapiService,
@@ -30,6 +31,7 @@ export class PublicationsComponent implements OnInit {
     this.RestapiService.getData("https://Nekorra.github.io/prof-data/publications.json").subscribe((res) => {
       console.log(res);
       this.conferencesData = res["conferences"];
+      this.lengthOfConference = this.conferencesData.length;
       this.getYears();
     })
   }
