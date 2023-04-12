@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestapiService } from '../services/restapi.service';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-publications',
@@ -13,7 +13,7 @@ export class PublicationsComponent implements OnInit {
   lengthOfConference: number = 0;
 
   constructor(
-    private RestapiService: RestapiService,
+    private databaseService: DatabaseService
   ) {}
 
   ngOnInit() {
@@ -23,17 +23,18 @@ export class PublicationsComponent implements OnInit {
 
   getData() {
     console.log("here");
-    this.RestapiService.getData("https://Nekorra.github.io/prof-data/journals.json").subscribe((res) => {
+    this.databaseService.getData("journals/journals").then((res: any) => {
       console.log(res);
-      this.journalsData = res["journals"];
+      this.journalsData = res;
     })
 
-    this.RestapiService.getData("https://Nekorra.github.io/prof-data/publications.json").subscribe((res) => {
+    this.databaseService.getData("publications/conferences").then((res: any) => {
       console.log(res);
-      this.conferencesData = res["conferences"];
+      this.conferencesData = res;
       this.lengthOfConference = this.conferencesData.length;
       this.getYears();
     })
+    
   }
 
   getYears() {

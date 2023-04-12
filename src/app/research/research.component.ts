@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RestapiService } from '../services/restapi.service';
+import { DatabaseService } from '../services/database.service';
+
 @Component({
   selector: 'app-research',
   templateUrl: './research.component.html',
@@ -9,22 +10,21 @@ export class ResearchComponent implements OnInit {
 
   researchData: any[] = []
   constructor(
-    private RestapiService: RestapiService,
+    private databaseService: DatabaseService
   ) {}
 
   ngOnInit() {
     this.getData();
   }
-
+  
   getData() {
-    console.log("here");
-    this.RestapiService.getData("https://Nekorra.github.io/prof-data/research.json").subscribe((res) => {
-      console.log(res);
-      this.researchData = res["research"];
+    
+    this.databaseService.getData("research/research").then((res: any) => {
+      this.researchData = res;
       console.log(this.researchData);
     })
 
-  
+    
   }
 
 }

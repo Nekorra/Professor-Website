@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RestapiService } from './restapi.service';
+import { DatabaseService } from './database.service';
 
-describe('RestapiService', () => {
-  let service: RestapiService;
+describe('DatabaseService', () => {
+  let service: DatabaseService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RestapiService);
+    service = TestBed.inject(DatabaseService);
   });
 
   it('should be created', () => {

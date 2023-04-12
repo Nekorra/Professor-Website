@@ -2,21 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
-import { TranslateModule } from '@ngx-translate/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatRadioModule } from '@angular/material/radio';
-import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { AwardsComponent } from './awards/awards.component';
 import { PublicationsComponent } from './publications/publications.component';
 
 import { HttpClientModule } from "@angular/common/http";
 import { ResearchComponent } from './research/research.component';
 import { StudentsComponent } from './students/students.component';
+
+import { environment } from 'src/environments/environment.prod';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 @NgModule({
   declarations: [
@@ -28,18 +26,12 @@ import { StudentsComponent } from './students/students.component';
     StudentsComponent,
   ],
   imports: [
-    AppRoutingModule,
-    FontAwesomeModule,
-    TranslateModule, 
-    BrowserAnimationsModule,
-    MatRadioModule,
-    FormsModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatInputModule,
-    TranslateModule.forRoot(),
     HttpClientModule,
-    BrowserModule
+    AppRoutingModule,
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     BrowserModule

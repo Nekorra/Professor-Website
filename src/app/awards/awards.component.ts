@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestapiService } from '../services/restapi.service';
-
+import { DatabaseService } from '../services/database.service';
 @Component({
   selector: 'app-awards',
   templateUrl: './awards.component.html',
@@ -8,10 +7,10 @@ import { RestapiService } from '../services/restapi.service';
 })
 export class AwardsComponent implements OnInit {
 
-  awardsData: any[] = [];
-
+  //awardsData: any[] = [];
+  awardsData: any;
   constructor(
-    private RestapiService: RestapiService,
+    private databaseService: DatabaseService
   ) {}
 
   ngOnInit() {
@@ -19,13 +18,10 @@ export class AwardsComponent implements OnInit {
   }
 
   getData() {
-    console.log("here");
-    this.RestapiService.getData("https://Nekorra.github.io/prof-data/honors.json").subscribe((res) => {
-      console.log(res);
-      this.awardsData = res["awards"];
-    })
-
-  
+    this.databaseService.getData('honors/awards').then((data) => {
+      this.awardsData= data;
+    });
+    
   }
 
 }
