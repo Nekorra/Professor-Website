@@ -1,0 +1,55 @@
+<!-- Dashboard -->
+<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+  <!-- Vertical Navbar -->
+  <!-- Main content -->
+  <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+    <!-- Header -->
+    <header class="bg-surface-primary border-bottom pt-6">
+      <div class="container-fluid">
+        <div class="mb-npx">
+          <div class="row align-items-center">
+            <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+              <!-- Title -->
+              <h1 class="h2 mb-0 ls-tight">Dashboard</h1>
+            </div>
+            <!-- Actions -->
+          </div>
+          <!-- Nav -->
+          <ul class="nav nav-tabs mt-4 overflow-x border-0">
+            <li class="nav-item">
+              <a href="#" class="nav-link active">AWARDS</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link font-regular">Shared</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link font-regular">File requests</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- Main -->
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title" (click)="openDialog()">Add New Award</p>
+              </div>
+            </div>
+          </div>
+      <div *ngFor="let awards of awardsData; let indOfelement = index;">
+        <div class="grid-item">
+          <div class="card">
+            <div class="card-details">
+              <p class="text-title">{{ awards.name }}</p>
+              <p class="text-body">{{ awards.timespan }}</p>
+            </div>
+            <a (click)="removeAward(indOfelement)" class="card-button">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import * as awesom from '@fortawesome/free-solid-svg-icons';
 
 
@@ -17,7 +18,9 @@ export class HomeComponent implements OnInit {
   home: any;
   hidden: boolean = false;
   
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   @HostListener('window:scroll', ['$event']) getScrollHeight(event: any) {
@@ -55,6 +58,10 @@ export class HomeComponent implements OnInit {
       btnText.style.display = "none";
     }
     
+  }
+
+  routeLogin() {
+    this.router.navigate(['/login']);
   }
 
 }

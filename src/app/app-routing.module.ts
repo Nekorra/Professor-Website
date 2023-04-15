@@ -6,6 +6,9 @@ import { AwardsComponent } from './awards/awards.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { ResearchComponent } from './research/research.component';
 import { StudentsComponent } from './students/students.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,7 +16,9 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'publications', component: PublicationsComponent },
   { path: 'research', component: ResearchComponent }, 
-  { path: 'students', component: StudentsComponent }
+  { path: 'students', component: StudentsComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent},
 ];
 
 @NgModule({
