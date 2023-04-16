@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AwardModalComponent } from './modals/award-modal/award-modal.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResearchModalComponent } from './modals/research-modal/research-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     DashboardComponent,
     AwardModalComponent,
+    ResearchModalComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { inject } from '@angular/core/testing';
 
 @Component({
   selector: 'app-award-modal',
@@ -16,9 +15,11 @@ export class AwardModalComponent implements OnInit {
   earnings: string = "";
   extra: string = "";
   length: number;
+  
   constructor(
     private databaseService: DatabaseService,
-    @Inject(MAT_DIALOG_DATA) public data: any)
+    @Inject(MAT_DIALOG_DATA) public data: any
+    )
    { }
 
   ngOnInit(): void {
@@ -27,7 +28,7 @@ export class AwardModalComponent implements OnInit {
 
 
   async addAward() {
-    await this.databaseService.addAwardData(`honors/awards/${this.length}`, this.name, this.link, this.timespan, this.earnings, this.extra);
+    await this.databaseService.addAwardData(`honors/awards/`, this.name, this.link, this.timespan, this.earnings, this.extra);
     alert("Successfully added Data");
   }
 

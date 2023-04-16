@@ -20,6 +20,7 @@ export class AwardsComponent implements OnInit {
   getData() {
     this.databaseService.getData('honors/awards').then((data) => {
       this.awardsData= data;
+      this.awardsData = this.awardsData.flat();
     });
     
   }

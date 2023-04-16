@@ -17,13 +17,13 @@
           <!-- Nav -->
           <ul class="nav nav-tabs mt-4 overflow-x border-0">
             <li class="nav-item">
-              <a href="#" class="nav-link active">AWARDS</a>
+              <a [ngClass]="activePage == 'awards' ? 'nav-link active': 'nav-link font-regular'" (click)="togglePage('awards')">AWARDS</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link font-regular">Shared</a>
+              <a [ngClass]="(activePage == 'publications') ? 'nav-link active': 'nav-link font-regular'" (click)="togglePage('publications')">Publications</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link font-regular">File requests</a>
+              <a [ngClass]="(activePage == 'research') ? 'nav-link active': 'nav-link font-regular'" (click)="togglePage('research')">Research</a>
             </li>
           </ul>
         </div>
@@ -31,25 +31,50 @@
     </header>
     <!-- Main -->
 
-    <div class="grid-container">
-        <div class="grid-item">
-            <div class="card">
-              <div class="card-details">
-                <p class="text-title" (click)="openDialog()">Add New Award</p>
+    <section [hidden] = "!(activePage == 'awards')" id="awards">
+      <div class="grid-container">
+          <div class="grid-item">
+              <div class="card">
+                <div class="card-details">
+                  <p class="text-title" (click)="openDialog('awards')">Add New Award</p>
+                </div>
               </div>
             </div>
-          </div>
-      <div *ngFor="let awards of awardsData; let indOfelement = index;">
-        <div class="grid-item">
-          <div class="card">
-            <div class="card-details">
-              <p class="text-title">{{ awards.name }}</p>
-              <p class="text-body">{{ awards.timespan }}</p>
+        <div *ngFor="let awards of currentData; let indOfelement = index;">
+          <div class="grid-item">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">{{ awards.name }}</p>
+                <p class="text-body">{{ awards.timespan }}</p>
+              </div>
+              <a (click)="remove('honors/awards', indOfelement, 'awards')" class="card-button">Delete</a>
             </div>
-            <a (click)="removeAward(indOfelement)" class="card-button">Delete</a>
           </div>
         </div>
       </div>
+  </section>
+
+  <section [hidden] = "!(activePage == 'publications')" id = "publications">
+    <h1> publications work!</h1>
+  </section>
+
+  <section [hidden] = "!(activePage == 'research')" id="research">
+    <div class="container">
+      <div class="researchCard" (click)="openDialog('research')">
+        <h1 class="cardTitle"> Add Research </h1>
+        <br>
+        <p class="cardDescription"></p>
+        
+      </div>
+      <div *ngFor="let research of currentData; let ind = index">
+        <div class="researchCard" >
+          <h1 class="cardTitle"> {{research.title}} </h1>
+          <br>
+          <p class="cardDescription">{{research.content}}</p>
+          <button (click)="remove('research/research', ind, 'research')">  Delete </button>
+        </div>
+        
+      </div>
     </div>
-  </div>
+  </section>
 </div>

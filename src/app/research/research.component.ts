@@ -8,7 +8,7 @@ import { DatabaseService } from '../services/database.service';
 })
 export class ResearchComponent implements OnInit {
 
-  researchData: any[] = []
+  researchData: any;
   constructor(
     private databaseService: DatabaseService
   ) {}
@@ -21,6 +21,7 @@ export class ResearchComponent implements OnInit {
     
     this.databaseService.getData("research/research").then((res: any) => {
       this.researchData = res;
+      this.researchData = this.researchData.flat();
       console.log(this.researchData);
     })
 
