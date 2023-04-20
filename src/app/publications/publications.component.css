@@ -180,7 +180,7 @@ nav {
 
 .container{
   width: 100%;
-  max-width: 100%;
+  margin: 0 auto;
 }
 
 .seperatorLine{
@@ -199,16 +199,11 @@ nav {
   margin-left: 2%;
 }
 
-ul{
-  list-style-type: none;
-}
-
-.container li{
+.card{
+  height: auto;
+  width: 600px;
   margin: 0 auto;
-  width: 90%;
-  margin-top: 2%;
 }
-
 .card-header{
   font-family: 'Poppins', sans-serif;
   font-size: 30px;
@@ -243,4 +238,18 @@ ul{
 .btn-primary{
   width: 100%;
   font-size: 35px;
+}
+.journalLinks{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin: 0 auto; 
+  text-align: center;
+}
+.confrencesLinks{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin: 0 auto; 
+  text-align: center;
 }
