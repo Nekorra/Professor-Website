@@ -19,9 +19,6 @@ export class StudentsComponent implements OnInit {
   undergrad_alumni: any[] = [];
   undergraduates: any[] = [];
   images: any[] = [];
-
-  url: any
-
   storageRef: AngularFireStorageReference;
   
   constructor(

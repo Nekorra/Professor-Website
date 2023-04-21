@@ -25,6 +25,9 @@
             <li class="nav-item">
               <a [ngClass]="(activePage == 'research') ? 'nav-link active': 'nav-link font-regular'" (click)="togglePage('research')">Research</a>
             </li>
+            <li class="nav-item">
+              <a [ngClass]="(activePage == 'students') ? 'nav-link active': 'nav-link font-regular'" (click)="togglePage('students')">Students</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -55,7 +58,54 @@
   </section>
 
   <section [hidden] = "!(activePage == 'publications')" id = "publications">
-    <h1> publications work!</h1>
+    
+    <h1 class="title-pub"><b>Journals: </b></h1>
+      <div class="journalLinks">
+          <div *ngFor="let journals of journalsData; let ind = index;">
+              <div class="card-pub">
+                <div class="card-header-pub">
+                  <b>{{journals.title}}</b>
+                </div>
+                <br>
+                <div class="card-body-pub">
+                  <h5 class="card-title-pub"><b>Journal:</b> {{journals.journal}} | <b>Entry Number:</b> {{journalsData.length-ind}}</h5>
+                  <br> 
+                  <p class="card-text-pub">
+                    {{journals.authors}}
+                  </p>
+                  <br>
+                  <a href="https://dl.acm.org/doi/10.1145/3579823" target="\blank" class="btn btn-primary"><b>Delete</b></a>
+              </div>
+            </div>
+        </div>
+      </div>
+      <br>
+      <h1 class="title"><b>Conferences: </b></h1>
+
+      <div class="confrencesLinks">
+        <br>
+        <div *ngFor="let years of conferenceYears; let indOfelement = index;">
+          <h1 class="title"><b> {{years}} </b></h1>
+     
+            <div *ngFor="let conferences of conferencesData[indOfelement]['entries']; let y = index">
+                <div class="card-pub">
+                  <div class="card-header-pub">
+                    <b>{{conferences.title}}</b>
+                  </div>
+                  <br>
+                  <div class="card-body-pub">
+                    <h5 class="card-title-pub"><b>Conference:</b> {{conferences.journal}} | <b>Entry Number:</b> {{conferencesData[indOfelement]['entries'].length - y}}</h5>
+                    <br> 
+                    <p class="card-text-pub">
+                      {{conferences.authors}}
+                    </p>
+                    <br>
+                    <a href="https://www.ndss-symposium.org/ndss-paper/heteroscore-evaluating-and-mitigating-cloud-security-threats-brought-by-heterogeneity/" target="\blank" class="btn btn-primary-pub"><b>Delete</b></a>    
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>    
   </section>
 
   <section [hidden] = "!(activePage == 'research')" id="research">
@@ -76,5 +126,90 @@
         
       </div>
     </div>
+  </section>
+
+  <section [hidden] = "!(activePage == 'students')" id="students">
+    <h1 class="title">PhD Students</h1>
+<div class="phd-grid">
+  <div *ngFor="let peoples of phds">
+      <div class="people">
+        <img [src]="peoples.url" alt="Image 1" class="image">
+        <h3>{{peoples.name}}</h3>
+        <h6>{{peoples.research}}</h6>
+      </div>
+    </div>
+  </div>
+  
+
+  <h1 class="title">Master Students</h1>
+  <div class="phd-grid">
+    <div *ngFor="let peoples of masters">
+      <div class="people">
+        <img [src]="peoples.url" alt="Image 1" class="image">
+        <h3>{{peoples.name}}</h3>
+        <h6>{{peoples.research}}</h6>
+      </div>
+   </div>
+  </div>
+
+  <h1 class="title">Undergraduate Students</h1>
+  <div class="phd-grid">
+    <div *ngFor="let peoples of undergraduates">
+      <div class="people">
+        <h3>{{peoples}}</h3>
+      </div>
+    </div>
+  </div>
+  
+  <h1 class="title">Post-Doc Alumni</h1>
+  <div class="postdoc-grid">
+    <div *ngFor="let peoples of post_doc_alumni">
+        <div class="people2">
+          <img [src]="peoples.url" alt="Image 1" class="image2">
+        </div>
+        <div class="about1">
+          <div class="about2">
+            <h1>{{peoples.name}}</h1>
+            <h1>Current job: {{peoples.job}}</h1>
+          </div>
+        </div>      
+    </div>
+  </div>
+
+  <br> <br> <br>
+  <h1 class="title">PhD Alumni</h1>
+  <div class="postdoc-grid">
+    
+    <div *ngFor="let peoples of phd_alumni" >
+      <div class="people2">
+        <img [src]="peoples.url" alt="Image 1" class="image2">
+      </div>
+      <div class="about1">
+        <div class="about3">
+          <h1>{{peoples.name}}</h1>
+          <h1>PhD Thesis: {{peoples.thesis}}</h1>
+          <h1>{{peoples.job}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br> <br> <br>
+  <h1 class="title">MS Alumni</h1>
+  <div class="postdoc-grid">
+
+    <div *ngFor="let peoples of ms_alumni">
+      <div class="people2">
+        <img [src]="peoples.url" alt="Image 1" class="image2">
+      </div>
+      <div class="about1">
+        <div class="about3">
+          <h1>{{peoples.name}}</h1>
+          <h1>PhD Thesis: {{peoples.thesis}}</h1>
+          <h1>{{peoples.job}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
   </section>
 </div>
