@@ -3,6 +3,7 @@
 *{
   padding: 0; 
   margin: 0; 
+  font-family: 'Poppins', sans-serif;
 }
 
 nav {
@@ -177,79 +178,59 @@ nav {
     fill:black; 
   }
 }
-
-.container{
+.title{
+  font-size: 30px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 3px solid #b8a07e;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #b8a07e;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+}
+.container {
   width: 100%;
   margin: 0 auto;
 }
-
-.seperatorLine{
-  height: 5px;
-  width: 35%;
-  border-radius: 20%;
-  background-color: black;
-  margin: 0 auto; 
-  margin-top: 25px;
-  animation: fadeIn 5s;
+.publications {
+  max-height: 500px;
+  width: 100%;
+  overflow-y: auto;
 }
-
-.title{
-  font-family: 'Poppins', sans-serif;
-  font-size: 50px; 
-  margin-left: 2%;
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
-
-.card{
-  height: auto;
-  width: 600px;
-  margin: 0 auto;
-}
-.card-header{
-  font-family: 'Poppins', sans-serif;
-  font-size: 30px;
+th, td {
   padding: 10px;
   text-align: center;
+  border-bottom: 1px solid #b8a07e;
 }
-.card-body{
-  font-family: 'Poppins', sans-serif;
+a{
+  color: black;
 }
-
-.card-title{
-  padding: 15px;
-  width: 25%;
-  border: 2px solid black;
-  border-radius: 10px;
-  text-align: center;
-  margin: 0 auto;
-  transition: 0.4s;
+th {
+  background-color: #f2f2f2;
 }
-
-.card-title:hover{
-  background-color: rgba(211, 211, 211, 0.719);
-}
-
-.card-text{
-  font-size: 20px;
-  color: black; 
-  text-align: center;
-  font-weight: 500;
-}
-
-.btn-primary{
-  width: 100%;
-  font-size: 35px;
-}
-.journalLinks{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
+.line{
+  height: 2px;
+  width: 40%;
   margin: 0 auto; 
-  text-align: center;
-}
-.confrencesLinks{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
-  margin: 0 auto; 
-  text-align: center;
+  background-color: #b8a07e;
 }
