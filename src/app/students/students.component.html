@@ -35,39 +35,39 @@
 <br><br><br><br><br><br><br><br>
 <h1 class="title">PhD Students</h1>
 <div class="phd-grid">
-  <div *ngFor="let peoples of phds">
+  <ng-container *ngFor="let peoples of phds">
       <div class="people">
         <img [src]="peoples.url" alt="Image 1" class="image">
         <h3>{{peoples.name}}</h3>
         <h6>{{peoples.research}}</h6>
       </div>
-    </div>
+    </ng-container>
   </div>
   
 
   <h1 class="title">Master Students</h1>
   <div class="phd-grid">
-    <div *ngFor="let peoples of masters">
+    <ng-container *ngFor="let peoples of masters">
       <div class="people">
         <img [src]="peoples.url" alt="Image 1" class="image">
         <h3>{{peoples.name}}</h3>
         <h6>{{peoples.research}}</h6>
       </div>
-   </div>
+   </ng-container>
   </div>
 
   <h1 class="title">Undergraduate Students</h1>
   <div class="phd-grid">
-    <div *ngFor="let peoples of undergraduates">
+    <ng-container *ngFor="let peoples of undergraduates">
       <div class="people">
         <h3>{{peoples}}</h3>
       </div>
-    </div>
+    </ng-container>
   </div>
   
   <h1 class="title">Post-Doc Alumni</h1>
   <div class="postdoc-grid">
-    <div *ngFor="let peoples of post_doc_alumni">
+    <ng-container *ngFor="let peoples of post_doc_alumni">
         <div class="people2">
           <img [src]="peoples.url" alt="Image 1" class="image2">
         </div>
@@ -77,14 +77,14 @@
             <h1>Current job: {{peoples.job}}</h1>
           </div>
         </div>      
-    </div>
+    </ng-container>
   </div>
 
   <br> <br> <br>
   <h1 class="title">PhD Alumni</h1>
   <div class="postdoc-grid">
     
-    <div *ngFor="let peoples of phd_alumni" >
+    <ng-container *ngFor="let peoples of phd_alumni" >
       <div class="people2">
         <img [src]="peoples.url" alt="Image 1" class="image2">
       </div>
@@ -95,14 +95,14 @@
           <h1>{{peoples.job}}</h1>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 
   <br> <br> <br>
   <h1 class="title">MS Alumni</h1>
   <div class="postdoc-grid">
 
-    <div *ngFor="let peoples of ms_alumni">
+    <ng-container *ngFor="let peoples of ms_alumni">
       <div class="people2">
         <img [src]="peoples.url" alt="Image 1" class="image2">
       </div>
@@ -113,7 +113,7 @@
           <h1>{{peoples.job}}</h1>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </section>
   

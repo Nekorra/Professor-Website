@@ -42,7 +42,6 @@ export class PublicationsComponent implements OnInit {
     for (let i = 0; i < this.conferencesData.length; i++) {
       this.conferenceYears.push(this.conferencesData[i]["year"]);
     }
-    console.log(this.conferenceYears);
   }
 
 }
