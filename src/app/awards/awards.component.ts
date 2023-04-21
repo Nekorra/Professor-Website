@@ -9,6 +9,7 @@ export class AwardsComponent implements OnInit {
 
   //awardsData: any[] = [];
   awardsData: any;
+  url: any;
   constructor(
     private databaseService: DatabaseService
   ) {}
@@ -21,8 +22,9 @@ export class AwardsComponent implements OnInit {
     this.databaseService.getData('honors/awards').then((data) => {
       this.awardsData= data;
       this.awardsData = this.awardsData.flat();
+      console.log(this.awardsData)
     });
-    
   }
+
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+
 import { first, map, take } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class DatabaseService {
   list: any; 
 
   constructor(
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
   ) { } 
 
   getData(path: string) {
@@ -38,4 +39,6 @@ export class DatabaseService {
     const ref = this.db.object(path);
     return ref.set(this.list)
   }
+
+
 }

@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { AwardModalComponent } from './modals/award-modal/award-modal.component';
@@ -44,6 +45,7 @@ import { ResearchModalComponent } from './modals/research-modal/research-modal.c
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     FormsModule,
     MatDialogModule,
     BrowserAnimationsModule

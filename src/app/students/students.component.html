@@ -34,129 +34,66 @@
   </svg>
 <br><br><br><br><br><br><br><br>
 <h1 class="title">PhD Students</h1>
-  <div class="phd-grid">
-    <div class="people">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/elahe.png" alt="Image 1" class="image">
-      <h3>Elahe Hosseini</h3>
-      <h6>Research: Machine Learning</h6>
-    </div>
-    <div class="people">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/elahe.png" alt="Image 1" class="image">
-      <h3>Elahe Hosseini</h3>
-      <h6>Research: Machine Learning</h6>
-    </div>
-    <div class="people">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/elahe.png" alt="Image 1" class="image">
-      <h3>Elahe Hosseini</h3>
-      <h6>Research: Machine Learning</h6>
-    </div>
-    <div class="people">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/elahe.png" alt="Image 1" class="image">
-      <h3>Elahe Hosseini</h3>
-      <h6>Research: Machine Learning</h6>
+<div class="phd-grid">
+  <div *ngFor="let peoples of phds">
+      <div class="people">
+        <img [src]="peoples.url" alt="Image 1" class="image">
+        <h3>{{peoples.name}}</h3>
+        <h6>{{peoples.research}}</h6>
+      </div>
     </div>
   </div>
+  
 
   <h1 class="title">Master Students</h1>
   <div class="phd-grid">
-    <div class="people">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/elahe.png" alt="Image 1" class="image">
-      <h3>Elahe Hosseini</h3>
-      <h6>Research: Machine Learning</h6>
-    </div>
-    <div class="people">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/elahe.png" alt="Image 1" class="image">
-      <h3>Elahe Hosseini</h3>
-      <h6>Research: Machine Learning</h6>
-    </div>
+    <div *ngFor="let peoples of masters">
+      <div class="people">
+        <img [src]="peoples.url" alt="Image 1" class="image">
+        <h3>{{peoples.name}}</h3>
+        <h6>{{peoples.research}}</h6>
+      </div>
+   </div>
   </div>
 
   <h1 class="title">Undergraduate Students</h1>
   <div class="phd-grid">
-    <div class="people">
-      <h6>Tatiana Rodriguez</h6>
-    </div>
-    <div class="people">
-      <h6>Michael Reyes</h6>
-    </div>
-    <div class="people">
-      <h6>Tatiana Rodriguez</h6>
-    </div>
-    <div class="people">
-      <h6>Michael Reyes</h6>
-    </div>
-    <div class="people">
-      <h6>Tatiana Rodriguez</h6>
-    </div>
-    <div class="people">
-      <h6>Michael Reyes</h6>
+    <div *ngFor="let peoples of undergraduates">
+      <div class="people">
+        <h3>{{peoples}}</h3>
+      </div>
     </div>
   </div>
   
   <h1 class="title">Post-Doc Alumni</h1>
   <div class="postdoc-grid">
-
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sai-postdoc.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about2">
-        <h1>Soheil Salehi</h1>
-        <h1>Current job: Assistant professor, University of Arizona</h1>
-      </div>
-    </div>
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sai-postdoc.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about2">
-        <h1>Soheil Salehi</h1>
-        <h1>Current job: Assistant professor, University of Arizona</h1>
-      </div>
-    </div>
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sai-postdoc.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about2">
-        <h1>Soheil Salehi</h1>
-        <h1>Current job: Assistant professor, University of Arizona</h1>
-      </div>
+    <div *ngFor="let peoples of post_doc_alumni">
+        <div class="people2">
+          <img [src]="peoples.url" alt="Image 1" class="image2">
+        </div>
+        <div class="about1">
+          <div class="about2">
+            <h1>{{peoples.name}}</h1>
+            <h1>Current job: {{peoples.job}}</h1>
+          </div>
+        </div>      
     </div>
   </div>
 
   <br> <br> <br>
   <h1 class="title">PhD Alumni</h1>
   <div class="postdoc-grid">
-
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sai-postdoc.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about3">
-        <h1>Han Wang</h1>
-        <h1>PhD Thesis:</h1>
-        <h1>Current job: Assistant Professor, Temple University</h1>
+    
+    <div *ngFor="let peoples of phd_alumni" >
+      <div class="people2">
+        <img [src]="peoples.url" alt="Image 1" class="image2">
       </div>
-    </div>
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sai-postdoc.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about3">
-        <h1>Han Wang</h1>
-        <h1>PhD Thesis:</h1>
-        <h1>Current job: Assistant Professor, Temple University</h1>
-      </div>
-    </div>
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sai-postdoc.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about3">
-        <h1>Han Wang</h1>
-        <h1>PhD Thesis:</h1>
-        <h1>Current job: Assistant Professor, Temple University</h1>
+      <div class="about1">
+        <div class="about3">
+          <h1>{{peoples.name}}</h1>
+          <h1>PhD Thesis: {{peoples.thesis}}</h1>
+          <h1>{{peoples.job}}</h1>
+        </div>
       </div>
     </div>
   </div>
@@ -165,38 +102,18 @@
   <h1 class="title">MS Alumni</h1>
   <div class="postdoc-grid">
 
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sara-bondi.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about3">
-        <h1>Sara Bondi</h1>
-        <h1>PhD Thesis:</h1>
-        <h1>Current job: Assistant Professor, Temple University</h1>
+    <div *ngFor="let peoples of ms_alumni">
+      <div class="people2">
+        <img [src]="peoples.url" alt="Image 1" class="image2">
       </div>
-    </div>
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sara-bondi.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about3">
-        <h1>Sara Bondi</h1>
-        <h1>PhD Thesis:</h1>
-        <h1>Current job: Assistant Professor, Temple University</h1>
-      </div>
-    </div>
-    <div class="people2">
-      <img src="https://www.ece.ucdavis.edu/~hhomayou//images/sara-bondi.jpg" alt="Image 1" class="image2">
-    </div>
-    <div class="about1">
-      <div class="about3">
-        <h1>Sara Bondi</h1>
-        <h1>PhD Thesis:</h1>
-        <h1>Current job: Assistant Professor, Temple University</h1>
+      <div class="about1">
+        <div class="about3">
+          <h1>{{peoples.name}}</h1>
+          <h1>PhD Thesis: {{peoples.thesis}}</h1>
+          <h1>{{peoples.job}}</h1>
+        </div>
       </div>
     </div>
   </div>
-   
-
 </section>
   
