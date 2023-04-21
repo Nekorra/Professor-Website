@@ -42,7 +42,7 @@
     <div class="container">
       <div class="search-container">
         <h1 class="title">Journals Published: </h1>
-        <input type="text" class="search-input" placeholder="Search...">
+        <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchJournals">
         <button class="search-button">Search</button>
       </div>
       <div class="publications">
@@ -56,7 +56,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let journals of journalsData; let ind = index;">
+            <tr *ngFor="let journals of journalsData | search: searchJournals; let ind = index; ">
               <td><a href="#" target="_blank">{{journals.title}}</a></td>
               <td> {{journalsData.length-ind}}</td>
               <td> {{journals.journal}} </td>
@@ -81,7 +81,7 @@
     <div class="container">
       <div class="search-container">
         <h1 class="title">Conferences: </h1>
-        <input type="text" class="search-input" placeholder="Search...">
+        <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchPublications">
         <button class="search-button">Search</button>
       </div>
       <div class="publications">
@@ -97,7 +97,7 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let years of conferenceYears; let indOfelement = index;">
-              <tr *ngFor="let conferences of conferencesData[indOfelement]['entries']; let y = index">
+              <tr *ngFor="let conferences of conferencesData[indOfelement]['entries']  | search: searchPublications; let y = index">
                 <td><a href="#" target="_blank">{{conferences.title}}</a></td>
                 <td>{{conferencesData[indOfelement]['entries'].length - y}}</td>
                 <td>{{years}}</td>

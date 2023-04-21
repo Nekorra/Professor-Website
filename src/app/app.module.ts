@@ -26,6 +26,8 @@ import { AwardModalComponent } from './modals/award-modal/award-modal.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResearchModalComponent } from './modals/research-modal/research-modal.component';
 import { PublicationsModalComponent } from './modals/publications-modal/publications-modal.component';
+import { SearchPipe } from './search.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,8 @@ import { PublicationsModalComponent } from './modals/publications-modal/publicat
     AwardModalComponent,
     ResearchModalComponent,
     PublicationsModalComponent,
+    SearchPipe,
+    
   ],
   imports: [
     HttpClientModule,

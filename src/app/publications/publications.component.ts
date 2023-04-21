@@ -12,6 +12,9 @@ export class PublicationsComponent implements OnInit {
   conferenceYears: any[] = [];
   lengthOfConference: number = 0;
 
+  searchJournals = '';
+  searchPublications = '';
+
   constructor(
     private databaseService: DatabaseService
   ) {}
