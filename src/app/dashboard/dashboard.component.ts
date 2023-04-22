@@ -21,6 +21,9 @@ export class DashboardComponent implements OnInit {
   conferenceYears: any[] = [];
   lengthOfConference: number = 0;
 
+  searchJournals = '';
+  searchPublications = '';
+
   director: any[] = [];
   masters: any[] = [];
   ms_alumni: any[] = [];
@@ -62,6 +65,9 @@ export class DashboardComponent implements OnInit {
       console.log(this.currentData);
     }
     if ( page == "publications") {
+      this.journalsData = []
+      this.conferencesData = []
+      this.conferenceYears = []
       this.databaseService.getData("journals/journals").then((res: any) => {
         console.log(res);
         this.journalsData = res;
@@ -76,6 +82,15 @@ export class DashboardComponent implements OnInit {
     }
 
     if (page == "students") {
+      this.director = [];
+      this.masters  = [];
+      this.ms_alumni = [];
+      this.phd_alumni = [];
+      this.phds = [];
+      this.post_doc_alumni = [];
+      this.undergrad_alumni = [];
+      this.undergraduates= [];
+      this.images = [];
       await this.databaseService.getData('people').then((data) => {
         const result = Object.keys(data).map((key) => {
           return { [key]: data[key as keyof typeof data] };

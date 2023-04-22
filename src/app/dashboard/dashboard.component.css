@@ -3,8 +3,8 @@
 /* URL: https://github.com/webpixels/css */
 
 @import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
-
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+  
 
 .card {
     width: 200px;
@@ -120,85 +120,66 @@
     margin: 0 auto;
     width: 95%;
 }
-
-
-
-.card-pub{
-    height: auto;
-    width: 600px;
-    margin: 0 auto;
-  }
-  .card-header-pub{
-    font-family: 'Poppins', sans-serif;
-    font-size: 30px;
-    padding: 10px;
-    text-align: center;
-  }
-  .card-body-pub{
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .card-title-pub{
-    padding: 15px;
-    width: 25%;
-    border: 2px solid black;
-    border-radius: 10px;
-    text-align: center;
-    margin: 0 auto;
-    transition: 0.4s;
-  }
-  
-  .card-title-pub:hover{
-    background-color: rgba(211, 211, 211, 0.719);
-  }
-  
-  .card-text-pub{
-    font-size: 20px;
-    color: black; 
-    text-align: center;
-    font-weight: 500;
-  }
-  
-  .btn-primary{
-    width: 100%;
-    font-size: 35px;
-  }
-  .journalLinks{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    margin: 0 auto; 
-    text-align: center;
-  }
-  .confrencesLinks{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    margin: 0 auto; 
-    text-align: center;
-  }
-
-  .seperatorLine-pub{
-    height: 5px;
-    width: 35%;
-    border-radius: 20%;
-    background-color: black;
-    margin: 0 auto; 
-    margin-top: 25px;
-    animation: fadeIn 5s;
-  }
-
-  .btn-primary-pub{
-    width: 100%;
-    font-size: 35px;
-  }
-  
-  .title-pub{
-    font-family: 'Poppins', sans-serif;
-    font-size: 50px; 
-    margin-left: 2%;
-  }
-  
+.container-pub {
+  width: 100%;
+  margin: 0 auto;
+}
+.title-pub{
+  font-size: 30px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 3px solid #b8a07e;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #b8a07e;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+}
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+.publications {
+  max-height: 500px;
+  width: 100%;
+  overflow-y: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #b8a07e;
+}
+a{
+  color: black;
+}
+th {
+  background-color: #f2f2f2;
+}
+.line{
+  height: 2px;
+  width: 40%;
+  margin: 0 auto; 
+  background-color: #b8a07e;
+}
 
 
 .phd-grid{
@@ -260,3 +241,4 @@
   right: 90%;
   transform: translate(90%, 10%);
 }
+
