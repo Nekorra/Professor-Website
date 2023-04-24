@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import * as awesom from '@fortawesome/free-solid-svg-icons';
+import { DatabaseService } from '../services/database.service';
 
 
 @Component({
@@ -17,9 +18,13 @@ export class HomeComponent implements OnInit {
   badge: any;
   home: any;
   hidden: boolean = false;
+  fundsData: any;
+  searchFunds: any;
+  totalFunds: any;
   
   constructor(
-    private router: Router
+    private router: Router,
+    private databaseService: DatabaseService
   ) {
   }
 
@@ -38,6 +43,9 @@ export class HomeComponent implements OnInit {
     this.birthday = awesom.faBirthdayCake;
     this.badge = awesom.faGraduationCap;
     this.home = awesom.faLaptopHouse;
+
+    this.getData();
+
   }
 
   expand() {
@@ -62,6 +70,20 @@ export class HomeComponent implements OnInit {
 
   routeLogin() {
     this.router.navigate(['/login']);
+  }
+
+  getData() {
+    this.databaseService.getData('funding/funds').then((data) => {
+      this.fundsData= data;
+      //this.awardsData = this.awardsData.flat();
+      console.log(this.fundsData)
+    });
+
+    this.databaseService.getData('funding').then((data: any) => {
+      this.totalFunds= data.total;;
+      //this.awardsData = this.awardsData.flat();
+      console.log(this.totalFunds)
+    });
   }
 
 }

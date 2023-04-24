@@ -107,9 +107,9 @@
 
   <div class="container">
     <div class="search-container">
-      <h1 class="title" style="font-weight: bold;">Sponsored Research: Total $10,580,000</h1>
+      <h1 class="title" style="font-weight: bold;">Sponsored Research: Total {{this.totalFunds}}</h1>
       
-      <input type="text" class="search-input" placeholder="Search...">
+      <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchFunds">
       <button class="search-button">Search</button>
     </div>
     <div class="publications">
@@ -123,11 +123,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>$75,000 Grant from Grant from CHEST Industry Fund</td>
-            <td>2021-2022</td>
-            <td>Do you trust standard cell library?</td>
-            <td>PI</td>
+          <tr *ngFor="let funds of fundsData | search: searchFunds;">
+            <td [innerHTML]="funds.amount + ' ' + funds.purpose"></td>
+            <td>{{funds.timespan}}</td>
+            <td>{{funds.purpose}}</td>
+            <td>{{funds.role}}</td>
           </tr>
     
           

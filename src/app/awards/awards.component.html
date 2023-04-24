@@ -5,8 +5,7 @@
             <div class="logo">
               <a href="index.html"><img src="https://ece.ucdavis.edu/sites/g/files/dgvnsk8091/files/ece_logo_125px.png" alt="logo"></a>
             </div>
-    
-    
+
             <ul class="nav-menu list-unstyled">
               <li><a href="#home" class="smooth-scroll">Home</a></li>
               <li><a href="#about" class="smooth-scroll">About</a></li>
@@ -15,7 +14,7 @@
               <li><a href="/students" class="smooth-scroll">Students</a></li>
 
             </ul>
-    
+            
           </div>
         </div>
       </nav>
@@ -39,6 +38,7 @@
                 <div class="card-details">
                   <p class="text-title">{{awards.name}}</p>
                   <p class="text-body">{{awards.timespan}}</p>
+                  <p class="text-body" *ngIf="awards.earnings != ''">Earnings: {{awards.earnings}}</p>
                 </div>
                 <a href="{{awards.link}}" target=”_blank” class="card-button">More info</a>
               </div>
