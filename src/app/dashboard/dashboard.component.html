@@ -76,8 +76,15 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td><a><div style="color: red" (click)="openDialog('journals')"> Add new Journal</div></a></td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+            </tr>
+
             <tr *ngFor="let journals of journalsData | search: searchJournals; let ind = index; ">
-              <td><a href="#" target="_blank">{{journals.title}}</a></td>
+              <td><a href="#" target="_blank">{{journals.title}}</a> <button (click)="remove('journals/journals', ind, 'publications')"> delete </button></td>
               <td> {{journalsData.length-ind}}</td>
               <td> {{journals.journal}} </td>
               <td> {{journals.authors}}</td>
@@ -112,15 +119,19 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let years of conferenceYears; let indOfelement = index;">
-              <tr *ngFor="let conferences of conferencesData[indOfelement]['entries']  | search: searchPublications; let y = index">
-                <td><a href="#" target="_blank">{{conferences.title}}</a></td>
-                <td>{{conferencesData[indOfelement]['entries'].length - y}}</td>
-                <td>{{years}}</td>
-                <td>{{conferences.journal}} </td>
-                <td>{{conferences.authors}}</td>
-              </tr>
-            </ng-container>
+            <tr>
+              <td><a><div style="color: red" (click)="openDialog('publications')"> Add new Publication</div></a></td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr *ngFor="let conferences of conferencesData | search: searchPublications; let y = index">
+              <td><a href="#" target="_blank">{{conferences.title}}</a> <button (click)="remove('publications/conferences', y, 'publications')"> delete </button> </td>
+              <td>{{conferencesData.length - y}}</td>
+              <td>{{conferences.year}}</td>
+              <td>{{conferences.journal}} </td>
+              <td>{{conferences.authors}}</td>
+            </tr>
             
             
             <!-- Add more conferences here here -->

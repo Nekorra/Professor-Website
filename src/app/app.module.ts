@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResearchModalComponent } from './modals/research-modal/research-modal.component';
 import { PublicationsModalComponent } from './modals/publications-modal/publications-modal.component';
 import { SearchPipe } from './search.pipe';
+import { JournalsModalComponent } from './modals/journals-modal/journals-modal.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SearchPipe } from './search.pipe';
     ResearchModalComponent,
     PublicationsModalComponent,
     SearchPipe,
+    JournalsModalComponent,
     
   ],
   imports: [

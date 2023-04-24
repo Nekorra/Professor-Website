@@ -96,15 +96,13 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let years of conferenceYears; let indOfelement = index;">
-              <tr *ngFor="let conferences of conferencesData[indOfelement]['entries']  | search: searchPublications; let y = index">
-                <td><a href="#" target="_blank">{{conferences.title}}</a></td>
-                <td>{{conferencesData[indOfelement]['entries'].length - y}}</td>
-                <td>{{years}}</td>
-                <td>{{conferences.journal}} </td>
-                <td>{{conferences.authors}}</td>
-              </tr>
-            </ng-container>
+            <tr *ngFor="let conferences of conferencesData | search: searchPublications; let y = index">
+              <td><a href="#" target="_blank">{{conferences.title}}</a></td>
+              <td>{{conferencesData.length - y}}</td>
+              <td>{{conferences.year}}</td>
+              <td>{{conferences.journal}} </td>
+              <td>{{conferences.authors}}</td>
+            </tr>
             
             
             <!-- Add more conferences here here -->

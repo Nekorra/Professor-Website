@@ -26,11 +26,29 @@ export class DatabaseService {
     return ref.set(this.list)
   }
 
-  removeAward(path: string) {
+  async addJournalData(path: string, title: string, url: string, journal: string, authors: string) {
+    await this.db.object(path).valueChanges().pipe(take(1)).toPromise().then((data: any) => {
+      this.list = data;
+    })
+    this.list.unshift({authors: authors, url: url, journal: journal, title: title});
+    const ref = this.db.object(path);
+    return ref.set(this.list);
+  }
+
+  async addPublicationData(path: string, title: string, url: string, journal: string, authors: string, year: string) {
+    await this.db.object(path).valueChanges().pipe(take(1)).toPromise().then((data: any) => {
+      this.list = data;
+    })
+    this.list.unshift({authors: authors, url: url, journal: journal, title: title, year: year});
+    const ref = this.db.object(path);
+    return ref.set(this.list);
+  }
+
+  remove(path: string) {
     const ref = this.db.object(path);
     return ref.remove();
   }
-
+  
   async addResearchData(path: string, content: string, img_name: string, title: string) {
     await this.db.object(path).valueChanges().pipe(take(1)).toPromise().then((data: any) => {
       this.list = data;

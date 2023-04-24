@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AwardModalComponent } from '../modals/award-modal/award-modal.component';
 import { ResearchModalComponent } from '../modals/research-modal/research-modal.component';
 import { PublicationsModalComponent } from '../modals/publications-modal/publications-modal.component';
+import { JournalsModalComponent } from '../modals/journals-modal/journals-modal.component';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
 
 @Component({
@@ -13,12 +14,11 @@ import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/c
 })
 export class DashboardComponent implements OnInit {
   currentData: any;
-  length: number
+  length: number  
   activePage: string;
 
-  journalsData: any[] = [];
-  conferencesData: any[] = [];
-  conferenceYears: any[] = [];
+  journalsData: any;
+  conferencesData: any;
   lengthOfConference: number = 0;
 
   searchJournals = '';
@@ -67,17 +67,18 @@ export class DashboardComponent implements OnInit {
     if ( page == "publications") {
       this.journalsData = []
       this.conferencesData = []
-      this.conferenceYears = []
       this.databaseService.getData("journals/journals").then((res: any) => {
         console.log(res);
         this.journalsData = res;
+        this.journalsData = this.journalsData.flat();
+        this.length = this.currentData.length;
       })
   
       this.databaseService.getData("publications/conferences").then((res: any) => {
         console.log(res);
         this.conferencesData = res;
+        this.conferencesData = this.conferencesData.flat();
         this.lengthOfConference = this.conferencesData.length;
-        this.getYears();
       })
     }
 
@@ -194,13 +195,6 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  getYears() {
-    this.conferenceYears = [];
-    for (let i = 0; i < this.conferencesData.length; i++) {
-      this.conferenceYears.push(this.conferencesData[i]["year"]);
-    }
-    console.log(this.conferenceYears);
-  }
 
   openDialog(page: string) {
     if (page == "awards") {
@@ -242,15 +236,24 @@ export class DashboardComponent implements OnInit {
       });
     }
 
+    if (page == "journals") {
+      const dialog = this.dialogRef.open(JournalsModalComponent, {
+        data : {
+          length: this.length
+        }
+      });
 
-    
+      dialog.afterClosed().subscribe(() => {
+        // Do stuff after the dialog has closed
+        this.getData(page);
+      });
+    }
     
   }
 
   async remove(path: string, index: number, page: string) {
-    await this.databaseService.removeAward(`${path}/${index}`);
+    await this.databaseService.remove(`${path}/${index}`);
     this.getData(page);
-
   }
 
   togglePage(page: string) {

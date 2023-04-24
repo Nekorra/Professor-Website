@@ -7,9 +7,8 @@ import { DatabaseService } from '../services/database.service';
   styleUrls: ['./publications.component.css']
 })
 export class PublicationsComponent implements OnInit {
-  journalsData: any[] = [];
-  conferencesData: any[] = [];
-  conferenceYears: any[] = [];
+  journalsData: any;
+  conferencesData: any;
   lengthOfConference: number = 0;
 
   searchJournals = '';
@@ -29,22 +28,16 @@ export class PublicationsComponent implements OnInit {
     this.databaseService.getData("journals/journals").then((res: any) => {
       console.log(res);
       this.journalsData = res;
+      this.journalsData = this.journalsData.flat();
     })
 
     this.databaseService.getData("publications/conferences").then((res: any) => {
       console.log(res);
       this.conferencesData = res;
+      this.conferencesData = this.conferencesData.flat();
       this.lengthOfConference = this.conferencesData.length;
-      this.getYears();
     })
     
-  }
-
-  getYears() {
-    this.conferenceYears = [];
-    for (let i = 0; i < this.conferencesData.length; i++) {
-      this.conferenceYears.push(this.conferencesData[i]["year"]);
-    }
   }
 
 }
