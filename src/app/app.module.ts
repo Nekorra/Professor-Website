@@ -29,6 +29,8 @@ import { PublicationsModalComponent } from './modals/publications-modal/publicat
 import { SearchPipe } from './search.pipe';
 import { JournalsModalComponent } from './modals/journals-modal/journals-modal.component';
 
+import { NgxsReadMoreModule } from '@minni/read-more';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,8 @@ import { JournalsModalComponent } from './modals/journals-modal/journals-modal.c
     AngularFireStorageModule,
     FormsModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxsReadMoreModule
   ],
   providers: [
     BrowserModule
