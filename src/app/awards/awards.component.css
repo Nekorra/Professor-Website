@@ -222,3 +222,20 @@ nav {
     fill:black; 
   }
 }
+
+@media only screen 
+  and (device-width: 414px) 
+  and (device-height: 896px){
+    
+    #logo{
+      margin-top: 10px;
+      height: 40px;
+    }
+    .grid-container {
+      margin-top: 10%;
+      display: grid;
+      grid-template-columns: auto ;
+      padding-left: 25%;
+      height: auto;
+  }
+  }

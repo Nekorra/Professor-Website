@@ -204,18 +204,32 @@ to{
   margin-right: 5%;
 }
 .about2{
-  margin: o auto;
+  margin: 0 auto;
   text-align: center;
-  position: relative;
-  top: 20%;
-  right: 90%;
-  transform: translate(90%, 20%);
+  
 }
 .about3{
   margin: o auto;
   text-align: center;
-  position: relative;
-  top: 10%;
-  right: 90%;
-  transform: translate(90%, 10%);
+}
+
+@media only screen 
+  and (device-width: 414px) 
+  and (device-height: 896px){
+    
+    #logo{
+      margin-top: 10px;
+      height: 50px;
+    }
+   
+    .phd-grid{
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 50px;
+  }
+  .postdoc-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    
+  }
+  
 }
