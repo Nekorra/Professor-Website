@@ -158,11 +158,17 @@ nav {
     grid-template-columns:auto auto;
     column-gap: 10%;
     row-gap: 1%;
-    top: 1.5%;
-    transform: translateY(1.5%);
     padding-bottom: 65%;
 }
-
+.image{
+  border-radius: 10%;
+  border: 2px solid #b8a07e;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
 .researchCard{
     box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc;
     border-radius: 10%;
@@ -189,4 +195,12 @@ nav {
     text-align: center;
     margin: 0 auto;
     width: 95%;
+}
+
+.assec-div{
+  font-family: 'Poppins', sans-serif;
+    margin: 0 auto;
+    text-align: center;
+    width: 95%;
+    margin-top: 10%;
 }
