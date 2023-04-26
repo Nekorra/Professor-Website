@@ -144,21 +144,21 @@
   </section>
 
   <section [hidden] = "!(activePage == 'research')" id="research">
-    <div class="container">
-      <div class="researchCard" (click)="openDialog('research')">
-        <h1 class="cardTitle"> Add Research </h1>
+
+    <div class="project-container"> 
+      <div class="project-card" (click)="openDialog('research')">
         <br>
-        <p class="cardDescription"></p>
-        
+        <h2 class="project-title">Add Research</h2>
+        <p class="project-description"></p>
+        <br>
       </div>
-      <div *ngFor="let research of currentData; let ind = index">
-        <div class="researchCard" >
-          <h1 class="cardTitle"> {{research.title}} </h1>
-          <br>
-          <p class="cardDescription">{{research.content}}</p>
-          <button (click)="remove('research/research', ind, 'research')">  Delete </button>
-        </div>
-        
+      <div class="project-card" *ngFor = "let research of currentData; let ind = index">
+        <img *ngIf="research.url" class="project-image" [src]="research.url" alt="Research Project 1">
+        <br>
+        <h2 class="project-title">{{research.title}}</h2>
+        <p class="project-description">{{research.content}}</p>
+        <br>
+        <button class="project-read-more" (click)="remove('research/research', ind, 'research')">Delete</button>
       </div>
     </div>
   </section>

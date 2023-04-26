@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
         this.currentData = this.currentData.flat();
         this.length = this.currentData.length
       })
-      console.log(this.currentData);
+      this.putResearchImageList();
     }
     if ( page == "publications") {
       this.journalsData = []
@@ -130,6 +130,20 @@ export class DashboardComponent implements OnInit {
     }
     this.putImageList();
     
+  }
+
+  putResearchImageList() {
+    for (let i = 0; i < this.currentData.length; i++) {
+      if (this.currentData[i].title == "ASEEC") {
+        this.currentData.splice(i, 1);
+      }
+      if(this.currentData[i].img_name != "" || this.currentData[i].img_name != null) {
+        this.storageRef = this.afStorage.ref("research/" + this.currentData[i].img_name);
+        this.storageRef.getDownloadURL().toPromise().then(url => {
+          this.currentData[i].url = url;
+        });
+      }
+    }
   }
 
 

@@ -14,6 +14,7 @@ export class ResearchComponent implements OnInit {
   researchIntro: any;
   images: any[] = [];
   storageRef: AngularFireStorageReference;
+  searchResearch: any;
 
   readMoreOption: ReadMoreOptions = {
     readLessText: 'less', 
@@ -39,9 +40,6 @@ export class ResearchComponent implements OnInit {
     await this.databaseService.getData("research/research").then((res: any) => {
       this.researchData = res;
       this.researchData = this.researchData.flat();
-      console.log(this.researchData);
-      this.researchIntro = this.researchData[0];
-      this.researchData.shift();
     })
 
     this.putImageList();
@@ -49,8 +47,11 @@ export class ResearchComponent implements OnInit {
   }
 
   putImageList() {
-    console.log(this.researchData);
     for (let i = 0; i < this.researchData.length; i++) {
+      if (this.researchData[i].title == "ASEEC") {
+        this.researchIntro = this.researchData[i];
+        this.researchData.splice(i, 1);
+      }
       if(this.researchData[i].img_name != "" || this.researchData[i].img_name != null) {
         this.storageRef = this.afStorage.ref("research/" + this.researchData[i].img_name);
         this.storageRef.getDownloadURL().toPromise().then(url => {

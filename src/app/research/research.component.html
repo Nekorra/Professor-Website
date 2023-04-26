@@ -64,7 +64,7 @@
   <h1 class="searchTitle"> Search Research: </h1>
   <br>
   <div class="search-container">
-    <input type="text" placeholder="Search...">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchResearch">
     <button type="submit">
       <i class="fa fa-search"></i>
     </button>
@@ -73,50 +73,14 @@
   <br><br>
   
   <div class="project-container">
-
-    <div class="project-card">
-      <img class="project-image" src="https://www.ece.ucdavis.edu/~hhomayou//images/Slide03-327x261.jpg" alt="Research Project 1">
+    <div class="project-card" *ngFor = "let research of researchData | search: searchResearch; ">
+      <img *ngIf="research.url" class="project-image" [src]="research.url" alt="Research Project 1">
       <br>
-      <h2 class="project-title">Research Project 1</h2>
-      <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, ultricies leo. Aliquam vel dictum purus. Nunc vel lacus eget elit cursus sagittis a id ipsum. <span class="project-more-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla malesuada accumsan sapien, id volutpat mi vestibulum a.</span></p>
-      <br>
-      <button class="project-read-more">Read more</button>
-    </div>
-
-    <div class="project-card">
-      <img class="project-image" src="https://www.ece.ucdavis.edu/~hhomayou//images/Slide03-327x261.jpg" alt="Research Project 1">
-      <br>
-      <h2 class="project-title">Research Project 1</h2>
-      <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, ultricies leo. Aliquam vel dictum purus. Nunc vel lacus eget elit cursus sagittis a id ipsum. <span class="project-more-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla malesuada accumsan sapien, id volutpat mi vestibulum a.</span></p>
+      <h2 class="project-title">{{research.title}}</h2>
+      <p class="project-description">{{research.content}}</p>
       <br>
       <button class="project-read-more">Read more</button>
     </div>
-    <div class="project-card">
-      <img class="project-image" src="https://www.ece.ucdavis.edu/~hhomayou//images/Slide03-327x261.jpg" alt="Research Project 1">
-      <br>
-      <h2 class="project-title">Research Project 1</h2>
-      <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, ultricies leo. Aliquam vel dictum purus. Nunc vel lacus eget elit cursus sagittis a id ipsum. <span class="project-more-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla malesuada accumsan sapien, id volutpat mi vestibulum a.</span></p>
-      <br>
-      <button class="project-read-more">Read more</button>
-    </div>
-    <div class="project-card">
-      <img class="project-image" src="https://www.ece.ucdavis.edu/~hhomayou//images/Slide03-327x261.jpg" alt="Research Project 1">
-      <br>
-      <h2 class="project-title">Research Project 1</h2>
-      <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, ultricies leo. Aliquam vel dictum purus. Nunc vel lacus eget elit cursus sagittis a id ipsum. <span class="project-more-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla malesuada accumsan sapien, id volutpat mi vestibulum a.</span></p>
-      <br>
-      <button class="project-read-more">Read more</button>
-    </div>
-    <div class="project-card">
-      <img class="project-image" src="https://www.ece.ucdavis.edu/~hhomayou//images/Slide03-327x261.jpg" alt="Research Project 1">
-      <br>
-      <h2 class="project-title">Research Project 1</h2>
-      <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dui euismod, pharetra velit non, ultricies leo. Aliquam vel dictum purus. Nunc vel lacus eget elit cursus sagittis a id ipsum. <span class="project-more-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla malesuada accumsan sapien, id volutpat mi vestibulum a.</span></p>
-      <br>
-      <button class="project-read-more">Read more</button>
-    </div>
-    
-    
     
 	</div>
 
