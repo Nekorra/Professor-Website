@@ -116,6 +116,7 @@
       <table>
         <thead>
           <tr>
+            <th>Money</th>
             <th>Grant</th>
             <th>Date</th>
             <th>About </th>
@@ -124,15 +125,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let funds of fundsData | search: searchFunds;">
-            <td [innerHTML]="funds.amount + ' ' + funds.purpose"></td>
+            <td>${{funds.amount}}</td>
+            <td>{{funds.purpose}}</td>
             <td>{{funds.timespan}}</td>
             <td>{{funds.purpose}}</td>
             <td>{{funds.role}}</td>
           </tr>
     
-          
-          
-          <!-- Add more publications here -->
         </tbody>
       </table>
     </div>
@@ -141,7 +140,11 @@
 
 </section>
 
+<br><br>
 
+<div class="line2"></div>
+
+<br><br>
 
 <section id="researchCarousel">
 

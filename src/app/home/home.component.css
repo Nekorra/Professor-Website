@@ -164,6 +164,7 @@
   top: 60%; 
   transform: translate(-50%, -60%);
   animation: fadeIn 4.5s;
+  text-align: center;
 }
 
 .eceLogo{
@@ -248,7 +249,7 @@
 }
 
 #funding{
-  height: 60vh;
+  height: auto;
 }
 
 .title{
@@ -344,8 +345,6 @@ th {
 
 }
 
-
-
 nav {
   position: fixed;
   top: 0;
@@ -353,29 +352,32 @@ nav {
   z-index: 1000;
   width: 100%;
   padding: 20px;
-  display: none;
-  -webkit-box-shadow: 25 2px 92px 25 rgba(0, 0, 0, 0.18);
-  -moz-box-shadow: 25 2px 92px 25 rgba(0, 0, 0, 0.18);
-  box-shadow: 25 2px 92px 25 rgba(0, 0, 0, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 }
 
 .nav-menu {
-  float: right;
-  line-height: 32px;
-  margin-bottom: 0;
-  padding-top: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 nav ul li {
-  float: left;
-  margin-right: 15px;
+  margin-left: 20px;
   font-family: 'Poppins', sans-serif;
-  margin-left: 40px;
+}
+
+nav ul li:first-child {
+  margin-left: 0;
 }
 
 nav ul li a {
-  padding: 2px 0 0 0;
-  position: relative;
   display: block;
   font-size: 15px;
   color: #999999;
@@ -385,12 +387,15 @@ nav ul li a {
   text-transform: uppercase;
   letter-spacing: 0.02em;
   text-transform: capitalize;
+  padding: 16px 10px;
+  transition: all 0.2s ease-in-out;
 }
 
-nav ul li a:hover{
+nav ul li a:hover {
   color: black;
   font-size: 16px;
 }
+
 
 .logo {
   float: left;
@@ -501,21 +506,48 @@ h3,h4{
   float: left;
   border-radius: 20%;
 }
+.line2{
+  height: 2px;
+  width: 40%;
+  margin: 0 auto; 
+  background-color: #b8a07e;
+}
 
 @media only screen 
-  and (device-width: 414px) 
-  and (device-height: 896px){
-    
-    html{
-      overflow-x: hidden;
+  and (device-width: 320px) {
+    .logo {
+      float: none;
     }
     
+    .nav-menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    
+    }
+    nav ul li {
+      margin: 0;
+      width: 25%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    nav ul li a{
+      font-size: 10px;
+     
+    }
+  
+    .carousel-inner h1{
+      font-size: 20px;
+    }
+    .AM{
+      height: 25%;
+    }
     #logo{
-      height: 23px;
+      width: 80%;
     }
     .department{
       font-size: 15px;
-      text-align: center;
     }
     #about .div-img-bg {
       margin-bottom: 30px;
@@ -523,4 +555,5 @@ h3,h4{
     .p-heading{
       margin-bottom: 30px;
     }
+    
   }
