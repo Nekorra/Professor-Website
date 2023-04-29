@@ -216,9 +216,9 @@ nav ul li a:hover {
 }
 #logo{
   position: absolute;
-  top: 15%; 
+  top: 20%; 
   left: 50%;
-  transform: translate(-50%, -15%); 
+  transform: translate(-50%, -20%); 
   margin-bottom: 10px;
   animation: fill 0.5s ease forwards 2.5s; 
   z-index: 100;
@@ -362,7 +362,7 @@ and  (min-width: 320px) and (max-width: 420px){
   
   #logo{
     width: 60%;
-    top: 22%; 
+    top: 25%; 
    }
    #awards{
      padding-top: 25%; 
@@ -399,7 +399,7 @@ and  (min-width: 320px) and (max-width: 420px){
   
   #logo{
     width: 60%;
-    top: 22%; 
+    top: 30%; 
    }
    #awards{
      padding-top: 25%; 
@@ -411,3 +411,163 @@ and  (min-width: 320px) and (max-width: 420px){
    }
  
   }
+
+  @media only screen 
+  and  (min-width: 621px) and (max-width: 820px){
+    .logo {
+      float: none;
+    }
+    .nav-menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 120%;
+    }
+    nav ul li {
+      margin: 0;
+      width: 20%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    nav ul li a{
+      font-size: 20px;
+    }
+  
+  #logo{
+    width: 60%;
+    top: 30%; 
+   }
+   #awards{
+     padding-top: 15%; 
+   }
+ 
+   .grid-container {
+     grid-template-columns: auto auto;
+     grid-gap: 10px;
+   }
+ 
+  }
+
+  @media only screen 
+  and  (min-width: 821px) and (max-width: 920px){
+
+    .logo {
+      float: none;
+    }
+    .nav-menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 125%;
+    
+    }
+    nav ul li {
+      margin: 0;
+      width: 10%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    nav ul li a{
+      font-size: 20px;
+      margin: 0 auto;
+    }
+  
+    #logo{
+      width: 60%;
+      top: 30%; 
+     }
+     #awards{
+       padding-top: 15%; 
+     }
+   
+     .grid-container {
+       grid-template-columns: auto auto;
+       grid-gap: 10px;
+     }
+   
+  
+  
+  }
+
+
+  
+  @media only screen 
+  and  (min-width: 921px) and (max-width: 1320px){
+
+    .logo {
+      float: none;
+    }
+    .nav-menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 125%;
+    
+    }
+    nav ul li {
+      margin: 0;
+      width: 10%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    nav ul li a{
+      font-size: 20px;
+      margin: 0 auto;
+    } 
+    #logo{
+      width: 60%;
+      top: 30%; 
+     }
+     #awards{
+       padding-top: 15%; 
+     }
+   
+     .grid-container {
+       grid-template-columns: auto auto auto;
+       grid-gap: 15px;
+     }
+   
+  }
+
+
+  @media only screen 
+  and  (min-width: 1321px) and (max-width: 1520px){
+    .logo {
+      float: none;
+    }
+    .nav-menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 125%;
+    
+    }
+    nav ul li {
+      margin: 0;
+      width: 10%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    nav ul li a{
+      font-size: 20px;
+      margin: 0 auto;
+    }
+    #logo{
+      width: 60%;
+      top: 35%; 
+     }
+     #awards{
+       padding-top: 15%; 
+     }
+   
+     .grid-container {
+       grid-template-columns: auto auto auto;
+       grid-gap: 15px;
+     }
+  }
+
+  
