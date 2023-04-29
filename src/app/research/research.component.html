@@ -75,13 +75,14 @@
   <br><br>
   
   <div class="project-container">
-    <div class="project-card" *ngFor = "let research of researchData | search: searchResearch; ">
+    <div class="project-card" *ngFor = "let research of researchData | search: searchResearch; let ind = index">
       <img *ngIf="research.url" class="project-image" [src]="research.url" alt="Research Project 1">
       <br>
       <h2 class="project-title">{{research.title}}</h2>
-      <p class="project-description">{{research.content}}</p>
+      <p [ngClass]="this.readMoreList[ind] == false ? 'project-description' : 'project-description-full'">{{research.content}}</p>
       <br>
-      <button class="project-read-more">Read more</button>
+      <button *ngIf="this.readMoreList[ind] == false" class="project-read-more" (click)="readMore(ind)">Read more</button>
+      <button *ngIf="this.readMoreList[ind] == true" class="project-read-more" (click)="readLess(ind)">Read Less</button>
     </div>
     
 	</div>

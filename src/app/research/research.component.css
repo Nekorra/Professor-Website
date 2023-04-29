@@ -274,6 +274,15 @@ nav ul li a:hover {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5; /* Show only 2 lines of text */
 }
+
+.project-description-full {
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
 .project-more-text {
   display: none; /* Hide the additional text initially */
 }

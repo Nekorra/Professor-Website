@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
-import { ReadMoreOptions } from '@minni/read-more';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
 
 @Component({
@@ -13,18 +12,9 @@ export class ResearchComponent implements OnInit {
   researchData: any;
   researchIntro: any;
   images: any[] = [];
+  readMoreList: any[] = [];
   storageRef: AngularFireStorageReference;
   searchResearch: any;
-
-  readMoreOption: ReadMoreOptions = {
-    readLessText: 'less', 
-    readMoreText: 'more', 
-    styles: {
-      color: "#666",
-    },
-    classes: ['custom-style', 'blog-style']
-  }
-
 
   constructor(
     private databaseService: DatabaseService,
@@ -48,6 +38,7 @@ export class ResearchComponent implements OnInit {
 
   putImageList() {
     for (let i = 0; i < this.researchData.length; i++) {
+      this.readMoreList.push(false);
       if (this.researchData[i].title == "ASEEC") {
         this.researchIntro = this.researchData[i];
         this.researchData.splice(i, 1);
@@ -60,6 +51,15 @@ export class ResearchComponent implements OnInit {
       }
     }
     console.log(this.researchData)
+    console.log(this.readMoreList)
+  }
+
+  readMore(ind: number) {
+    this.readMoreList[ind] = true;
+  }
+
+  readLess(ind: number) {
+    this.readMoreList[ind] = false;
   }
 
 }
