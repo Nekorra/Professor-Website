@@ -30,7 +30,6 @@ nav {
 }
 
 nav ul li {
-  margin-left: 20px;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -97,9 +96,9 @@ nav ul li a:hover {
   
 #logo{
   position: absolute;
-  top: 20%; 
+  top: 15%; 
   left: 50%;
-  transform: translate(-50%, -20%); 
+  transform: translate(-50%, -15%); 
   margin-bottom: 10px;
   animation: fill 0.5s ease forwards 2.5s; 
 }
@@ -273,15 +272,6 @@ nav ul li a:hover {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5; /* Show only 2 lines of text */
-}
-
-.project-description-full {
-  font-size: 16px;
-  line-height: 1.5;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
 }
 .project-more-text {
   display: none; /* Hide the additional text initially */
@@ -539,9 +529,7 @@ and  (min-width: 320px) and (max-width: 420px){
       width: 70%;
       top: 25%; 
      }
-     #research{
-      padding-top: 10%; 
-    }
+    
      .project-container {
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 25px;
