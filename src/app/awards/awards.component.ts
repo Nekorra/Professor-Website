@@ -8,6 +8,7 @@ import { DatabaseService } from '../services/database.service';
 export class AwardsComponent implements OnInit {
 
   //awardsData: any[] = [];
+  searchAwards = '';
   awardsData: any;
   url: any;
   constructor(

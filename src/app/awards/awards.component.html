@@ -36,13 +36,13 @@
     <h1 class="searchTitle"> Search Awards: </h1>
   <br>
   <div class="search-container">
-    <input type="text" placeholder="Search...">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchAwards">
     <button type="submit">
       <i class="fa fa-search"></i>
     </button>
   </div>
       <div class="grid-container">
-        <div *ngFor="let awards of awardsData">
+        <div *ngFor="let awards of awardsData | search: searchAwards">
           <div class="grid-item">
             <div class="card">
                 <div class="card-details">
