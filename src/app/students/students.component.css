@@ -181,7 +181,7 @@ to{
 .image{
   width: 300px;
   border-radius: 50%;
-  border: 10px dotted #b8a07e;
+  border: 5px solid #b8a07e;
 }
 .people{
   text-align: center;
@@ -204,7 +204,7 @@ to{
 .image2{
   width: 300px;
   border-radius: 50%;
-  border: 10px dotted #b8a07e;
+  border: 5px solid #b8a07e;
   margin-left: 20%;
 }
 .about1{
@@ -212,6 +212,7 @@ to{
   border: 10px solid #b8a07e;
   border-radius: 20%;
   margin-right: 5%;
+  
 }
 .about2{
   margin: 0 auto;

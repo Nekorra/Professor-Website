@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import * as awesom from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from '../services/database.service';
-
+import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-home',
@@ -21,10 +21,12 @@ export class HomeComponent implements OnInit {
   fundsData: any;
   searchFunds: any;
   totalFunds: any;
+  storageRef: AngularFireStorageReference;
   
   constructor(
     private router: Router,
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private afStorage: AngularFireStorage
   ) {
   }
 
@@ -72,18 +74,32 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  getData() {
-    this.databaseService.getData('funding/funds').then((data) => {
-      this.fundsData= data;
+  async getData() {
+    await this.databaseService.getData('funding/funds').then((data) => {
+      this.fundsData = data;
       //this.awardsData = this.awardsData.flat();
       console.log(this.fundsData)
     });
 
-    this.databaseService.getData('funding').then((data: any) => {
+    await this.databaseService.getData('funding').then((data: any) => {
       this.totalFunds= data.total;;
       //this.awardsData = this.awardsData.flat();
       console.log(this.totalFunds)
     });
+
+    this.putFundingImageList()
+  }
+
+  putFundingImageList() {
+    for (let i = 0; i < this.fundsData.length; i++) {
+      if(this.fundsData[i].img_name != "" || this.fundsData[i].img_name != null) {
+        this.storageRef = this.afStorage.ref("funding/" + this.fundsData[i].img_name);
+        this.storageRef.getDownloadURL().toPromise().then(url => {
+          this.fundsData[i].url = url;
+        });
+      }
+    }
+    console.log(this.fundsData)
   }
 
 }

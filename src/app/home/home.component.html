@@ -67,6 +67,7 @@
                   <img src="../../assets/images/profile.png" class="img-responsive" alt="me">
                 </div>
               </div>
+              <img src="../../assets/contact.png" style="height: 100px"/>
             </div>
     
             <div class="col-lg-7">
@@ -107,7 +108,7 @@
 
   <div class="container">
     <div class="search-container">
-      <h1 class="title" style="font-weight: bold;">Sponsored Research: Total {{this.totalFunds}}</h1>
+      <h1 class="title" style="font-weight: bold;">Sponsored Research Total ${{this.totalFunds}}</h1>
       
       <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchFunds">
       <button class="search-button">Search</button>
@@ -116,7 +117,8 @@
       <table>
         <thead>
           <tr>
-            <th>Money</th>
+            <th></th>
+            <th>Funding</th>
             <th>Grant</th>
             <th>Date</th>
             <th>About </th>
@@ -125,8 +127,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let funds of fundsData | search: searchFunds;">
+            <td><img [src]='funds.url' style="width: 50px; height: 50px;"></td>
             <td>${{funds.amount}}</td>
-            <td>{{funds.purpose}}</td>
+            <td>{{funds.source}}</td>
             <td>{{funds.timespan}}</td>
             <td>{{funds.purpose}}</td>
             <td>{{funds.role}}</td>

@@ -41,7 +41,7 @@
     <!-- for publicaion papers -->
     <div class="container">
       <div class="search-container">
-        <h1 class="title">Journals Published: </h1>
+        <h1 class="title">Journals Published </h1>
         <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchJournals">
         <button class="search-button">Search</button>
       </div>
@@ -49,16 +49,16 @@
         <table>
           <thead>
             <tr>
-              <th>Paper Topic</th>
               <th>Number</th>
+              <th>Paper Topic</th>
               <th>Journal </th>
               <th>People</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let journals of journalsData | search: searchJournals; let ind = index; ">
-              <td><a href="{{this.journals.url}}" target="_blank">{{journals.title}}</a></td>
               <td> {{journalsData.length-ind}}</td>
+              <td><a href="{{this.journals.url}}" target="_blank">{{journals.title}}</a></td>
               <td> {{journals.journal}} </td>
               <td> {{journals.authors}}</td>
             </tr>
@@ -80,7 +80,7 @@
     <!-- for Conferences -->
     <div class="container">
       <div class="search-container">
-        <h1 class="title">Conferences: </h1>
+        <h1 class="title">Conferences </h1>
         <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchPublications">
         <button class="search-button">Search</button>
       </div>
@@ -88,8 +88,8 @@
         <table>
           <thead>
             <tr>
-              <th>Conference Topic</th>
               <th>Number</th>
+              <th>Conference Topic</th>
               <th>Year</th>
               <th>Conference</th>
               <th>People</th>
@@ -97,8 +97,8 @@
           </thead>
           <tbody>
             <tr *ngFor="let conferences of conferencesData | search: searchPublications; let y = index">
-              <td><a href="{{this.conferences.url}}" target="_blank">{{conferences.title}}</a></td>
               <td>{{conferencesData.length - y}}</td>
+              <td><a href="{{this.conferences.url}}" target="_blank">{{conferences.title}}</a></td>
               <td>{{conferences.year}}</td>
               <td>{{conferences.journal}} </td>
               <td>{{conferences.authors}}</td>
