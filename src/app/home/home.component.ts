@@ -22,6 +22,11 @@ export class HomeComponent implements OnInit {
   searchFunds: any;
   totalFunds: any;
   storageRef: AngularFireStorageReference;
+  post_doc_alumni: any[] = [];
+  phd_alumni: any[] = [];
+  alumni: any[] = [];
+  alumni_images: any[] = [];
+  ms_alumni: any[] = [];
   
   constructor(
     private router: Router,
@@ -45,6 +50,10 @@ export class HomeComponent implements OnInit {
     this.birthday = awesom.faBirthdayCake;
     this.badge = awesom.faGraduationCap;
     this.home = awesom.faLaptopHouse;
+    this.post_doc_alumni = []
+    this.phd_alumni = []
+    this.ms_alumni = []
+    this.alumni = []
 
     this.getData();
 
@@ -87,10 +96,59 @@ export class HomeComponent implements OnInit {
       console.log(this.totalFunds)
     });
 
-    this.putFundingImageList()
+    await this.databaseService.getData('people').then((data) => {
+      const result = Object.keys(data).map((key) => {
+        return { [key]: data[key as keyof typeof data] };
+      });
+      result.forEach(mobile => {
+        for (let key in mobile) {
+          for (let i = 0; i < Object.keys(mobile[key]).length; i++) {
+            if (`${key}` == "phd_alumni") {
+              this.phd_alumni.push(mobile[key][i]);
+            }
+            if (`${key}` == "post_doc_alumni") {
+              this.post_doc_alumni.push(mobile[key][i]);
+            }
+            if (`${key}` == "ms_alumni") {
+              this.ms_alumni.push(mobile[key][i]);
+            }
+          }
+        }
+      })
+    })
+
+    this.putImagesList()
   }
 
-  putFundingImageList() {
+  putImagesList() {
+
+    for (let i = 0; i < this.ms_alumni.length; i++) {
+      if(this.ms_alumni[i].img_name != "" || this.ms_alumni[i].img_name != undefined) {
+        this.storageRef = this.afStorage.ref("students/" + this.ms_alumni[i].img_name);
+        this.storageRef.getDownloadURL().toPromise().then(url => {
+          this.alumni.push({url: url, name: this.ms_alumni[i].name, job: this.ms_alumni[i].job})
+        });
+      }
+    }
+
+    for (let i = 0; i < this.phd_alumni.length; i++) {
+      if(this.phd_alumni[i].img_name != "" || this.phd_alumni[i].img_name != null) {
+        this.storageRef = this.afStorage.ref("students/" + this.phd_alumni[i].img_name);
+        this.storageRef.getDownloadURL().toPromise().then(url => {
+          this.alumni.push({url: url, name: this.phd_alumni[i].name, job: this.phd_alumni[i].job})
+        });
+      }
+     
+    }
+    for (let i = 0; i < this.post_doc_alumni.length; i++) {
+      if(this.post_doc_alumni[i].img_name != "" || this.post_doc_alumni[i].img_name != null) {
+        this.storageRef = this.afStorage.ref("students/" + this.post_doc_alumni[i].img_name);
+        this.storageRef.getDownloadURL().toPromise().then(url => {
+          this.alumni.push({url: url, name: this.post_doc_alumni[i].name, job: this.post_doc_alumni[i].job})
+        });
+      }
+    }
+
     for (let i = 0; i < this.fundsData.length; i++) {
       if(this.fundsData[i].img_name != "" || this.fundsData[i].img_name != null) {
         this.storageRef = this.afStorage.ref("funding/" + this.fundsData[i].img_name);
