@@ -68,7 +68,28 @@
                 </div>
               </div>
               <img src="../../assets/contact.png" style="height: 100px"/>
+
+              <div>
+                <div class="row">
+                  <ng-container *ngFor="let peoples of alumni;">
+                    <div class="col-sm-1 padding-grid">
+                      <div class="popover__wrapper">
+                        <img class="popover__title" [src]="peoples.url" alt="Avatar" class="avatar" > 
+                        <div class="popover__content">
+                          <p class="popover__message">name: {{peoples.name}} <br> <span *ngIf="peoples.job">  job: {{peoples.job}} </span></p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </ng-container>
+    
+                </div>
+                  
+              </div>
+
+              
             </div>
+            
     
             <div class="col-lg-7">
               <div class="about-descr">
