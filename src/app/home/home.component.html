@@ -69,24 +69,7 @@
               </div>
               <img src="../../assets/contact.png" style="height: 100px"/>
 
-              <div>
-                <div class="row">
-                  <ng-container *ngFor="let peoples of alumni;">
-                    <div class="col-sm-1 padding-grid">
-                      <div class="popover__wrapper">
-                        <img class="popover__title" [src]="peoples.url" alt="Avatar" class="avatar" > 
-                        <div class="popover__content">
-                          <p class="popover__message">name: {{peoples.name}} <br> <span *ngIf="peoples.job">  job: {{peoples.job}} </span></p>
-                        </div>
-                      </div>
-                    </div>
-
-                  </ng-container>
-    
-                </div>
-                  
-              </div>
-
+              
               
             </div>
             
@@ -112,9 +95,28 @@
                     Houman's CHEST center has received congressional support for research in hardware security, which was included in the 2021 National Defense Authorization Act. He has also served as a Member of the Advisory Committee, Cybersecurity Research and Technology Commercialization working group in the Commonwealth of Virginia, and as a core group member of the hardware security body of knowledge development team supported by the Department of Defense. In addition, he was recognized as the recipient of the 2010 National Science Foundation computing innovation fellow award by CCC/CRA and has been serving as an Associate Editor of IEEE Transactions on VLSI since 2017. Houman has also chaired and co-chaired major conferences in ACM, including the Great Lake Symposium on VLSI. <button id="expandButton" (click)="expand()">Read Less...</button>
                 </span>
               </p>
-    
+              
               </div>
+              <h1 class="heading">Alumni</h1>
+              <div class="container">
+                <div class="row">
+                  <ng-container *ngFor="let peoples of alumni;">
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-3 padding-grid">
+                      <div class="popover__wrapper">
+                        <img class="popover__title" [src]="peoples.url" alt="Avatar" class="avatar" > 
+                        <div class="popover__content">
+                          <p class="popover__message">name: {{peoples.name}} <br> <span *ngIf="peoples.job">  job: {{peoples.job}} </span></p>
+                        </div>
+                      </div>
+                    </div>
+                    
+
+                  </ng-container>
     
+                </div>
+                  
+              </div>
+
             </div>
             
           </div>
