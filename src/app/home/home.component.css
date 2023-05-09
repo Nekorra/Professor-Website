@@ -811,7 +811,6 @@ and  (min-width: 421px) and (max-width: 520px){
   font-size: 24px;
   line-height: 36px;
   text-decoration: none;
-  color: rgb(228, 68, 68);
   text-align: center;
   padding: 15px 0;
 }
@@ -820,6 +819,7 @@ and  (min-width: 421px) and (max-width: 520px){
   position: relative;
   margin-top: 1.5rem;
   display: inline-block;
+  color: black;
 }
 .popover__content {
   opacity: 0;
@@ -832,6 +832,8 @@ and  (min-width: 421px) and (max-width: 520px){
   padding: 1.5rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   width: auto;
+  border-radius: 50px;
+  border: 2px solid #b8a07e;
 }
 .popover__wrapper:hover .popover__content {
   z-index: 10;
