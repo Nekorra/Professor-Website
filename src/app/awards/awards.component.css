@@ -48,13 +48,12 @@ nav ul li a {
   text-transform: uppercase;
   letter-spacing: 0.02em;
   text-transform: capitalize;
-  padding: 16px 10px;
+  padding: 6.5px;
   transition: all 0.2s ease-in-out;
 }
 
 nav ul li a:hover {
   color: black;
- 
 }
 
 
@@ -270,33 +269,6 @@ nav ul li a:hover {
     fill:black; 
   }
 }
-
-@media only screen 
-  and (device-width: 414px) 
-  and (device-height: 896px){
-    
-    #logo{
-      margin-top: 10px;
-      height: 40px;
-    }
-    .grid-container {
-      margin-top: 10%;
-      display: grid;
-      grid-template-columns: auto ;
-      padding-left: 25%;
-      height: auto;
-  }
-  }
-
-  
-  .line{
-    height: 2px;
-    width: 40%;
-    margin: 0 auto; 
-    background-color: #b8a07e;
-    margin-top: 12%; 
-  }
-  
 
 
 @media only screen 
