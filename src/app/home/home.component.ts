@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
   phd_alumni: any[] = [];
   alumni: any[] = [];
   alumni_images: any[] = [];
-  ms_alumni: any[] = [];
   
   constructor(
     private router: Router,
@@ -52,7 +51,6 @@ export class HomeComponent implements OnInit {
     this.home = awesom.faLaptopHouse;
     this.post_doc_alumni = []
     this.phd_alumni = []
-    this.ms_alumni = []
     this.alumni = []
 
     this.getData();
@@ -109,9 +107,6 @@ export class HomeComponent implements OnInit {
             if (`${key}` == "post_doc_alumni") {
               this.post_doc_alumni.push(mobile[key][i]);
             }
-            if (`${key}` == "ms_alumni") {
-              this.ms_alumni.push(mobile[key][i]);
-            }
           }
         }
       })
@@ -121,15 +116,6 @@ export class HomeComponent implements OnInit {
   }
 
   putImagesList() {
-
-    for (let i = 0; i < this.ms_alumni.length; i++) {
-      if(this.ms_alumni[i].img_name != "" || this.ms_alumni[i].img_name != undefined) {
-        this.storageRef = this.afStorage.ref("students/" + this.ms_alumni[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.alumni.push({url: url, name: this.ms_alumni[i].name, job: this.ms_alumni[i].job})
-        });
-      }
-    }
 
     for (let i = 0; i < this.phd_alumni.length; i++) {
       if(this.phd_alumni[i].img_name != "" || this.phd_alumni[i].img_name != null) {
