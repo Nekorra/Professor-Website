@@ -788,13 +788,13 @@ and  (min-width: 421px) and (max-width: 520px){
 
 .avatar {
   vertical-align: middle;
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 
 .padding-grid {
-  padding-right: 10%;
+  padding-right: 200px;
 }
 
 .popover__title {
@@ -834,4 +834,10 @@ and  (min-width: 421px) and (max-width: 520px){
 }
 .popover__message {
   text-align: center;
+}
+
+.people{
+  color: black; 
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
