@@ -28,6 +28,7 @@ import { ResearchModalComponent } from './modals/research-modal/research-modal.c
 import { PublicationsModalComponent } from './modals/publications-modal/publications-modal.component';
 import { SearchPipe } from './search.pipe';
 import { JournalsModalComponent } from './modals/journals-modal/journals-modal.component';
+import { CvComponent } from './cv/cv.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { JournalsModalComponent } from './modals/journals-modal/journals-modal.c
     PublicationsModalComponent,
     SearchPipe,
     JournalsModalComponent,
+    CvComponent,
     
   ],
   imports: [

@@ -8,6 +8,7 @@ import { ResearchComponent } from './research/research.component';
 import { StudentsComponent } from './students/students.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CvComponent } from './cv/cv.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'students', component: StudentsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent},
+  { path: 'CV', component: CvComponent},
 ];
 
 @NgModule({
