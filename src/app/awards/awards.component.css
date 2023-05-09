@@ -161,13 +161,12 @@ nav ul li a:hover {
     width: 90%;
     display: grid;
     grid-template-columns: auto auto auto auto;
-    grid-gap: 5%;
+    grid-gap: 2%;
     height: auto;
 }
 
 .grid-item {
     margin: 0 auto;
-    margin-top: 5%;
     text-align: center;
 }
 
@@ -212,11 +211,11 @@ nav ul li a:hover {
   border-radius: 50%;
   padding: 5px;
 }
+
 #logo{
   position: absolute;
-  top: 20%; 
   left: 50%;
-  transform: translate(-50%, -20%); 
+  transform: translateX(-50%); 
   margin-bottom: 10px;
   animation: fill 0.5s ease forwards 2.5s; 
   z-index: 100;
