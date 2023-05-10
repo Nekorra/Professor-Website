@@ -14,6 +14,9 @@ export class ResearchModalComponent implements OnInit {
   img_name: string = "";
   title: string = "";
   length: number;
+  researchData: any;
+  index: number;
+  type: string;
 
   constructor(
     private databaseService: DatabaseService,
@@ -21,12 +24,35 @@ export class ResearchModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.length = this.data.length;
+    if (this.data.type == "add") {
+      this.researchData = this.data.data;
+      this.length = this.data.length;
+      this.type = this.data.type;
+    }
+    if (this.data.type == "edit") {
+      this.researchData = this.data.data;
+      this.index = this.data.index;
+      this.content = this.data.data[this.index].content
+      this.title = this.data.data[this.index].title
+      this.length = this.data.length; 
+      this.type = this.data.type;
+    }
   }
 
   async addResearch() {
-    await this.databaseService.addResearchData(`research/research/`, this.content, this.img_name, this.title);
-    alert("Successfully added Data");
+    if (this.type == 'add') {
+      this.researchData.splice(0,0, {content: this.content, img_name: this.img_name, title: this.title})
+      await this.databaseService.addResearchData(`research/research/`, this.researchData);
+      alert("Successfully added Data");
+    }
+
+    if (this.type == 'edit') {
+      this.researchData[this.index] = {content: this.content, img_name: this.img_name, title: this.title}
+      console.log(this.researchData)
+      //await this.databaseService.addResearchData(`research/research/`, this.researchData);
+      alert("Successfully edited Data");
+    }
+    
   }
 
 }

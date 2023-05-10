@@ -19,6 +19,7 @@ export class PublicationsModalComponent implements OnInit {
   year: string;
   
   ngOnInit(): void {
+    
   
   }
   

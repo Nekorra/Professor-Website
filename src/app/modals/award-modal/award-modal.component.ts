@@ -34,7 +34,7 @@ export class AwardModalComponent implements OnInit {
     }
     if (this.data.type == 'edit') {
       this.awardsData = this.data.data;
-      console.log(this.data.index);
+      this.type = this.data.type
       this.index = this.data.index;
       this.name = this.data.data[this.index].name;
       this.link = this.data.data[this.index].link;
@@ -52,7 +52,7 @@ export class AwardModalComponent implements OnInit {
       await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
       alert("Successfully added Data");
     }
-    if (this.type == "edit") {
+    if (this.type == 'edit') {
       this.awardsData[this.index] = {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, extra: this.extra}
       await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
       alert("Successfully edited Data");

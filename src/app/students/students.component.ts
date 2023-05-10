@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../services/database.service';
-import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
-
 
 @Component({
   selector: 'app-students',
@@ -18,16 +16,12 @@ export class StudentsComponent implements OnInit {
   post_doc_alumni: any[] = [];
   undergrad_alumni: any[] = [];
   undergraduates: any[] = [];
-  images: any[] = [];
-  storageRef: AngularFireStorageReference;
   
   constructor(
     private databaseService: DatabaseService,
-    private afStorage: AngularFireStorage
   ) { }
 
   ngOnInit() {
-    this.images = []
     this.director = []
     this.masters = []
     this.ms_alumni = []
@@ -76,70 +70,5 @@ export class StudentsComponent implements OnInit {
         }
       })
     })
-    this.putImageList();
   }
-
-
-  putImageList() {
-    for (let i = 0; i < this.masters.length; i++) {
-      if(this.masters[i].img_name != "" || this.masters[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("students/" + this.masters[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.masters[i].url = url;
-        });
-      }
-    }
-
-    for (let i = 0; i < this.ms_alumni.length; i++) {
-      if(this.ms_alumni[i].img_name != "" || this.ms_alumni[i].img_name != undefined) {
-        this.storageRef = this.afStorage.ref("students/" + this.ms_alumni[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.ms_alumni[i].url = url;
-        });
-      }
-    }
-
-    for (let i = 0; i < this.phd_alumni.length; i++) {
-      if(this.phd_alumni[i].img_name != "" || this.phd_alumni[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("students/" + this.phd_alumni[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.phd_alumni[i].url = url;
-        });
-      }
-     
-    }
-    for (let i = 0; i < this.phds.length; i++) {
-      if(this.phds[i].img_name != "" || this.phds[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("students/" + this.phds[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.phds[i].url = url;
-        });
-      }
-    }
-    for (let i = 0; i < this.post_doc_alumni.length; i++) {
-      if(this.post_doc_alumni[i].img_name != "" || this.post_doc_alumni[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("students/" + this.post_doc_alumni[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.post_doc_alumni[i].url = url;
-        });
-      }
-    }
-    for (let i = 0; i < this.undergrad_alumni.length; i++) {
-      if(this.undergrad_alumni[i].img_name != "" || this.undergrad_alumni[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("students/" + this.undergrad_alumni[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.undergrad_alumni[i].url = url;
-        });
-      }
-    }
-    for (let i = 0; i < this.undergraduates.length; i++) {
-      if(this.undergraduates[i].img_name != "" || this.undergraduates[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("students/" + this.undergraduates[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.undergraduates[i].url = url;
-        });
-      }
-    }
-  }
-
 }

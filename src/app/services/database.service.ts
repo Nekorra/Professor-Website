@@ -45,13 +45,9 @@ export class DatabaseService {
     return ref.set(data);
   }
   
-  async addResearchData(path: string, content: string, img_name: string, title: string) {
-    await this.db.object(path).valueChanges().pipe(take(1)).toPromise().then((data: any) => {
-      this.list = data;
-    });
-    this.list.unshift({content: content, img_name: img_name, title: title});
+  async addResearchData(path: string, data: any) {
     const ref = this.db.object(path);
-    return ref.set(this.list)
+    return ref.set(data)
   }
 
 

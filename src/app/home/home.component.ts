@@ -2,7 +2,6 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import * as awesom from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from '../services/database.service';
-import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-home',
@@ -21,16 +20,11 @@ export class HomeComponent implements OnInit {
   fundsData: any;
   searchFunds: any;
   totalFunds: any;
-  storageRef: AngularFireStorageReference;
-  post_doc_alumni: any[] = [];
-  phd_alumni: any[] = [];
   alumni: any[] = [];
-  alumni_images: any[] = [];
   
   constructor(
     private router: Router,
     private databaseService: DatabaseService,
-    private afStorage: AngularFireStorage
   ) {
   }
 
@@ -49,8 +43,6 @@ export class HomeComponent implements OnInit {
     this.birthday = awesom.faBirthdayCake;
     this.badge = awesom.faGraduationCap;
     this.home = awesom.faLaptopHouse;
-    this.post_doc_alumni = []
-    this.phd_alumni = []
     this.alumni = []
 
     this.getData();
@@ -102,48 +94,16 @@ export class HomeComponent implements OnInit {
         for (let key in mobile) {
           for (let i = 0; i < Object.keys(mobile[key]).length; i++) {
             if (`${key}` == "phd_alumni") {
-              this.phd_alumni.push(mobile[key][i]);
+              this.alumni.push(mobile[key][i]);
             }
             if (`${key}` == "post_doc_alumni") {
-              this.post_doc_alumni.push(mobile[key][i]);
+              this.alumni.push(mobile[key][i]);
             }
           }
         }
       })
     })
-
-    this.putImagesList()
   }
 
-  putImagesList() {
-
-    for (let i = 0; i < this.phd_alumni.length; i++) {
-      if(this.phd_alumni[i].img_name != "" || this.phd_alumni[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("students/" + this.phd_alumni[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.alumni.push({url: url, name: this.phd_alumni[i].name, job: this.phd_alumni[i].job})
-        });
-      }
-     
-    }
-    for (let i = 0; i < this.post_doc_alumni.length; i++) {
-      if(this.post_doc_alumni[i].img_name != "" || this.post_doc_alumni[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("students/" + this.post_doc_alumni[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.alumni.push({url: url, name: this.post_doc_alumni[i].name, job: this.post_doc_alumni[i].job})
-        });
-      }
-    }
-
-    for (let i = 0; i < this.fundsData.length; i++) {
-      if(this.fundsData[i].img_name != "" || this.fundsData[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("funding/" + this.fundsData[i].img_name);
-        this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.fundsData[i].url = url;
-        });
-      }
-    }
-    console.log(this.fundsData)
-  }
 
 }

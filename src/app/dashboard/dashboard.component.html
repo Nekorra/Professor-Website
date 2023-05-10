@@ -53,7 +53,7 @@
                       <p class="about-body">{{awards.description}}</p>
                       <p class="text-body" *ngIf="awards.earnings != ''">Earnings: {{awards.earnings}}</p>
                     </div>
-                    <a (click)="remove('honors/awards', ind, 'awards')" class="card-button">Delete</a>
+                    <a (click)="removeAward(ind, 'awards')" class="card-button">Delete</a>
                   </div>
               </div>
             </div>
@@ -80,14 +80,14 @@
           </thead>
           <tbody>
             <tr>
-              <td><a><div style="color: red" (click)="openDialog('journals', null, null, 'add')"> Add new Journal</div></a></td>
+              <td><a><div style="color: red" (click)="openDialog('journals', this.journalsData, null, 'add')"> Add new Journal</div></a></td>
               <td> </td>
               <td> </td>
               <td> </td>
             </tr>
 
             <tr *ngFor="let journals of journalsData | search: searchJournals; let ind = index; ">
-              <td><a href="#" target="_blank">{{journals.title}}</a> <button (click)="remove('journals/journals', ind, 'publications')"> delete </button></td>
+              <td><a href="#" target="_blank">{{journals.title}}</a> <button (click)="removeJournals(ind, 'publications')"> delete </button></td>
               <td> {{journalsData.length-ind}}</td>
               <td> {{journals.journal}} </td>
               <td> {{journals.authors}}</td>
@@ -129,7 +129,7 @@
               <td> </td>
             </tr>
             <tr *ngFor="let conferences of conferencesData | search: searchPublications; let y = index">
-              <td><a href="#" target="_blank">{{conferences.title}}</a> <button (click)="remove('publications/conferences', y, 'publications')"> delete </button> </td>
+              <td><a href="#" target="_blank">{{conferences.title}}</a> <button (click)="removeAward(y, 'publications')"> delete </button> </td>
               <td>{{conferencesData.length - y}}</td>
               <td>{{conferences.year}}</td>
               <td>{{conferences.journal}} </td>
@@ -149,19 +149,22 @@
   <section [hidden] = "!(activePage == 'research')" id="research">
 
     <div class="project-container"> 
-      <div class="project-card" (click)="openDialog('research', null,  null, 'add')">
+      <div class="project-card" (click)="openDialog('research', this.researchData,  null, 'add')">
         <br>
         <h2 class="project-title">Add Research</h2>
         <p class="project-description"></p>
         <br>
       </div>
-      <div class="project-card" *ngFor = "let research of researchData; let ind = index">
-        <img *ngIf="research.url" class="project-image" [src]="research.url" alt="Research Project 1">
-        <br>
-        <h2 class="project-title">{{research.title}}</h2>
-        <p class="project-description">{{research.content}}</p>
-        <br>
-        <button class="project-read-more" (click)="remove('research/research', ind, 'research')">Delete</button>
+      <div class="project-card" *ngFor = "let research of researchData; let ind = index" (click) = "editResearchData(ind)">
+        <ng-container >
+          <img *ngIf="research.img_name" class="project-image" [src]="research.img_name" alt="Research Project 1">
+          <br>
+          <h2 class="project-title">{{research.title}}</h2>
+          <p class="project-description">{{research.content}}</p>
+          <br>
+          <button class="project-read-more" (click)="removeResearch(ind, 'research')">Delete</button>
+        </ng-container>
+        
       </div>
     </div>
   </section>
@@ -171,7 +174,7 @@
 <div class="phd-grid">
   <ng-container *ngFor="let peoples of phds">
       <div class="people">
-        <img [src]="peoples.url" alt="Image 1" class="image">
+        <img [src]="peoples.img_name" alt="Image 1" class="image">
         <h3>{{peoples.name}}</h3>
         <h6>{{peoples.research}}</h6>
       </div>
@@ -183,7 +186,7 @@
   <div class="phd-grid">
     <ng-container *ngFor="let peoples of masters">
       <div class="people">
-        <img [src]="peoples.url" alt="Image 1" class="image">
+        <img [src]="peoples.img_name" alt="Image 1" class="image">
         <h3>{{peoples.name}}</h3>
         <h6>{{peoples.research}}</h6>
       </div>
@@ -203,7 +206,7 @@
   <div class="postdoc-grid">
     <ng-container *ngFor="let peoples of post_doc_alumni">
         <div class="people2">
-          <img [src]="peoples.url" alt="Image 1" class="image2">
+          <img [src]="peoples.img_name" alt="Image 1" class="image2">
         </div>
         <div class="about1">
           <div class="about2">
@@ -220,7 +223,7 @@
     
     <ng-container *ngFor="let peoples of phd_alumni" >
       <div class="people2">
-        <img [src]="peoples.url" alt="Image 1" class="image2">
+        <img [src]="peoples.img_name" alt="Image 1" class="image2">
       </div>
       <div class="about1">
         <div class="about3">
@@ -238,7 +241,7 @@
 
     <ng-container *ngFor="let peoples of ms_alumni">
       <div class="people2">
-        <img [src]="peoples.url" alt="Image 1" class="image2">
+        <img [src]="peoples.img_name" alt="Image 1" class="image2">
       </div>
       <div class="about1">
         <div class="about3">

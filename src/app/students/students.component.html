@@ -39,7 +39,7 @@
 <div class="phd-grid">
   <ng-container *ngFor="let peoples of phds">
       <div class="people">
-        <img [src]="peoples.url" alt="Image 1" class="image">
+        <img [src]="peoples.img_name" alt="Image 1" class="image">
         <h3>{{peoples.name}}</h3>
         <h6>{{peoples.research}}</h6>
       </div>
@@ -51,7 +51,7 @@
   <div class="phd-grid">
     <ng-container *ngFor="let peoples of masters">
       <div class="people">
-        <img [src]="peoples.url" alt="Image 1" class="image">
+        <img [src]="peoples.img_name" alt="Image 1" class="image">
         <h3>{{peoples.name}}</h3>
         <h6>{{peoples.research}}</h6>
       </div>
@@ -71,7 +71,7 @@
   <div class="postdoc-grid">
     <ng-container *ngFor="let peoples of post_doc_alumni">
         <div class="people2">
-          <img [src]="peoples.url" alt="Image 1" class="image2">
+          <img [src]="peoples.img_name" alt="Image 1" class="image2">
         </div>
         <div class="about1">
           <div class="about2">
@@ -88,7 +88,7 @@
     
     <ng-container *ngFor="let peoples of phd_alumni" >
       <div class="people2">
-        <img [src]="peoples.url" alt="Image 1" class="image2">
+        <img [src]="peoples.img_name" alt="Image 1" class="image2">
       </div>
       <div class="about1">
         <div class="about3">
@@ -106,7 +106,7 @@
 
     <ng-container *ngFor="let peoples of ms_alumni">
       <div class="people2">
-        <img [src]="peoples.url" alt="Image 1" class="image2">
+        <img [src]="peoples.img_name" alt="Image 1" class="image2">
       </div>
       <div class="about1">
         <div class="about3">
