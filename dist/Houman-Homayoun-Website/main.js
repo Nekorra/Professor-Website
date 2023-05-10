@@ -1637,6 +1637,7 @@ class AwardModalComponent {
         this.timespan = "";
         this.earnings = "";
         this.description = "";
+        this.image = null;
     }
     ngOnInit() {
         if (this.data.type == 'add') {

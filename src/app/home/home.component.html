@@ -99,28 +99,24 @@
               
               </div>
               <br>
-              <h1 class="heading">Alumni</h1>
-              <div class="container">
-                <div class="row">
-                  <ng-container *ngFor="let peoples of alumni;">
-                    <div class="col-lg-1 col-md-2 col-sm-2 col-3 padding-grid">
-                      <div class="popover__wrapper">
-                        <img class="popover__title" [src]="peoples.img_name" alt="Avatar" class="avatar" > 
-                        <div class="popover__content">
-                          <p style="color: black;">Name: {{peoples.name}} <br> <span *ngIf="peoples.job">  Job: {{peoples.job}} </span></p>
-                        <a><i class="fa fa-linkedin-square" style="font-size: 55px; margin-left: 40%; color: #b8a07e;"></i></a>
-                        </div>
-                        <p class="people"><b>{{peoples.name}} </b> <br> <span *ngIf="peoples.job"> {{peoples.job}} </span></p>
-                      </div>
+              
+            </div>
+            <div class="container">
+              <h1 class="heading" style="margin-left: 10%">Alumni</h1>
+              <div class="row">
+                <ng-container *ngFor="let peoples of alumni;">
+                  <div class="flex-column col-lg-1 col-md-2 col-sm-2 col-3 padding-grid">
+                    <div class="popover__wrapper">
+                      <img [src]="peoples.img_name" alt="Avatar" class="avatar" > 
+                      <p class="people"><b>{{peoples.name}} </b> <br> <span *ngIf="peoples.job"> {{peoples.job}} </span></p>
                     </div>
-                    
-
-                  </ng-container>
-    
-                </div>
+                  </div>
                   
-              </div>
 
+                </ng-container>
+  
+              </div>
+                
             </div>
             
           </div>
