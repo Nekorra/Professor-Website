@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'research', component: ResearchComponent }, 
   { path: 'students', component: StudentsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent, /*canActivate: [AuthGuard]*/},
   { path: 'cv', component: CvComponent},
 ];
 

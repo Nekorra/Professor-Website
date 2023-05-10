@@ -13,7 +13,8 @@ import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/c
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  currentData: any;
+  researchData: any;
+  awardsData: any;
   length: number  
   activePage: string;
 
@@ -50,17 +51,16 @@ export class DashboardComponent implements OnInit {
   async getData(page: string) {
     if (page == "awards") {
       await this.databaseService.getData('honors/awards').then((data) =>{
-        this.currentData= data;
-        this.currentData = this.currentData.flat();
-        this.length = this.currentData.length
+        this.awardsData = data;
+        this.length = this.awardsData.length
       })
-      console.log(this.currentData);
+      console.log(this.awardsData);
     }
     if ( page == "research") {
       await this.databaseService.getData('research/research').then((data) =>{
-        this.currentData= data;
-        this.currentData = this.currentData.flat();
-        this.length = this.currentData.length
+        this.researchData= data;
+        this.researchData = this.researchData.flat();
+        this.length = this.researchData.length
       })
       this.putResearchImageList();
     }
@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
         console.log(res);
         this.journalsData = res;
         this.journalsData = this.journalsData.flat();
-        this.length = this.currentData.length;
+        this.length = this.researchData.length;
       })
   
       this.databaseService.getData("publications/conferences").then((res: any) => {
@@ -133,14 +133,14 @@ export class DashboardComponent implements OnInit {
   }
 
   putResearchImageList() {
-    for (let i = 0; i < this.currentData.length; i++) {
-      if (this.currentData[i].title == "ASEEC") {
-        this.currentData.splice(i, 1);
+    for (let i = 0; i < this.researchData.length; i++) {
+      if (this.researchData[i].title == "ASEEC") {
+        this.researchData.splice(i, 1);
       }
-      if(this.currentData[i].img_name != "" || this.currentData[i].img_name != null) {
-        this.storageRef = this.afStorage.ref("research/" + this.currentData[i].img_name);
+      if(this.researchData[i].img_name != "" || this.researchData[i].img_name != null) {
+        this.storageRef = this.afStorage.ref("research/" + this.researchData[i].img_name);
         this.storageRef.getDownloadURL().toPromise().then(url => {
-          this.currentData[i].url = url;
+          this.researchData[i].url = url;
         });
       }
     }
@@ -210,11 +210,14 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  openDialog(page: string) {
+  openDialog(page: string, data: any, index: number, type: any) {
     if (page == "awards") {
       const dialog = this.dialogRef.open(AwardModalComponent, {
         data : {
-          length: this.length
+          length: this.length,
+          data: data,
+          type: type,
+          index: index,
         }
       });
 
@@ -266,13 +269,19 @@ export class DashboardComponent implements OnInit {
   }
 
   async remove(path: string, index: number, page: string) {
-    await this.databaseService.remove(`${path}/${index}`);
+    this.awardsData.splice(index, 1);
+    await this.databaseService.remove(`${path}`, this.awardsData);
     this.getData(page);
   }
 
   togglePage(page: string) {
     this.activePage = page;
     this.getData(page);
+  }
+
+  editAwardsData(index: number) {
+    this.openDialog("awards", this.awardsData, index, "edit");
+    console.log(index, this.awardsData);
   }
 
 }

@@ -15,6 +15,9 @@ export class AwardModalComponent implements OnInit {
   earnings: string = "";
   extra: string = "";
   length: number;
+  type: string;
+  index: number;
+  awardsData: any;
   
   constructor(
     private databaseService: DatabaseService,
@@ -23,13 +26,38 @@ export class AwardModalComponent implements OnInit {
    { }
 
   ngOnInit(): void {
-    this.length = this.data.length;
+    if (this.data.type == 'add') {
+      this.awardsData = this.data.data;
+      console.log(this.awardsData);
+      this.length = this.data.length;
+      this.type = this.data.type;
+    }
+    if (this.data.type == 'edit') {
+      this.awardsData = this.data.data;
+      console.log(this.data.index);
+      this.index = this.data.index;
+      this.name = this.data.data[this.index].name;
+      this.link = this.data.data[this.index].link;
+      this.timespan = this.data.data[this.index].timespan;
+      this.earnings = this.data.data[this.index].earnings;
+      this.extra = this.data.data[this.index].extra;
+
+    }
   }
 
 
   async addAward() {
-    await this.databaseService.addAwardData(`honors/awards/`, this.name, this.link, this.timespan, this.earnings, this.extra);
-    alert("Successfully added Data");
+    if (this.type == 'add') {
+      this.awardsData.splice(0, 0, {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, extra: this.extra})
+      await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
+      alert("Successfully added Data");
+    }
+    if (this.type == "edit") {
+      this.awardsData[this.index] = {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, extra: this.extra}
+      await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
+      alert("Successfully edited Data");
+    }
+    
   }
 
 }

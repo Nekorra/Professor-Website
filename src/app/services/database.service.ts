@@ -17,13 +17,9 @@ export class DatabaseService {
     return this.db.object(path).valueChanges().pipe(take(1)).toPromise();
   }
 
-  async addAwardData(path: string, name: string, link: string, timespan: string, earnings: string, extra: string) {
-    await this.db.object(path).valueChanges().pipe(take(1)).toPromise().then((data: any) => {
-      this.list = data;
-    });
-    this.list.unshift({name: name, link: link, timespan: timespan, earnings: earnings, extra: extra});
+  async addAwardData(path: string, data: any) {
     const ref = this.db.object(path);
-    return ref.set(this.list)
+    return ref.set(data)
   }
 
   async addJournalData(path: string, title: string, url: string, journal: string, authors: string) {
@@ -44,9 +40,9 @@ export class DatabaseService {
     return ref.set(this.list);
   }
 
-  remove(path: string) {
+  remove(path: string, data: any) {
     const ref = this.db.object(path);
-    return ref.remove();
+    return ref.set(data);
   }
   
   async addResearchData(path: string, content: string, img_name: string, title: string) {

@@ -39,21 +39,24 @@
           <div class="grid-item">
               <div class="card">
                 <div class="card-details">
-                  <p class="text-title" (click)="openDialog('awards')">Add New Award</p>
+                  <p class="text-title" (click)="openDialog('awards', this.awardsData, null, 'add')">Add New Award</p>
                 </div>
               </div>
             </div>
-        <div *ngFor="let awards of currentData; let indOfelement = index;">
-          <div class="grid-item">
-            <div class="card">
-              <div class="card-details">
-                <p class="text-title">{{ awards.name }}</p>
-                <p class="text-body">{{ awards.timespan }}</p>
+            <div *ngFor="let awards of awardsData; let ind = index;">
+              <div class="grid-item">
+                <div class="card" >
+                    <div class="card-details" (click)="editAwardsData(ind)">
+                      <img src="https://2021.alamidwinter.org/sites/default/files/inline-images/AdobeStock_295588366_2.png" style="height: 150px; margin: 0 auto;">
+                      <p class="text-title">{{awards.name}}</p>
+                      <p class="text-body">{{awards.timespan}}</p>
+                      <p class="about-body">{{awards.description}}</p>
+                      <p class="text-body" *ngIf="awards.earnings != ''">Earnings: {{awards.earnings}}</p>
+                    </div>
+                    <a (click)="remove('honors/awards', ind, 'awards')" class="card-button">Delete</a>
+                  </div>
               </div>
-              <a (click)="remove('honors/awards', indOfelement, 'awards')" class="card-button">Delete</a>
             </div>
-          </div>
-        </div>
       </div>
   </section>
 
@@ -77,7 +80,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><a><div style="color: red" (click)="openDialog('journals')"> Add new Journal</div></a></td>
+              <td><a><div style="color: red" (click)="openDialog('journals', null, null, 'add')"> Add new Journal</div></a></td>
               <td> </td>
               <td> </td>
               <td> </td>
@@ -120,7 +123,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><a><div style="color: red" (click)="openDialog('publications')"> Add new Publication</div></a></td>
+              <td><a><div style="color: red" (click)="openDialog('publications', null,  null, 'add')"> Add new Publication</div></a></td>
               <td> </td>
               <td> </td>
               <td> </td>
@@ -146,13 +149,13 @@
   <section [hidden] = "!(activePage == 'research')" id="research">
 
     <div class="project-container"> 
-      <div class="project-card" (click)="openDialog('research')">
+      <div class="project-card" (click)="openDialog('research', null,  null, 'add')">
         <br>
         <h2 class="project-title">Add Research</h2>
         <p class="project-description"></p>
         <br>
       </div>
-      <div class="project-card" *ngFor = "let research of currentData; let ind = index">
+      <div class="project-card" *ngFor = "let research of researchData; let ind = index">
         <img *ngIf="research.url" class="project-image" [src]="research.url" alt="Research Project 1">
         <br>
         <h2 class="project-title">{{research.title}}</h2>
