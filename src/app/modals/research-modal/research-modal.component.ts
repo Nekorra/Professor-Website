@@ -49,7 +49,7 @@ export class ResearchModalComponent implements OnInit {
     if (this.type == 'edit') {
       this.researchData[this.index] = {content: this.content, img_name: this.img_name, title: this.title}
       console.log(this.researchData)
-      //await this.databaseService.addResearchData(`research/research/`, this.researchData);
+      await this.databaseService.addResearchData(`research/research/`, this.researchData);
       alert("Successfully edited Data");
     }
     

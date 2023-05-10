@@ -22,22 +22,14 @@ export class DatabaseService {
     return ref.set(data)
   }
 
-  async addJournalData(path: string, title: string, url: string, journal: string, authors: string) {
-    await this.db.object(path).valueChanges().pipe(take(1)).toPromise().then((data: any) => {
-      this.list = data;
-    })
-    this.list.unshift({authors: authors, url: url, journal: journal, title: title});
+  async addJournalData(path: string, data: any) {
     const ref = this.db.object(path);
-    return ref.set(this.list);
+    return ref.set(data);
   }
 
-  async addPublicationData(path: string, title: string, url: string, journal: string, authors: string, year: string) {
-    await this.db.object(path).valueChanges().pipe(take(1)).toPromise().then((data: any) => {
-      this.list = data;
-    })
-    this.list.unshift({authors: authors, url: url, journal: journal, title: title, year: year});
+  async addPublicationData(path: string, data:any) {
     const ref = this.db.object(path);
-    return ref.set(this.list);
+    return ref.set(data);
   }
 
   remove(path: string, data: any) {

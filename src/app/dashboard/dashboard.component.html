@@ -47,7 +47,7 @@
               <div class="grid-item">
                 <div class="card" >
                     <div class="card-details" (click)="editAwardsData(ind)">
-                      <img src="https://2021.alamidwinter.org/sites/default/files/inline-images/AdobeStock_295588366_2.png" style="height: 150px; margin: 0 auto;">
+                      <img [src]="awards.img_name" style="height: 150px; margin: 0 auto;">
                       <p class="text-title">{{awards.name}}</p>
                       <p class="text-body">{{awards.timespan}}</p>
                       <p class="about-body">{{awards.description}}</p>
@@ -86,8 +86,8 @@
               <td> </td>
             </tr>
 
-            <tr *ngFor="let journals of journalsData | search: searchJournals; let ind = index; ">
-              <td><a href="#" target="_blank">{{journals.title}}</a> <button (click)="removeJournals(ind, 'publications')"> delete </button></td>
+            <tr *ngFor="let journals of journalsData; let ind = index; ">
+              <td><a (click)="editJournalsData(ind)">{{journals.title}}</a> <button (click)="removeJournals(ind, 'journals')"> delete </button></td>
               <td> {{journalsData.length-ind}}</td>
               <td> {{journals.journal}} </td>
               <td> {{journals.authors}}</td>
@@ -123,14 +123,14 @@
           </thead>
           <tbody>
             <tr>
-              <td><a><div style="color: red" (click)="openDialog('publications', null,  null, 'add')"> Add new Publication</div></a></td>
+              <td><a><div style="color: red" (click)="openDialog('publications', this.conferencesData, null, 'add')"> Add new Publication</div></a></td>
               <td> </td>
               <td> </td>
               <td> </td>
             </tr>
-            <tr *ngFor="let conferences of conferencesData | search: searchPublications; let y = index">
-              <td><a href="#" target="_blank">{{conferences.title}}</a> <button (click)="removeAward(y, 'publications')"> delete </button> </td>
-              <td>{{conferencesData.length - y}}</td>
+            <tr *ngFor="let conferences of conferencesData | search: searchPublications; let ind = index">
+              <td><a (click)="editPublicationsData(ind)">{{conferences.title}}</a> <button (click)="removePublications(ind, 'publications')"> delete </button> </td>
+              <td>{{conferencesData.length - ind}}</td>
               <td>{{conferences.year}}</td>
               <td>{{conferences.journal}} </td>
               <td>{{conferences.authors}}</td>
@@ -246,7 +246,7 @@
       <div class="about1">
         <div class="about3">
           <h1>{{peoples.name}}</h1>
-          <h1>PhD Thesis: {{peoples.thesis}}</h1>
+          <h1>MS Thesis: {{peoples.thesis}}</h1>
           <h1>{{peoples.job}}</h1>
         </div>
       </div>

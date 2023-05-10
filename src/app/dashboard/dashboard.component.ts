@@ -65,16 +65,12 @@ export class DashboardComponent implements OnInit {
       this.journalsData = []
       this.conferencesData = []
       this.databaseService.getData("journals/journals").then((res: any) => {
-        console.log(res);
         this.journalsData = res;
-        this.journalsData = this.journalsData.flat();
-        this.length = this.researchData.length;
+        this.length = this.journalsData.length;
       })
   
       this.databaseService.getData("publications/conferences").then((res: any) => {
-        console.log(res);
         this.conferencesData = res;
-        this.conferencesData = this.conferencesData.flat();
         this.lengthOfConference = this.conferencesData.length;
       })
     }
@@ -163,7 +159,10 @@ export class DashboardComponent implements OnInit {
     if (page == "publications") {
       const dialog = this.dialogRef.open(PublicationsModalComponent, {
         data : {
-          length: this.length
+          length: this.length,
+          data: data,
+          type: type,
+          index: index,
         }
       });
 
@@ -224,14 +223,27 @@ export class DashboardComponent implements OnInit {
   }
 
   editJournalsData(index: number) {
-    this.openDialog("publications", this.journalsData, index, "edit");
-    console.log(index, this.researchData);
+    this.openDialog("journals", this.journalsData, index, "edit");
+    console.log(index, this.journalsData);
   }
 
   async removeJournals(index: number, page: string) {
     if (confirm("are you sure you want to delete this? ")) {
       this.journalsData.splice(index, 1);
-      await this.databaseService.remove(`journals/journals`, this.researchData);
+      await this.databaseService.remove(`journals/journals`, this.journalsData);
+      this.getData(page);
+    }
+  }
+
+  editPublicationsData(index: number) {
+    this.openDialog("publications", this.conferencesData, index, "edit");
+    console.log(index, this.conferencesData);
+  }
+
+  async removePublications(index: number, page: string) {
+    if (confirm("are you sure you want to delete this? ")) {
+      this.conferencesData.splice(index, 1);
+      await this.databaseService.remove(`publications/conferences/`, this.conferencesData);
       this.getData(page);
     }
   }

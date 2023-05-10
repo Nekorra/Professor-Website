@@ -1,5 +1,9 @@
 <h2> Award </h2>
 <br>
+<input type="file" (change)="onFileChange($event)">
+<br>
+<button (click)="removeImage()"> remove image </button>
+<br>
 <input placeholder="Name" [(ngModel)]="name">
 <br>
 <input  placeholder="link" [(ngModel)]="link">
@@ -8,6 +12,6 @@
 <br>
 <input  placeholder="earnings" [(ngModel)]="earnings">
 <br>
-<input placeholder="extra" [(ngModel)]="extra">
+<textarea placeholder="description" [(ngModel)]="description" ows="4" cols="50"></textarea>
 <br>
-<button (click)="addAward()">Add</button>
+<button (click)="addAward()">Update</button>

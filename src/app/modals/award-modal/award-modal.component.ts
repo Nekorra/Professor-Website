@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 @Component({
   selector: 'app-award-modal',
   templateUrl: './award-modal.component.html',
@@ -13,14 +13,16 @@ export class AwardModalComponent implements OnInit {
   link: string = "";
   timespan: string = "";
   earnings: string = "";
-  extra: string = "";
+  description: string = "";
   length: number;
   type: string;
   index: number;
   awardsData: any;
+  image: string;
   
   constructor(
     private databaseService: DatabaseService,
+    private storage: AngularFireStorage,
     @Inject(MAT_DIALOG_DATA) public data: any
     )
    { }
@@ -40,7 +42,8 @@ export class AwardModalComponent implements OnInit {
       this.link = this.data.data[this.index].link;
       this.timespan = this.data.data[this.index].timespan;
       this.earnings = this.data.data[this.index].earnings;
-      this.extra = this.data.data[this.index].extra;
+      this.description = this.data.data[this.index].description;
+      this.image = this.data.data[this.index].img_name;
 
     }
   }
@@ -48,16 +51,35 @@ export class AwardModalComponent implements OnInit {
 
   async addAward() {
     if (this.type == 'add') {
-      this.awardsData.splice(0, 0, {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, extra: this.extra})
+      this.awardsData.splice(0, 0, {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, description: this.description, img_name: this.image})
       await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
       alert("Successfully added Data");
     }
     if (this.type == 'edit') {
-      this.awardsData[this.index] = {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, extra: this.extra}
+      this.awardsData[this.index] = {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, description: this.description, img_name: this.image}
       await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
       alert("Successfully edited Data");
     }
     
+  }
+
+  async onFileChange(event: any) {
+    const file = event.target.files[0]
+    if (file) {
+      const path = `awards/${file.name}`
+      const uploadTask = await this.storage.upload(path, file);
+      this.image = await uploadTask.ref.getDownloadURL();
+      console.log(this.image);
+    }
+  }
+
+  async removeImage() {
+    console.log('Removing image')
+    this.storage.refFromURL(this.image).delete();
+    this.image = null;
+    this.awardsData[this.index] = {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, description: this.description, img_name: this.image}
+    await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
+
   }
 
 }
