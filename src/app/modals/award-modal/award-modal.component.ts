@@ -18,7 +18,7 @@ export class AwardModalComponent implements OnInit {
   type: string;
   index: number;
   awardsData: any;
-  image: string;
+  image = null;
   
   constructor(
     private databaseService: DatabaseService,
