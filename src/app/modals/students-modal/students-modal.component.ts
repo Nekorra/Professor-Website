@@ -5,20 +5,22 @@ import { inject } from '@angular/core/testing';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
-  selector: 'app-research-modal',
-  templateUrl: './research-modal.component.html',
-  styleUrls: ['./research-modal.component.css']
+  selector: 'app-students-modal',
+  templateUrl: './students-modal.component.html',
+  styleUrls: ['./students-modal.component.css']
 })
-export class ResearchModalComponent implements OnInit {
+export class StudentsModalComponent implements OnInit {
 
-  content: string = "";
   img_name: string = "";
-  title: string = "";
-  length: number;
-  researchData: any;
+  name: string = "";
+  research: string = "";
+  job: string = "";
   index: number;
   type: string;
+  studentType: string;
   image: string = "";
+
+  studentData: any;
 
   constructor(
     private databaseService: DatabaseService,
@@ -28,32 +30,34 @@ export class ResearchModalComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data.type == "add") {
-      this.researchData = this.data.data;
-      this.length = this.data.length;
+      this.studentData = this.data.data;
+      this.studentType = this.data.studentType;
       this.type = this.data.type;
+
     }
     if (this.data.type == "edit") {
-      this.researchData = this.data.data;
+      this.studentData = this.data.data;
       this.index = this.data.index;
-      this.content = this.data.data[this.index].content
-      this.title = this.data.data[this.index].title
-      this.length = this.data.length; 
       this.type = this.data.type;
+      this.studentType = this.data.studentType;
+      this.name = this.data.data[this.index].name
+      this.research = this.data.data[this.index].research
+      this.job = this.data.data[this.index].job; 
       this.image = this.data.data[this.index].img_name;
     }
   }
 
-  async addResearch() {
+  async addStudent() {
     if (this.type == 'add') {
-      this.researchData.splice(0,0, {content: this.content, img_name: this.image, title: this.title})
-      await this.databaseService.addResearchData(`research/research/`, this.researchData);
+      this.studentData.splice(0,0, {img_name: this.image, name: this.name, job: this.job, research: this.research})
+      await this.databaseService.addStudentData(`people/${this.studentType}/`, this.studentData);
       alert("Successfully added Data");
     }
 
     if (this.type == 'edit') {
-      this.researchData[this.index] = {content: this.content, img_name: this.image, title: this.title}
-      console.log(this.researchData)
-      await this.databaseService.addResearchData(`research/research/`, this.researchData);
+      this.studentData[this.index] = {img_name: this.image, name: this.name, job: this.job, research: this.research}
+      console.log(this.studentData)
+      await this.databaseService.addStudentData(`people/${this.studentType}/`, this.studentData);
       alert("Successfully edited Data");
     }
     
@@ -74,11 +78,10 @@ export class ResearchModalComponent implements OnInit {
       console.log('Removing image')
       this.storage.refFromURL(this.image).delete();
       this.image = "";
-      this.researchData[this.index] = {content: this.content, img_name: this.image, title: this.title}
-      await this.databaseService.addResearchData(`research/research/`, this.researchData);
+      this.studentData[this.index] = {img_name: this.image, name: this.name, job: this.job, research: this.research}
+      await this.databaseService.addStudentData(`people/${this.studentType}/`, this.studentData);
     }
     
 
   }
-
 }

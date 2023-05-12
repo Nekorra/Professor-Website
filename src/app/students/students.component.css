@@ -180,6 +180,7 @@ to{
 
 .image{
   width: 300px;
+  height: 300px;
   border-radius: 50%;
   border: 5px solid #b8a07e;
 }
@@ -203,6 +204,7 @@ to{
 
 .image2{
   width: 300px;
+  height: 300px;
   border-radius: 50%;
   border: 5px solid #b8a07e;
   margin-left: 20%;

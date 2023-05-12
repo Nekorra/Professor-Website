@@ -6,6 +6,8 @@ import { ResearchModalComponent } from '../modals/research-modal/research-modal.
 import { PublicationsModalComponent } from '../modals/publications-modal/publications-modal.component';
 import { JournalsModalComponent } from '../modals/journals-modal/journals-modal.component';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
+import { StudentsModalComponent } from '../modals/students-modal/students-modal.component';
+import { SponsoredResearchModalComponent } from '../modals/sponsored-research-modal/sponsored-research-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,6 +35,10 @@ export class DashboardComponent implements OnInit {
   post_doc_alumni: any[] = [];
   undergrad_alumni: any[] = [];
   undergraduates: any[] = [];
+  
+  fundsData: any;
+  totalFunds: any; 
+  searchFunds: any;
 
   storageRef: AngularFireStorageReference;
 
@@ -60,6 +66,19 @@ export class DashboardComponent implements OnInit {
         this.researchData = data;
         this.length = this.researchData.length
       })
+    }
+    if ( page == "sponsoredResearch") {
+      await this.databaseService.getData('funding/funds').then((data) => {
+        this.fundsData = data;
+        //this.awardsData = this.awardsData.flat();
+        console.log(this.fundsData)
+      });
+  
+      await this.databaseService.getData('funding').then((data: any) => {
+        this.totalFunds= data.total;;
+        //this.awardsData = this.awardsData.flat();
+        console.log(this.totalFunds)
+      });
     }
     if ( page == "publications") {
       this.journalsData = []
@@ -123,7 +142,7 @@ export class DashboardComponent implements OnInit {
     }    
   }
 
-  openDialog(page: string, data: any, index: number, type: any) {
+  openDialog(page: string, data: any, index: number, type: any, studentType: string) {
     if (page == "awards") {
       const dialog = this.dialogRef.open(AwardModalComponent, {
         data : {
@@ -187,6 +206,39 @@ export class DashboardComponent implements OnInit {
         this.getData(page);
       });
     }
+
+    if (page == "students") {
+      const dialog = this.dialogRef.open(StudentsModalComponent, {
+        data : {
+          length: this.length,
+          data: data,
+          type: type,
+          index: index,
+          studentType: studentType,
+        }
+      });
+
+      dialog.afterClosed().subscribe(() => {
+        // Do stuff after the dialog has closed
+        this.getData(page);
+      });
+    }
+
+    if (page == "sponsoredResearch") {
+      const dialog = this.dialogRef.open(SponsoredResearchModalComponent, {
+        data : {
+          length: this.length,
+          data: data,
+          type: type,
+          index: index,
+        }
+      });
+
+      dialog.afterClosed().subscribe(() => {
+        // Do stuff after the dialog has closed
+        this.getData(page);
+      });
+    }
   }
 
   
@@ -197,7 +249,7 @@ export class DashboardComponent implements OnInit {
   }
 
   editAwardsData(index: number) {
-    this.openDialog("awards", this.awardsData, index, "edit");
+    this.openDialog("awards", this.awardsData, index, "edit", null);
     console.log(index, this.awardsData);
   }
 
@@ -210,7 +262,7 @@ export class DashboardComponent implements OnInit {
   }
 
   editResearchData(index: number) {
-    this.openDialog("research", this.researchData, index, "edit");
+    this.openDialog("research", this.researchData, index, "edit", null);
     console.log(index, this.researchData);
   }
 
@@ -223,7 +275,7 @@ export class DashboardComponent implements OnInit {
   }
 
   editJournalsData(index: number) {
-    this.openDialog("journals", this.journalsData, index, "edit");
+    this.openDialog("journals", this.journalsData, index, "edit", null);
     console.log(index, this.journalsData);
   }
 
@@ -236,7 +288,7 @@ export class DashboardComponent implements OnInit {
   }
 
   editPublicationsData(index: number) {
-    this.openDialog("publications", this.conferencesData, index, "edit");
+    this.openDialog("publications", this.conferencesData, index, "edit", null);
     console.log(index, this.conferencesData);
   }
 
@@ -244,6 +296,31 @@ export class DashboardComponent implements OnInit {
     if (confirm("are you sure you want to delete this? ")) {
       this.conferencesData.splice(index, 1);
       await this.databaseService.remove(`publications/conferences/`, this.conferencesData);
+      this.getData(page);
+    }
+  }
+
+  editStudentsData(index: number, data: any, studentType: string) {
+    this.openDialog("students", data, index, "edit", studentType);
+  }
+
+  async removeStudent(index: number, page: string, data: any, studentType: string) {
+    if (confirm("are you sure you want to delete this? ")) {
+      data.splice(index, 1);
+      await this.databaseService.remove(`people/${studentType}/`, data);
+      this.getData(page);
+    }
+  }
+
+  editFundsData(index: number) {
+    this.openDialog("sponsoredResearch", this.fundsData, index, "edit", null);
+    console.log(index, this.fundsData);
+  }
+
+  async removeFunds(index: number, page: string) {
+    if (confirm("are you sure you want to delete this? ")) {
+      this.fundsData.splice(index, 1);
+      await this.databaseService.remove(`funding/funds/`, this.fundsData);
       this.getData(page);
     }
   }

@@ -42,5 +42,10 @@ export class DatabaseService {
     return ref.set(data)
   }
 
+  addStudentData(path: string, data: any) {
+    const ref = this.db.object(path);
+    return ref.set(data);
+  }
+
 
 }

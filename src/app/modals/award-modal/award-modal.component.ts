@@ -18,7 +18,7 @@ export class AwardModalComponent implements OnInit {
   type: string;
   index: number;
   awardsData: any;
-  image = null;
+  image: string = "";
   
   constructor(
     private databaseService: DatabaseService,
@@ -60,7 +60,6 @@ export class AwardModalComponent implements OnInit {
       await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
       alert("Successfully edited Data");
     }
-    
   }
 
   async onFileChange(event: any) {
@@ -74,12 +73,13 @@ export class AwardModalComponent implements OnInit {
   }
 
   async removeImage() {
-    console.log('Removing image')
-    this.storage.refFromURL(this.image).delete();
-    this.image = null;
-    this.awardsData[this.index] = {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, description: this.description, img_name: this.image}
-    await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
-
+    if (confirm('Are you sure you want to remove this image?')) {
+      console.log('Removing image')
+      this.storage.refFromURL(this.image).delete();
+      this.image = "";
+      this.awardsData[this.index] = {name: this.name, link: this.link, timespan: this.timespan, earnings: this.earnings, description: this.description, img_name: this.image}
+      await this.databaseService.addAwardData(`honors/awards/`, this.awardsData);
+    }
   }
 
 }

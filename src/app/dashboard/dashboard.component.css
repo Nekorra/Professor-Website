@@ -90,167 +90,6 @@
 
 /*research */
 
-.container{
-    margin: 0 auto; 
-    display: grid;
-    grid-template-columns:auto auto;
-    column-gap: 10%;
-    row-gap: 1%;
-    top: 1.5%;
-    transform: translateY(1.5%);
-    padding-bottom: 65%;
-}
-
-.researchCard{
-    box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc;
-    border-radius: 10%;
-    transition: 0.5s;
-}
-
-.researchCard:hover{
-    background: #eee;
-    box-shadow: 0 8px 8px -4px green;
-}
-
-.cardTitle{
-    text-align: center;
-    margin: 0 auto;
-    font-family: 'Poppins', sans-serif;
-    font-size: 50px;
-    font-weight: 900;
-    margin-top: 5%;
-    width: 90%; 
-}
-.cardDescription{
-    font-family: 'Poppins', sans-serif;
-    color: black;
-    text-align: center;
-    margin: 0 auto;
-    width: 95%;
-}
-.container-pub {
-  width: 100%;
-  margin: 0 auto;
-}
-.title-pub{
-  font-size: 30px;
-}
-.search-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.search-input {
-  width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-bottom: 3px solid #b8a07e;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-.search-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #b8a07e;
-  color: #FFF;
-  border: none;
-  cursor: pointer;
-}
-.container {
-  width: 100%;
-  margin: 0 auto;
-}
-.publications {
-  max-height: 500px;
-  width: 100%;
-  overflow-y: auto;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid #b8a07e;
-}
-a{
-  color: black;
-}
-th {
-  background-color: #f2f2f2;
-}
-.line{
-  height: 2px;
-  width: 40%;
-  margin: 0 auto; 
-  background-color: #b8a07e;
-}
-
-
-.phd-grid{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 50px;
-  margin: 0 auto; 
-  text-align: center;
-}
-
-.image{
-  width: 300px;
-  border-radius: 50%;
-  border: 10px dotted #b8a07e;
-}
-.people{
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  margin-bottom: 15%;
-}
-
-.postdoc-grid{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 50px;
-  margin: 0 auto; 
-}
-
-.people2{
-  font-family: 'Poppins', sans-serif;
-  border-radius: 20%;
-}
-
-.image2{
-  width: 300px;
-  border-radius: 50%;
-  border: 10px dotted #b8a07e;
-  margin-left: 20%;
-}
-.about1{
-  font-family: 'Poppins', sans-serif;
-  border: 10px solid #b8a07e;
-  border-radius: 20%;
-  margin-right: 5%;
-}
-.about2{
-  margin: o auto;
-  text-align: center;
-  position: relative;
-  top: 20%;
-  right: 90%;
-  transform: translate(90%, 20%);
-}
-.about3{
-  margin: o auto;
-  text-align: center;
-  position: relative;
-  top: 10%;
-  right: 90%;
-  transform: translate(90%, 10%);
-}
-
-
 .project-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -311,4 +150,107 @@ th {
 }
 .project-read-more:hover{
   background-color: #8c765c;
+}
+
+.line{
+  height: 2px;
+  width: 40%;
+  margin: 0 auto; 
+  background-color: #b8a07e;
+}
+
+/* Publications */
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+.publications {
+  max-height: 500px;
+  width: 100%;
+  overflow-y: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #b8a07e;
+}
+a{
+  color: black;
+}
+th {
+  background-color: #f2f2f2;
+}
+.line{
+  height: 2px;
+  width: 40%;
+  margin: 0 auto; 
+  background-color: #b8a07e;
+}
+
+
+.phd-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px;
+  margin: 0 auto; 
+  text-align: center;
+}
+
+.image{
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 10px dotted #b8a07e;
+}
+.people{
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 15%;
+}
+
+.postdoc-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+  margin: 0 auto; 
+}
+
+.people2{
+  font-family: 'Poppins', sans-serif;
+  border-radius: 20%;
+}
+
+.image2{
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 10px dotted #b8a07e;
+  margin-left: 20%;
+}
+.about1{
+  font-family: 'Poppins', sans-serif;
+  border: 10px solid #b8a07e;
+  border-radius: 20%;
+  margin-right: 5%;
+}
+.about2{
+  margin: o auto;
+  text-align: center;
+  position: relative;
+  top: 20%;
+  right: 90%;
+  transform: translate(90%, 20%);
+}
+.about3{
+  margin: o auto;
+  text-align: center;
+  position: relative;
+  top: 10%;
+  right: 90%;
+  transform: translate(90%, 10%);
 }

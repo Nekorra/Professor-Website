@@ -46,7 +46,6 @@
     </ng-container>
   </div>
   
-
   <h1 class="title">Master Students</h1>
   <div class="phd-grid">
     <ng-container *ngFor="let peoples of masters">
@@ -68,53 +67,39 @@
   </div>
   
   <h1 class="title">Post-Doc Alumni</h1>
-  <div class="postdoc-grid">
+  <div class="phd-grid">
     <ng-container *ngFor="let peoples of post_doc_alumni">
-        <div class="people2">
-          <img [src]="peoples.img_name" alt="Image 1" class="image2">
-        </div>
-        <div class="about1">
-          <div class="about2">
-            <h1>{{peoples.name}}</h1>
-            <h1>Current job: {{peoples.job}}</h1>
-          </div>
-        </div>      
+      <div class="people">
+        <img [src]="peoples.img_name" alt="Image 1" class="image">
+        <h3>{{peoples.name}}</h3>
+        <h6>{{peoples.job}}</h6>
+      </div>   
     </ng-container>
   </div>
 
   <br> <br> <br>
   <h1 class="title">PhD Alumni</h1>
-  <div class="postdoc-grid">
+  <div class="phd-grid">
     
     <ng-container *ngFor="let peoples of phd_alumni" >
-      <div class="people2">
-        <img [src]="peoples.img_name" alt="Image 1" class="image2">
-      </div>
-      <div class="about1">
-        <div class="about3">
-          <h1>{{peoples.name}}</h1>
-          <h1>PhD Thesis: {{peoples.thesis}}</h1>
-          <h1>{{peoples.job}}</h1>
-        </div>
-      </div>
+      <div class="people">
+        <img [src]="peoples.img_name" alt="Image 1" class="image">
+        <h3>{{peoples.name}}</h3>
+        <h6>{{peoples.job}}</h6>
+      </div> 
     </ng-container>
   </div>
 
   <br> <br> <br>
   <h1 class="title">MS Alumni</h1>
-  <div class="postdoc-grid">
+  <div class="phd-grid">
 
     <ng-container *ngFor="let peoples of ms_alumni">
-      <div class="people2">
-        <img [src]="peoples.img_name" alt="Image 1" class="image2">
-      </div>
-      <div class="about1">
-        <div class="about3">
-          <h1>{{peoples.name}}</h1>
-          <h1>MS Thesis: {{peoples.thesis}}</h1>
-          <h1>{{peoples.job}}</h1>
-        </div>
-      </div>
+      <div class="people">
+        <img [src]="peoples.img_name" alt="Image 1" class="image">
+        <h3>{{peoples.name}}</h3>
+        <h6>{{peoples.job}}</h6>
+      </div> 
     </ng-container>
   </div>
 </section>

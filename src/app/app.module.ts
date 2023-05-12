@@ -29,6 +29,8 @@ import { PublicationsModalComponent } from './modals/publications-modal/publicat
 import { SearchPipe } from './search.pipe';
 import { JournalsModalComponent } from './modals/journals-modal/journals-modal.component';
 import { CvComponent } from './cv/cv.component';
+import { StudentsModalComponent } from './modals/students-modal/students-modal.component';
+import { SponsoredResearchModalComponent } from './modals/sponsored-research-modal/sponsored-research-modal.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { CvComponent } from './cv/cv.component';
     SearchPipe,
     JournalsModalComponent,
     CvComponent,
+    StudentsModalComponent,
+    SponsoredResearchModalComponent,
     
   ],
   imports: [
