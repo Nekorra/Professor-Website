@@ -31,6 +31,7 @@ import { JournalsModalComponent } from './modals/journals-modal/journals-modal.c
 import { CvComponent } from './cv/cv.component';
 import { StudentsModalComponent } from './modals/students-modal/students-modal.component';
 import { SponsoredResearchModalComponent } from './modals/sponsored-research-modal/sponsored-research-modal.component';
+import { Eec170Component } from './eec170/eec170.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SponsoredResearchModalComponent } from './modals/sponsored-research-mod
     CvComponent,
     StudentsModalComponent,
     SponsoredResearchModalComponent,
+    Eec170Component,
     
   ],
   imports: [

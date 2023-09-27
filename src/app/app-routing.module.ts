@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CvComponent } from './cv/cv.component';
 import { AuthGuard } from './guards/auth.guard';
+import { Eec170Component } from './eec170/eec170.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, /*canActivate: [AuthGuard]*/},
   { path: 'cv', component: CvComponent},
+  { path: 'eec170', component: Eec170Component},
 ];
 
 @NgModule({
