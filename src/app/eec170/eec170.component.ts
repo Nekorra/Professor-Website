@@ -16,7 +16,6 @@ export class Eec170Component implements OnInit {
   courseTitle = "EEC 179: Applied Machine Learning for Electrical and Computer Engineers";
   instructorName = "Houman Homayoun";
   instructorEmail = "hhomayoun@ucdavis.edu";
-  officeHour = "3185 Kemper Hall";
 
   courseObjectives = `
     The recent popularity gained by the field of machine learning (ML) has led to its adaptation into
@@ -78,7 +77,7 @@ export class Eec170Component implements OnInit {
     "Unveiling the SoftMax Function: Derivation and Applications",
     "Neural Networks VI: Cross-Entropy - Theory and Applications",
     "Neural Networks VII: Advanced Concepts in Cross-Entropy and Backpropagation",
-    "Lec-19-Computational-Complexity-ML" // You can add more lectures as needed
+    "Computational-Complexity-ML" // You can add more lectures as needed
   ];
 
   classMeetings = "Two days a week";
@@ -111,11 +110,10 @@ export class Eec170Component implements OnInit {
     "Lec-19-Computational-Complexity-ML"
   ];
   lectureLinks = [
-    "https://drive.google.com/file/d/12ut9kfU-Mo1OyV24GUPEn8T3tjHnbtU8/view?usp=drive_link",
+    "https://drive.google.com/file/d/12ut9kfU-Mo1OyV24GUPEn8T3tjHnbtU8/view?usp=sharing",
     "https://drive.google.com/file/d/1Arm_9sLdoyoY68XjB4vqkcS8z2sC_Odt/view?usp=sharing",
     "https://drive.google.com/file/d/11739xrdgne8AqCgvvTth74d9nnr7jsUs/view?usp=sharing",
     "https://drive.google.com/file/d/1AAn9qKOo9e2FNdpUz_KvH_FhsXbqQiqN/view?usp=sharing",
-    // Add links for more lectures here...
   ];
 
   paperPresentation = `

@@ -36,7 +36,6 @@
     <div class="instructor">
       <p><strong>Instructor:</strong> {{ instructorName }}</p>
       <p><strong>Email:</strong> {{ instructorEmail }}</p>
-      <p><strong>Office Hour:</strong> {{ officeHour }}</p>
     </div>
   
     <h3>Course Objectives</h3>
@@ -60,10 +59,16 @@
   
     <h3>Lectures</h3>
     <ul>
-        <li *ngFor="let lecture of lectures; let i = index">
-            <a [href]="lectureLinks[i]" target="_blank">{{ lecture }}</a>
-        </li>
+        <ng-container *ngFor="let lecture of lectures; let i = index">
+            <li>
+                <ng-container *ngIf="lectureLinks[i]; else noLink">
+                    <a [href]="lectureLinks[i]" target="_blank">{{ lecture }}</a>
+                </ng-container>
+                <ng-template #noLink>{{ lecture }}</ng-template>
+            </li>
+        </ng-container>
     </ul>
+    
   
     <h3>Paper Presentation</h3>
     <p>{{ paperPresentation }}</p>
