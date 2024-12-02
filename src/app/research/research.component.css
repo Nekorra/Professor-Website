@@ -96,9 +96,9 @@ nav ul li a:hover {
   
 #logo{
   position: absolute;
-  top: 15%; 
+  top: 10%; 
   left: 50%;
-  transform: translate(-50%, -15%); 
+  transform: translate(-50%, -10%); 
   margin-bottom: 10px;
   animation: fill 0.5s ease forwards 2.5s; 
 }
