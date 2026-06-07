@@ -1,13 +1,32 @@
-<h2> Add Student </h2>
-<br>
-<input type="file" (change)="onFileChange($event)">
-<br>
-<button (click)="removeImage()"> remove image </button>
-<br>
-<input placeholder="name" [(ngModel)]="name">
-<br>
-<input placeholder="research" [(ngModel)]="research">
-<br>
-<input placeholder="job" [(ngModel)]="job">
-<br>
-<button (click)="addStudent()">Add</button>
+<h2 mat-dialog-title class="modal__title">{{ type === 'edit' ? 'Edit Student' : 'Add Student' }}</h2>
+
+<div mat-dialog-content class="modal__body">
+  <div class="form-field">
+    <label class="form-label" for="student-name">Name</label>
+    <input id="student-name" class="form-control" name="name" placeholder="Full name" [(ngModel)]="name" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="student-research">Research</label>
+    <input id="student-research" class="form-control" name="research" placeholder="Research area" [(ngModel)]="research" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="student-job">Position</label>
+    <input id="student-job" class="form-control" name="job" placeholder="Current position" [(ngModel)]="job" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="student-image">Photo</label>
+    <input id="student-image" type="file" class="modal__file" (change)="onFileChange($event)" />
+    <div class="modal__preview" *ngIf="image">
+      <img class="modal__thumb" [src]="image" alt="Student photo preview" />
+      <button type="button" class="modal__remove" (click)="removeImage()">Remove image</button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="modal__actions">
+  <button type="button" class="btn btn--secondary" mat-dialog-close>Cancel</button>
+  <button type="button" class="btn" (click)="addStudent()">Save</button>
+</div>

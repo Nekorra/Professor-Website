@@ -1,99 +1,115 @@
-<header>
-    <nav class="main-nav navbar-expand-lg">
-      <div class="row">
-        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-          <ul class="nav-menu list-unstyled">
-            <li><a href="#home" class="smooth-scroll">Home</a></li>
-            <li><a href="#about" class="smooth-scroll">About</a></li>
-            <li><a href="#courses" class="smooth-scroll">Courses</a></li>
-            <li><a routerLink="/awards" class="smooth-scroll">Awards</a></li>
-            <li><a routerLink="/publications" class="smooth-scroll">Publications</a></li>
-            <li><a routerLink="/research" class="smooth-scroll">Research</a></li>
-            <li><a routerLink="/students" class="smooth-scroll">Students</a></li>
-            <li><a routerLink="/cv" class="smooth-scroll">Consulting/CV</a></li>
-          </ul>
+<section class="syllabus-page paddsection">
+  <div class="container syllabus-container">
+    <header class="course-header">
+      <p class="course-header__code">EEC 179</p>
+      <h1 class="course-header__title">{{ courseTitle }}</h1>
+      <div class="course-header__meta">
+        <div class="meta-item">
+          <span class="meta-item__label">Instructor</span>
+          <span class="meta-item__value">{{ instructorName }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-item__label">Email</span>
+          <a class="meta-item__value" [href]="'mailto:' + instructorEmail">{{ instructorEmail }}</a>
+        </div>
+        <div class="meta-item">
+          <span class="meta-item__label">Meetings</span>
+          <span class="meta-item__value">{{ classMeetings }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-item__label">Prerequisites</span>
+          <span class="meta-item__value">{{ prerequisites }}</span>
         </div>
       </div>
-    </nav>
-</header>
+      <a
+        href="https://docs.google.com/document/d/1ZJCah_KGWF2VP4a73l3FVJL29tiOMTLw/edit?usp=sharing&ouid=100895375435392145013&rtpof=true&sd=true"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn syllabus-link"
+      >
+        View full syllabus
+      </a>
+    </header>
 
-
-<div class="syllabus">
-    <h2>{{ courseTitle }}</h2>
-    <h3><a href="https://docs.google.com/document/d/1ZJCah_KGWF2VP4a73l3FVJL29tiOMTLw/edit?usp=sharing&ouid=100895375435392145013&rtpof=true&sd=true" target="_blank">Syllabus</a></h3>
-    
-    <h3>Textbooks</h3>
-    <ul>
-      <li>
-        <a href="https://link.springer.com/book/10.1007/978-3-030-96756-7" target="_blank">
-          <img src="https://media.springernature.com/full/springer-static/cover-hires/book/978-3-030-96756-7?as=webp" alt="EEC 179 Textbook" class="textbook-image">
-          Machine Learning for Computer Scientists and Data Analysts, From an Applied Perspective 3, Springer Nature, 2022, Setareh Rafatirad · Houman Homayoun Zhiqian Chen · Sai Manoj Pudukotai Dinakarrao
-        </a>
-      </li>
-      <li>{{ textbook2 }}</li>
-    </ul>
-    
-    <div class="instructor">
-      <p><strong>Instructor:</strong> {{ instructorName }}</p>
-      <p><strong>Email:</strong> {{ instructorEmail }}</p>
-    </div>
-  
-    <h3>Course Objectives</h3>
-    <p>{{ courseObjectives }}</p>
-  
-    <h3>Course Tentative Outline</h3>
-    <ol>
-      <li *ngFor="let topic of courseOutline">{{ topic }}</li>
-    </ol>
-  
-    <h3>Class Meetings</h3>
-    <p>{{ classMeetings }}</p>
-  
-    <h3>Prerequisites</h3>
-    <p>{{ prerequisites }}</p>
-  
-    
-  
-    <h3>Exams</h3>
-    <p>{{ exams }}</p>
-  
-    <h3>Lectures</h3>
-    <ul>
-        <ng-container *ngFor="let lecture of lectures; let i = index">
-            <li>
-                <ng-container *ngIf="lectureLinks[i]; else noLink">
-                    <a [href]="lectureLinks[i]" target="_blank">{{ lecture }}</a>
-                </ng-container>
-                <ng-template #noLink>{{ lecture }}</ng-template>
-            </li>
-        </ng-container>
-    </ul>
-    
-  
-    <h3>Paper Presentation</h3>
-    <p>{{ paperPresentation }}</p>
-  
-    <div class="course-grade">
-        <h3>Course Grade</h3>
-        <ul>
-          <li>
-            <span class="exam-label">Assignments and Projects:</span>
-            <span class="details">50%</span>
-          </li>
-          <li>
-            <span class="exam-label">Presentation:</span>
-            <span class="details">15%</span>
-          </li>
-          <li>
-            <span class="exam-label">Exams:</span>
-            <span class="details">35%</span>
-          </li>
-          <li>
-            <span class="exam-label">Midterm Exam:</span>
-            <span class="details">TBD</span>
-          </li>
-        </ul>
-      </div>
+    <div class="syllabus-section card">
+      <h2 class="syllabus-section__title">Textbooks</h2>
+      <ul class="textbook-list">
+        <li class="textbook-list__item">
+          <a
+            href="https://link.springer.com/book/10.1007/978-3-030-96756-7"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="textbook-list__link"
+          >
+            <img
+              src="https://media.springernature.com/full/springer-static/cover-hires/book/978-3-030-96756-7?as=webp"
+              alt="Machine Learning for Computer Scientists and Data Analysts cover"
+              class="textbook-list__cover"
+            >
+            <span class="textbook-list__title">{{ textbook1 }}</span>
+          </a>
+        </li>
+        <li class="textbook-list__item textbook-list__item--text">{{ textbook2 }}</li>
+      </ul>
     </div>
 
-  
+    <div class="syllabus-section card">
+      <h2 class="syllabus-section__title">Course Objectives</h2>
+      <p class="syllabus-section__text">{{ courseObjectives }}</p>
+    </div>
+
+    <div class="syllabus-section card">
+      <h2 class="syllabus-section__title">Course Tentative Outline</h2>
+      <ol class="outline-list">
+        <li class="outline-list__item" *ngFor="let topic of courseOutline">{{ topic }}</li>
+      </ol>
+    </div>
+
+    <div class="syllabus-section card">
+      <h2 class="syllabus-section__title">Exams</h2>
+      <p class="syllabus-section__text">{{ exams }}</p>
+    </div>
+
+    <div class="syllabus-section card">
+      <h2 class="syllabus-section__title">Lectures</h2>
+      <ul class="lecture-list">
+        <li class="lecture-list__item" *ngFor="let lecture of lectures; let i = index">
+          <a
+            *ngIf="lectureLinks[i]; else plainLecture"
+            [href]="lectureLinks[i]"
+            target="_blank"
+            rel="noopener noreferrer"
+          >{{ lecture }}</a>
+          <ng-template #plainLecture>{{ lecture }}</ng-template>
+        </li>
+      </ul>
+    </div>
+
+    <div class="syllabus-section card">
+      <h2 class="syllabus-section__title">Paper Presentation</h2>
+      <p class="syllabus-section__text syllabus-section__text--pre">{{ paperPresentation }}</p>
+    </div>
+
+    <div class="syllabus-section card">
+      <h2 class="syllabus-section__title">Course Grade</h2>
+      <ul class="grade-list">
+        <li class="grade-list__item">
+          <span class="grade-list__label">Assignments and Projects</span>
+          <span class="grade-list__value">50%</span>
+        </li>
+        <li class="grade-list__item">
+          <span class="grade-list__label">Presentation</span>
+          <span class="grade-list__value">15%</span>
+        </li>
+        <li class="grade-list__item">
+          <span class="grade-list__label">Exams</span>
+          <span class="grade-list__value">35%</span>
+        </li>
+        <li class="grade-list__item">
+          <span class="grade-list__label">Midterm Exam</span>
+          <span class="grade-list__value">TBD</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

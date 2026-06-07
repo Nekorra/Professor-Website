@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { inject } from '@angular/core/testing';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Fund, FIREBASE_PATHS } from 'src/app/models/content.models';
 
 @Component({
   selector: 'app-sponsored-research-modal',
@@ -10,7 +10,6 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
   styleUrls: ['./sponsored-research-modal.component.css']
 })
 export class SponsoredResearchModalComponent implements OnInit {
-
 
   length: number;
   amount: string;
@@ -20,17 +19,17 @@ export class SponsoredResearchModalComponent implements OnInit {
   source: string;
   timespan: string;
 
-  fundsData: any;
+  fundsData: Fund[];
   index: number;
   type: string;
-
 
   constructor(
     private databaseService: DatabaseService,
     private storage: AngularFireStorage,
+    private dialogRef: MatDialogRef<SponsoredResearchModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
-  
+
   ngOnInit(): void {
     if (this.data.type == "add") {
       this.fundsData = this.data.data;
@@ -46,24 +45,25 @@ export class SponsoredResearchModalComponent implements OnInit {
       this.role = this.data.data[this.index].role
       this.timespan = this.data.data[this.index].timespan
       this.source = this.data.data[this.index].source
-      this.length = this.data.length; 
+      this.length = this.data.length;
       this.type = this.data.type;
     }
   }
 
-  async addJournal() {
+  async addFund() {
     if (this.type == 'add') {
-      this.fundsData.splice(0,0, {amount: this.amount, img_name: this.image, purpose: this.purpose, role: this.role, source: this.source, timespan: this.timespan})
-      await this.databaseService.addJournalData(`funding/funds/`, this.fundsData);
+      this.fundsData.splice(0, 0, { amount: this.amount, img_name: this.image, purpose: this.purpose, role: this.role, source: this.source, timespan: this.timespan })
+      await this.databaseService.addFundData(FIREBASE_PATHS.FUNDS, this.fundsData);
       alert("Successfully added Data");
     }
 
     if (this.type == 'edit') {
-      this.fundsData[this.index] = {amount: this.amount, img_name: this.image, purpose: this.purpose, role: this.role, source: this.source, timespan: this.timespan}
-      await this.databaseService.addResearchData(`funding/funds/`, this.fundsData);
+      this.fundsData[this.index] = { amount: this.amount, img_name: this.image, purpose: this.purpose, role: this.role, source: this.source, timespan: this.timespan }
+      await this.databaseService.addFundData(FIREBASE_PATHS.FUNDS, this.fundsData);
       alert("Successfully edited Data");
     }
-    
+
+    this.dialogRef.close();
   }
 
   async onFileChange(event: any) {
@@ -77,12 +77,17 @@ export class SponsoredResearchModalComponent implements OnInit {
   }
 
   async removeImage() {
+    if (!this.image) {
+      return;
+    }
     if (confirm('Are you sure you want to remove this image?')) {
       console.log('Removing image')
       this.storage.refFromURL(this.image).delete();
       this.image = "";
-      this.fundsData[this.index] = {amount: this.amount, img_name: this.image, purpose: this.purpose, role: this.role, source: this.source, timespan: this.timespan}
-      await this.databaseService.addAwardData(`funding/funds`, this.fundsData);
+      if (this.type === 'edit' && this.index != null) {
+        this.fundsData[this.index] = { amount: this.amount, img_name: this.image, purpose: this.purpose, role: this.role, source: this.source, timespan: this.timespan }
+        await this.databaseService.addFundData(FIREBASE_PATHS.FUNDS, this.fundsData);
+      }
     }
   }
 

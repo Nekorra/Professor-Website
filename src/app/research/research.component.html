@@ -1,65 +1,129 @@
-<header>
-  <nav class="main-nav navbar-expand-lg">
-    <div class="row">
-      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <ul class="nav-menu list-unstyled">
-          <li><a href="#home" class="smooth-scroll">Home</a></li>
-          <li><a href="#about" class="smooth-scroll">About</a></li>
-          <li><a href="#courses" class="smooth-scroll">Courses</a></li>
-          <li><a routerLink="/awards" class="smooth-scroll">Awards</a></li>
-          <li><a routerLink="/publications" class="smooth-scroll">Publications</a></li>
-          <li><a routerLink="/research" class="smooth-scroll">Research</a></li>
-          <li><a routerLink="/students" class="smooth-scroll">Students</a></li>
-          <li><a routerLink="/cv" class="smooth-scroll">Consulting/CV</a></li>
-        </ul>
+<div class="research-page">
+  <section class="research-hero">
+    <div class="container">
+      <div class="research-hero__layout reveal">
+        <div class="research-hero__copy">
+          <p class="page-hero__eyebrow">Research</p>
+          <h1 class="research-hero__title">Research Projects</h1>
+          <p class="research-hero__lede">
+            Applied machine learning, hardware security, and heterogeneous computing
+            &mdash; building trustworthy systems, energy-efficient accelerators, and
+            data-intensive AI.
+          </p>
+        </div>
       </div>
     </div>
-  </nav>
-</header>
+  </section>
 
+  <div class="research-toolbar">
+    <div class="container research-toolbar__inner">
+      <p class="research-toolbar__count">
+        <span class="research-toolbar__count-value">{{ filteredProjects.length }}</span>
+        project{{ filteredProjects.length === 1 ? '' : 's' }}
+      </p>
 
-<section id="research">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
-<div class="assec-div">
-  <h1 class="aseec" style="font-weight: bold;">{{this.researchIntro.title}}</h1>
-  <img class="aseec-img" *ngIf="researchIntro.img_name" [src]="this.researchIntro.img_name">
-  <p class="about-asec" style="color: black;">{{this.researchIntro.content}} </p>
-
-  <br><br>
-  <div class="line"></div>
-  <br><br>
-
-  <h1 class="searchTitle"> Search Research </h1>
-  <br>
-  <div class="search-container">
-    <input type="text" placeholder="Search..." [(ngModel)]="searchResearch">
-    <button type="submit">
-      <i class="fa fa-search"></i>
-    </button>
-  </div>
-  
-  <br><br>
-  
-  <div class="project-container">
-    <div class="project-card" *ngFor = "let research of researchData | search: searchResearch; let ind = index">
-      <img *ngIf="research.img_name" class="project-image" [src]="research.img_name" style="height: auto; width: auto;">
-      <br>
-      <h2 class="project-title">{{research.title}}</h2>
-      <p [ngClass]="this.readMoreList[ind] == false ? 'project-description' : 'project-description-full'">{{research.content}}</p>
-      <br>
-      <button *ngIf="this.readMoreList[ind] == false" class="project-read-more" (click)="readMore(ind)">Read more</button>
-      <button *ngIf="this.readMoreList[ind] == true" class="project-read-more" (click)="readLess(ind)">Read Less</button>
+      <div class="research-toolbar__search">
+        <input
+          type="search"
+          class="form-control research-search"
+          placeholder="Search projects&hellip;"
+          [(ngModel)]="searchResearch"
+          aria-label="Search research projects"
+        />
+        <p class="research-toolbar__meta" *ngIf="searchResearch.trim()">
+          {{ filteredProjects.length }} result{{ filteredProjects.length === 1 ? '' : 's' }}
+        </p>
+      </div>
     </div>
-    
-	</div>
+  </div>
 
+  <section class="research-body section">
+    <div class="container">
+      <article *ngIf="researchIntro" class="research-featured">
+        <div class="research-featured__inner">
+          <p class="eyebrow eyebrow--center eyebrow--plain">Featured initiative</p>
+          <h2 class="research-featured__title">{{ researchIntro.title }}</h2>
+          <div class="research-featured__rule" aria-hidden="true"></div>
+
+          <div class="research-featured__content">
+            <p
+              class="research-featured__text"
+              *ngFor="let paragraph of introParagraphs"
+              [innerHTML]="emphasizeIntroText(paragraph)"
+            ></p>
+          </div>
+
+          <img
+            *ngIf="researchIntro.img_name"
+            [src]="researchIntro.img_name"
+            [alt]="researchIntro.title"
+            class="research-featured__image"
+            loading="lazy"
+          />
+        </div>
+      </article>
+
+      <header class="research-block__head" *ngIf="filteredProjects.length">
+        <h2 class="research-block__title">All projects</h2>
+        <p class="research-block__desc">Explore funded and ongoing research across the lab portfolio.</p>
+      </header>
+
+      <div class="research-list" *ngIf="filteredProjects.length">
+        <article
+          class="research-item"
+          [class.research-item--text-only]="!project.img_name"
+          *ngFor="let project of filteredProjects"
+        >
+          <div class="research-item__media" *ngIf="project.img_name">
+            <img
+              [src]="project.img_name"
+              [alt]="project.title"
+              class="research-item__image"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="research-item__main">
+            <div class="research-item__head">
+              <h3 class="research-item__title">{{ project.title }}</h3>
+              <span class="research-tag">Project</span>
+            </div>
+
+            <p
+              class="research-item__text"
+              [class.research-item__text--expanded]="isExpanded(project.title)"
+            >{{ project.content }}</p>
+
+            <button
+              type="button"
+              class="btn--ghost research-item__toggle"
+              [attr.aria-expanded]="isExpanded(project.title)"
+              (click)="toggleReadMore(project.title)"
+            >
+              {{ isExpanded(project.title) ? 'Read less' : 'Read more' }}
+              <span class="research-item__toggle-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div class="research-empty" *ngIf="!filteredProjects.length">
+        <p class="research-empty__title">No projects found</p>
+        <p class="research-empty__text" *ngIf="searchResearch.trim(); else noData">
+          Try a different keyword or clear your search to browse all projects.
+        </p>
+        <ng-template #noData>
+          <p class="research-empty__text">Research projects will appear here once loaded.</p>
+        </ng-template>
+        <button
+          type="button"
+          class="btn btn--secondary btn--sm"
+          *ngIf="searchResearch.trim()"
+          (click)="searchResearch = ''"
+        >
+          Clear search
+        </button>
+      </div>
+    </div>
+  </section>
 </div>
- 
-
-
-
-
-
-</section>

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,19 +13,19 @@ export class AuthGuard implements CanActivate {
     private router: Router,
   ) { }
 
-  async canActivate(
+  canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-      const user = await this.afAuth.currentUser;
-      const isAuthenticated = user ? true : false;
-      if (!isAuthenticated) {
-        alert('You must be authenticated in order to access this page');
-        this.router.navigate(['/home'])
-      }
-      return isAuthenticated;
-  
-
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    return this.afAuth.authState.pipe(
+      take(1),
+      map(user => {
+        if (user) {
+          return true;
+        }
+        return this.router.createUrlTree(['/login'], {
+          queryParams: { returnUrl: state.url }
+        });
+      })
+    );
   }
-
-
 }

@@ -1,14 +1,33 @@
+<h2 mat-dialog-title class="modal__title">{{ type === 'edit' ? 'Edit Conference' : 'Add Conference' }}</h2>
 
-<h2> Add Conference </h2>
-<br>
-<input placeholder="title" [(ngModel)]="title">
-<br>
-<input placeholder="year" [(ngModel)]="year">
-<br>
-<input  placeholder="url" [(ngModel)]="url">
-<br>
-<textarea  placeholder="journal" [(ngModel)]="publication" rows="4" cols="50"> </textarea>   
-<br>
-<textarea  placeholder="authors" [(ngModel)]="authors" rows="4" cols="50"> </textarea>   
-<br>
-<button (click)="addPublication()">Add</button>
+<div mat-dialog-content class="modal__body">
+  <div class="form-field">
+    <label class="form-label" for="pub-title">Title</label>
+    <input id="pub-title" class="form-control" name="title" placeholder="Publication title" [(ngModel)]="title" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="pub-year">Year</label>
+    <input id="pub-year" class="form-control" name="year" placeholder="e.g. 2024" [(ngModel)]="year" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="pub-url">URL</label>
+    <input id="pub-url" class="form-control" name="url" placeholder="https://…" [(ngModel)]="url" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="pub-publication">Conference</label>
+    <input id="pub-publication" class="form-control" name="publication" placeholder="Conference / venue name" [(ngModel)]="publication" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="pub-authors">Authors</label>
+    <textarea id="pub-authors" class="form-control" name="authors" rows="3" placeholder="Author names" [(ngModel)]="authors"></textarea>
+  </div>
+</div>
+
+<div mat-dialog-actions class="modal__actions">
+  <button type="button" class="btn btn--secondary" mat-dialog-close>Cancel</button>
+  <button type="button" class="btn" (click)="addPublication()">Save</button>
+</div>

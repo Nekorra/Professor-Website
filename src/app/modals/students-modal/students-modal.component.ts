@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { inject } from '@angular/core/testing';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Person, StudentCategory, FIREBASE_PATHS } from 'src/app/models/content.models';
 
 @Component({
   selector: 'app-students-modal',
@@ -17,14 +17,15 @@ export class StudentsModalComponent implements OnInit {
   job: string = "";
   index: number;
   type: string;
-  studentType: string;
+  studentType: StudentCategory;
   image: string = "";
 
-  studentData: any;
+  studentData: Person[];
 
   constructor(
     private databaseService: DatabaseService,
     private storage: AngularFireStorage,
+    private dialogRef: MatDialogRef<StudentsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -42,31 +43,32 @@ export class StudentsModalComponent implements OnInit {
       this.studentType = this.data.studentType;
       this.name = this.data.data[this.index].name
       this.research = this.data.data[this.index].research
-      this.job = this.data.data[this.index].job; 
+      this.job = this.data.data[this.index].job;
       this.image = this.data.data[this.index].img_name;
     }
   }
 
   async addStudent() {
     if (this.type == 'add') {
-      this.studentData.splice(0,0, {img_name: this.image, name: this.name, job: this.job, research: this.research})
-      await this.databaseService.addStudentData(`people/${this.studentType}/`, this.studentData);
+      this.studentData.splice(0, 0, { img_name: this.image, name: this.name, job: this.job, research: this.research })
+      await this.databaseService.addStudentData(FIREBASE_PATHS.peopleCategory(this.studentType), this.studentData);
       alert("Successfully added Data");
     }
 
     if (this.type == 'edit') {
-      this.studentData[this.index] = {img_name: this.image, name: this.name, job: this.job, research: this.research}
+      this.studentData[this.index] = { img_name: this.image, name: this.name, job: this.job, research: this.research }
       console.log(this.studentData)
-      await this.databaseService.addStudentData(`people/${this.studentType}/`, this.studentData);
+      await this.databaseService.addStudentData(FIREBASE_PATHS.peopleCategory(this.studentType), this.studentData);
       alert("Successfully edited Data");
     }
-    
+
+    this.dialogRef.close();
   }
 
   async onFileChange(event: any) {
     const file = event.target.files[0]
     if (file) {
-      const path = `research/${file.name}`
+      const path = `students/${file.name}`
       const uploadTask = await this.storage.upload(path, file);
       this.image = await uploadTask.ref.getDownloadURL();
       console.log(this.image);
@@ -74,14 +76,17 @@ export class StudentsModalComponent implements OnInit {
   }
 
   async removeImage() {
+    if (!this.image) {
+      return;
+    }
     if (confirm('Are you sure you want to remove this image?')) {
       console.log('Removing image')
       this.storage.refFromURL(this.image).delete();
       this.image = "";
-      this.studentData[this.index] = {img_name: this.image, name: this.name, job: this.job, research: this.research}
-      await this.databaseService.addStudentData(`people/${this.studentType}/`, this.studentData);
+      if (this.type === 'edit' && this.index != null) {
+        this.studentData[this.index] = { img_name: this.image, name: this.name, job: this.job, research: this.research }
+        await this.databaseService.addStudentData(FIREBASE_PATHS.peopleCategory(this.studentType), this.studentData);
+      }
     }
-    
-
   }
 }

@@ -1,19 +1,58 @@
-<body>
-    <div class="session">
-      <div class="left">
+<div class="login-page">
+  <div class="login-panel">
+    <div class="login-panel__brand">
+      <div class="login-panel__brand-inner">
+        <p class="login-panel__eyebrow">Content management</p>
+        <h2 class="login-panel__name">Houman Homayoun</h2>
+        <p class="login-panel__tagline">
+          UC Davis · Electrical &amp; Computer Engineering
+        </p>
       </div>
-      <form action="" class="log-in" autocomplete="off"> 
-        <h4>DASHBOARD</h4>
-        <p>Welcome back!</p>
-        <div class="floating-label">
-          <input placeholder="Email" type="text" name="email" id="email" autocomplete="off" [(ngModel)]="email">
-          <label for="email">Email:</label>
+    </div>
+
+    <div class="login-panel__form-wrap">
+      <form class="login-form" (ngSubmit)="login()" autocomplete="off">
+        <div class="login-form__header">
+          <h1 class="login-form__title">Admin Sign In</h1>
+          <p class="login-form__subtitle">Sign in to manage site content.</p>
         </div>
-        <div class="floating-label">
-          <input placeholder="Password" type="password" name="password" id="password" autocomplete="off" [(ngModel)]="password">
-          <label for="password">Password:</label>
+
+        <p class="login-form__error" *ngIf="errorMessage" role="alert">
+          {{ errorMessage }}
+        </p>
+
+        <div class="login-form__field">
+          <label class="login-form__label" for="email">Email</label>
+          <input
+            class="login-form__input form-control"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="username"
+            placeholder="you@example.com"
+            [(ngModel)]="email"
+            required
+          />
         </div>
-        <button type="submit" onClick="return false;" (click)="login()">Log in</button>
+
+        <div class="login-form__field">
+          <label class="login-form__label" for="password">Password</label>
+          <input
+            class="login-form__input form-control"
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            [(ngModel)]="password"
+            required
+          />
+        </div>
+
+        <button class="login-form__submit btn" type="submit" [disabled]="loading">
+          {{ loading ? 'Signing in…' : 'Sign in' }}
+        </button>
       </form>
     </div>
-  </body>
+  </div>
+</div>

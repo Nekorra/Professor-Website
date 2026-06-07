@@ -17,6 +17,16 @@ export class Eec170Component implements OnInit {
   instructorName = "Houman Homayoun";
   instructorEmail = "hhomayoun@ucdavis.edu";
 
+  get courseCode(): string {
+    const idx = this.courseTitle.indexOf(':');
+    return idx >= 0 ? this.courseTitle.slice(0, idx).trim() : 'EEC 179';
+  }
+
+  get courseName(): string {
+    const idx = this.courseTitle.indexOf(':');
+    return idx >= 0 ? this.courseTitle.slice(idx + 1).trim() : this.courseTitle;
+  }
+
   courseObjectives = `
     The recent popularity gained by the field of machine learning (ML) has led to its adaptation into
     almost all the known applications. The applications range from smart homes, smart grids, and

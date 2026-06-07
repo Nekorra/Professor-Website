@@ -11,7 +11,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ResearchComponent } from './research/research.component';
 import { StudentsComponent } from './students/students.component';
 
-import { environment } from 'src/environments/environment.prod';
+import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -32,6 +32,7 @@ import { CvComponent } from './cv/cv.component';
 import { StudentsModalComponent } from './modals/students-modal/students-modal.component';
 import { SponsoredResearchModalComponent } from './modals/sponsored-research-modal/sponsored-research-modal.component';
 import { Eec170Component } from './eec170/eec170.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { Eec170Component } from './eec170/eec170.component';
     FormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [
     BrowserModule

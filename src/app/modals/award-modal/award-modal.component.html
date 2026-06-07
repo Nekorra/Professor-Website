@@ -1,17 +1,42 @@
-<h2> Award </h2>
-<br>
-<input type="file" (change)="onFileChange($event)">
-<br>
-<button (click)="removeImage()"> remove image </button>
-<br>
-<input placeholder="Name" [(ngModel)]="name">
-<br>
-<input  placeholder="link" [(ngModel)]="link">
-<br>
-<input  placeholder="timespan" [(ngModel)]="timespan">
-<br>
-<input  placeholder="earnings" [(ngModel)]="earnings">
-<br>
-<textarea placeholder="description" [(ngModel)]="description" ows="4" cols="50"></textarea>
-<br>
-<button (click)="addAward()">Update</button>
+<h2 mat-dialog-title class="modal__title">{{ type === 'edit' ? 'Edit Award' : 'Add Award' }}</h2>
+
+<div mat-dialog-content class="modal__body">
+  <div class="form-field">
+    <label class="form-label" for="award-name">Name</label>
+    <input id="award-name" class="form-control" name="name" placeholder="Award name" [(ngModel)]="name" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="award-timespan">Timespan</label>
+    <input id="award-timespan" class="form-control" name="timespan" placeholder="e.g. 2023 – 2024" [(ngModel)]="timespan" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="award-earnings">Earnings</label>
+    <input id="award-earnings" class="form-control" name="earnings" placeholder="e.g. $25,000" [(ngModel)]="earnings" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="award-link">Link</label>
+    <input id="award-link" class="form-control" name="link" placeholder="https://…" [(ngModel)]="link" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="award-description">Description</label>
+    <textarea id="award-description" class="form-control" name="description" rows="4" placeholder="Short description" [(ngModel)]="description"></textarea>
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="award-image">Image</label>
+    <input id="award-image" type="file" class="modal__file" (change)="onFileChange($event)" />
+    <div class="modal__preview" *ngIf="image">
+      <img class="modal__thumb" [src]="image" alt="Award image preview" />
+      <button type="button" class="modal__remove" (click)="removeImage()">Remove image</button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="modal__actions">
+  <button type="button" class="btn btn--secondary" mat-dialog-close>Cancel</button>
+  <button type="button" class="btn" (click)="addAward()">Save</button>
+</div>

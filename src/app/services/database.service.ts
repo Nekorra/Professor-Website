@@ -1,51 +1,81 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { take } from 'rxjs/operators';
+import {
+  Award,
+  Conference,
+  Fund,
+  FundingSummary,
+  Journal,
+  Person,
+  ResearchItem,
+  StudentCategory,
+  FIREBASE_PATHS,
+} from '../models/content.models';
 
-import { first, map, take } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DatabaseService {
+  constructor(private readonly db: AngularFireDatabase) {}
 
-  list: any; 
-
-  constructor(
-    private db: AngularFireDatabase,
-  ) { } 
-
-  getData(path: string) {
-    return this.db.object(path).valueChanges().pipe(take(1)).toPromise();
+  getData<T>(path: string): Promise<T | null> {
+    return this.db.object<T>(path).valueChanges().pipe(take(1)).toPromise();
   }
 
-  async addAwardData(path: string, data: any) {
-    const ref = this.db.object(path);
-    return ref.set(data)
+  async updateData<T>(path: string, data: T): Promise<void> {
+    await this.db.object(path).set(data);
   }
 
-  async addJournalData(path: string, data: any) {
-    const ref = this.db.object(path);
-    return ref.set(data);
+  getAwards(): Promise<Award[] | null> {
+    return this.getData<Award[]>(FIREBASE_PATHS.AWARDS);
   }
 
-  async addPublicationData(path: string, data:any) {
-    const ref = this.db.object(path);
-    return ref.set(data);
+  getResearch(): Promise<ResearchItem[] | null> {
+    return this.getData<ResearchItem[]>(FIREBASE_PATHS.RESEARCH);
   }
 
-  remove(path: string, data: any) {
-    const ref = this.db.object(path);
-    return ref.set(data);
-  }
-  
-  async addResearchData(path: string, data: any) {
-    const ref = this.db.object(path);
-    return ref.set(data)
+  getJournals(): Promise<Journal[] | null> {
+    return this.getData<Journal[]>(FIREBASE_PATHS.JOURNALS);
   }
 
-  addStudentData(path: string, data: any) {
-    const ref = this.db.object(path);
-    return ref.set(data);
+  getConferences(): Promise<Conference[] | null> {
+    return this.getData<Conference[]>(FIREBASE_PATHS.CONFERENCES);
   }
 
+  getFunds(): Promise<Fund[] | null> {
+    return this.getData<Fund[]>(FIREBASE_PATHS.FUNDS);
+  }
 
+  getFundingSummary(): Promise<FundingSummary | null> {
+    return this.getData<FundingSummary>(FIREBASE_PATHS.FUNDING);
+  }
+
+  getPeople(): Promise<Record<StudentCategory, Person[]> | null> {
+    return this.getData<Record<StudentCategory, Person[]>>(FIREBASE_PATHS.PEOPLE);
+  }
+
+  async addAwardData(path: string, data: Award[]): Promise<void> {
+    await this.updateData(path, data);
+  }
+
+  async addJournalData(path: string, data: Journal[]): Promise<void> {
+    await this.updateData(path, data);
+  }
+
+  async addPublicationData(path: string, data: Conference[]): Promise<void> {
+    await this.updateData(path, data);
+  }
+
+  async addResearchData(path: string, data: ResearchItem[]): Promise<void> {
+    await this.updateData(path, data);
+  }
+
+  async addFundData(path: string, data: Fund[]): Promise<void> {
+    await this.updateData(path, data);
+  }
+
+  async addStudentData(path: string, data: Person[]): Promise<void> {
+    await this.updateData(path, data);
+  }
 }

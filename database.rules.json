@@ -1,0 +1,62 @@
+{
+  "rules": {
+    "honors": {
+      ".read": true,
+      "awards": {
+        ".write": "auth != null",
+        "$awardId": {
+          ".validate": "newData.hasChildren(['name', 'link', 'timespan', 'earnings', 'description', 'img_name']) && newData.child('name').isString() && newData.child('link').isString() && newData.child('timespan').isString() && newData.child('earnings').isString() && newData.child('description').isString() && newData.child('img_name').isString()"
+        }
+      }
+    },
+    "research": {
+      ".read": true,
+      "research": {
+        ".write": "auth != null",
+        "$researchId": {
+          ".validate": "newData.hasChildren(['content', 'img_name', 'title']) && newData.child('content').isString() && newData.child('img_name').isString() && newData.child('title').isString()"
+        }
+      }
+    },
+    "journals": {
+      ".read": true,
+      "journals": {
+        ".write": "auth != null",
+        "$journalId": {
+          ".validate": "newData.hasChildren(['authors', 'url', 'journal', 'title']) && newData.child('authors').isString() && newData.child('url').isString() && newData.child('journal').isString() && newData.child('title').isString()"
+        }
+      }
+    },
+    "publications": {
+      ".read": true,
+      "conferences": {
+        ".write": "auth != null",
+        "$publicationId": {
+          ".validate": "newData.hasChildren(['authors', 'url', 'journal', 'title', 'year']) && newData.child('authors').isString() && newData.child('url').isString() && newData.child('journal').isString() && newData.child('title').isString() && newData.child('year').isString()"
+        }
+      }
+    },
+    "funding": {
+      ".read": true,
+      "total": {
+        ".write": "auth != null",
+        ".validate": "newData.isString() || newData.isNumber()"
+      },
+      "funds": {
+        ".write": "auth != null",
+        "$fundId": {
+          ".validate": "newData.hasChildren(['amount', 'img_name', 'purpose', 'role', 'source', 'timespan']) && newData.child('amount').isString() && newData.child('img_name').isString() && newData.child('purpose').isString() && newData.child('role').isString() && newData.child('source').isString() && newData.child('timespan').isString()"
+        }
+      }
+    },
+    "people": {
+      ".read": true,
+      "$category": {
+        ".write": "auth != null",
+        "$personId": {
+          ".validate": "(newData.isString()) || (newData.hasChildren(['img_name', 'name']) && newData.child('img_name').isString() && newData.child('name').isString() && (!newData.hasChild('research') || newData.child('research').isString()) && (!newData.hasChild('job') || newData.child('job').isString()))"
+        }
+      }
+    }
+  }
+}

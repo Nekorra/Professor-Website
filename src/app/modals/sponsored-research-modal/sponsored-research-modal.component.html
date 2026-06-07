@@ -1,17 +1,42 @@
-<h2> Add Sponsored Research </h2>
-<br>
-<input type="file" (change)="onFileChange($event)">
-<br>
-<button (click)="removeImage()"> remove image </button>
-<br>
-<input placeholder="Funding" [(ngModel)]="amount">
-<br>
-<input  placeholder="Grant" [(ngModel)]="source">
-<br>
-<input  placeholder="Date" [(ngModel)]="timespan" >
-<br>
-<input  placeholder="About" [(ngModel)]="purpose" > 
-<br>
-<input  placeholder="Role" [(ngModel)]="role" > 
-<br>
-<button (click)="addJournal()">Add</button>
+<h2 mat-dialog-title class="modal__title">{{ type === 'edit' ? 'Edit Sponsored Research' : 'Add Sponsored Research' }}</h2>
+
+<div mat-dialog-content class="modal__body">
+  <div class="form-field">
+    <label class="form-label" for="fund-amount">Funding Amount</label>
+    <input id="fund-amount" class="form-control" name="amount" placeholder="e.g. 500,000" [(ngModel)]="amount" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="fund-source">Grant / Source</label>
+    <input id="fund-source" class="form-control" name="source" placeholder="Funding source" [(ngModel)]="source" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="fund-timespan">Date</label>
+    <input id="fund-timespan" class="form-control" name="timespan" placeholder="e.g. 2023 – 2026" [(ngModel)]="timespan" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="fund-purpose">About</label>
+    <textarea id="fund-purpose" class="form-control" name="purpose" rows="4" placeholder="Purpose of the grant" [(ngModel)]="purpose"></textarea>
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="fund-role">Role</label>
+    <input id="fund-role" class="form-control" name="role" placeholder="e.g. PI, Co-PI" [(ngModel)]="role" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="fund-image">Image</label>
+    <input id="fund-image" type="file" class="modal__file" (change)="onFileChange($event)" />
+    <div class="modal__preview" *ngIf="image">
+      <img class="modal__thumb" [src]="image" alt="Sponsor image preview" />
+      <button type="button" class="modal__remove" (click)="removeImage()">Remove image</button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="modal__actions">
+  <button type="button" class="btn btn--secondary" mat-dialog-close>Cancel</button>
+  <button type="button" class="btn" (click)="addFund()">Save</button>
+</div>

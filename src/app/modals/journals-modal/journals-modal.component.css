@@ -1,0 +1,47 @@
+/* Shared admin modal pattern — design tokens only */
+::ng-deep .mat-dialog-container {
+  padding: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.modal__title {
+  margin: 0 !important;
+  padding: var(--space-5) var(--space-6) var(--space-4);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-snug);
+  color: var(--color-text-strong);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.modal__body {
+  display: grid;
+  gap: var(--space-4);
+  width: min(440px, 90vw);
+  max-height: 62vh;
+  margin: 0 !important;
+  padding: var(--space-6) !important;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-field textarea.form-control {
+  min-height: 96px;
+  resize: vertical;
+  line-height: var(--line-height-base);
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin: 0 !important;
+  padding: var(--space-4) var(--space-6) !important;
+  border-top: var(--border-width) solid var(--color-border);
+}

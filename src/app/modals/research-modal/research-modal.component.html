@@ -1,11 +1,27 @@
-<h2> Add Research </h2>
-<br>
-<input type="file" (change)="onFileChange($event)">
-<br>
-<button (click)="removeImage()"> remove image </button>
-<br>
-<input placeholder="title" [(ngModel)]="title">
-<br>
-<textarea  placeholder="content" [(ngModel)]="content" rows="4" cols="50"> </textarea>   
-<br>
-<button (click)="addResearch()">Add</button>
+<h2 mat-dialog-title class="modal__title">{{ type === 'edit' ? 'Edit Research' : 'Add Research' }}</h2>
+
+<div mat-dialog-content class="modal__body">
+  <div class="form-field">
+    <label class="form-label" for="research-title">Title</label>
+    <input id="research-title" class="form-control" name="title" placeholder="Research title" [(ngModel)]="title" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="research-content">Content</label>
+    <textarea id="research-content" class="form-control" name="content" rows="5" placeholder="Describe the research" [(ngModel)]="content"></textarea>
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="research-image">Image</label>
+    <input id="research-image" type="file" class="modal__file" (change)="onFileChange($event)" />
+    <div class="modal__preview" *ngIf="image">
+      <img class="modal__thumb" [src]="image" alt="Research image preview" />
+      <button type="button" class="modal__remove" (click)="removeImage()">Remove image</button>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="modal__actions">
+  <button type="button" class="btn btn--secondary" mat-dialog-close>Cancel</button>
+  <button type="button" class="btn" (click)="addResearch()">Save</button>
+</div>

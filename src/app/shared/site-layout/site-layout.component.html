@@ -1,0 +1,81 @@
+<div class="site-layout" [class.site-layout--home]="isHome">
+  <header
+    class="site-header"
+    [class.site-header--transparent]="transparent"
+    [class.site-header--solid]="!transparent"
+    [class.site-header--scrolled]="scrolled"
+    [class.site-header--menu-open]="menuOpen"
+  >
+    <div class="site-header__inner container container--wide">
+      <a routerLink="/" class="site-logo" (click)="closeMenu()">
+        <img
+          src="assets/images/ece_logo_125px.png"
+          alt="UC Davis Electrical and Computer Engineering"
+          class="site-logo__ece"
+        />
+      </a>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        [class.menu-toggle--open]="menuOpen"
+        [attr.aria-expanded]="menuOpen"
+        aria-controls="site-nav"
+        aria-label="Toggle navigation menu"
+        (click)="toggleMenu()"
+      >
+        <span class="menu-toggle__bar"></span>
+        <span class="menu-toggle__bar"></span>
+        <span class="menu-toggle__bar"></span>
+      </button>
+
+      <nav
+        id="site-nav"
+        class="site-nav"
+        [class.site-nav--open]="menuOpen"
+        aria-label="Main navigation"
+      >
+        <ul class="site-nav__list">
+          <li class="site-nav__item" *ngFor="let link of navLinks">
+            <a
+              [routerLink]="link.path"
+              routerLinkActive="site-nav__link--active"
+              [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+              class="site-nav__link"
+              (click)="closeMenu()"
+            >
+              <span class="site-nav__label">{{ link.label }}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner container container--wide">
+      <div class="site-footer__brand">
+        <p class="site-footer__name">Houman Homayoun</p>
+        <p class="site-footer__dept">
+          University of California, Davis<br />
+          Department of Electrical and Computer Engineering
+        </p>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="Footer navigation">
+        <a *ngFor="let link of navLinks" [routerLink]="link.path" class="site-footer__link">
+          {{ link.label }}
+        </a>
+      </nav>
+
+      <div class="site-footer__meta">
+        <p>&copy; {{ year }} Houman Homayoun. All rights reserved.</p>
+        <a routerLink="/login" class="site-footer__admin">Admin login</a>
+      </div>
+    </div>
+  </footer>
+</div>

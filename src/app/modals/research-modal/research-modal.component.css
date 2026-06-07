@@ -1,0 +1,102 @@
+/* Shared admin modal pattern — design tokens only */
+::ng-deep .mat-dialog-container {
+  padding: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.modal__title {
+  margin: 0 !important;
+  padding: var(--space-5) var(--space-6) var(--space-4);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-snug);
+  color: var(--color-text-strong);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.modal__body {
+  display: grid;
+  gap: var(--space-4);
+  width: min(440px, 90vw);
+  max-height: 62vh;
+  margin: 0 !important;
+  padding: var(--space-6) !important;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-field textarea.form-control {
+  min-height: 96px;
+  resize: vertical;
+  line-height: var(--line-height-base);
+}
+
+.modal__file {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+.modal__file::file-selector-button {
+  margin-right: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  color: var(--color-text-strong);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.modal__file::file-selector-button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.modal__preview {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  background: var(--color-surface-muted);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.modal__thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: var(--border-width) solid var(--color-border);
+}
+
+.modal__remove {
+  padding: var(--space-1) var(--space-3);
+  background: transparent;
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  color: var(--color-danger);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.modal__remove:hover {
+  border-color: var(--color-danger);
+  background: var(--color-surface);
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin: 0 !important;
+  padding: var(--space-4) var(--space-6) !important;
+  border-top: var(--border-width) solid var(--color-border);
+}

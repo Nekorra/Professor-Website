@@ -1,445 +1,283 @@
-<!-- Dashboard -->
-<div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-  <!-- Vertical Navbar -->
-  <!-- Main content -->
-  <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-    <!-- Header -->
-    <header class="bg-surface-primary border-bottom pt-6">
-      <div class="container-fluid">
-        <div class="mb-npx">
-          <div class="row align-items-center">
-            <div class="col-sm-6 col-12 mb-4 mb-sm-0">
-              <!-- Title -->
-              <h1 class="h2 mb-0 ls-tight">Dashboard</h1>
-            </div>
-            <!-- Actions -->
-          </div>
-          <!-- Nav -->
-          <ul class="nav nav-tabs mt-4 overflow-x border-0">
-            <li class="nav-item">
-              <a [ngClass]="
-                  activePage == 'awards'
-                    ? 'nav-link active'
-                    : 'nav-link font-regular'
-                " (click)="togglePage('awards')">AWARDS</a>
-            </li>
-            <li class="nav-item">
-              <a [ngClass]="
-                  activePage == 'publications'
-                    ? 'nav-link active'
-                    : 'nav-link font-regular'
-                " (click)="togglePage('publications')">Publications</a>
-            </li>
-            <li class="nav-item">
-              <a [ngClass]="
-                  activePage == 'research'
-                    ? 'nav-link active'
-                    : 'nav-link font-regular'
-                " (click)="togglePage('research')">Research</a>
-            </li>
-            <li class="nav-item">
-              <a [ngClass]="
-                  activePage == 'students'
-                    ? 'nav-link active'
-                    : 'nav-link font-regular'
-                " (click)="togglePage('students')">Students</a>
-            </li>
-            <li class="nav-item">
-              <a [ngClass]="
-                  activePage == 'sponsoredResearch'
-                    ? 'nav-link active'
-                    : 'nav-link font-regular'
-                " (click)="togglePage('sponsoredResearch')">Sponsored Research</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
-    <!-- Main -->
+<div class="admin">
+  <header class="admin__header">
+    <h1 class="admin__title">Content Management</h1>
+    <button type="button" class="admin__logout btn" (click)="logout()">Log out</button>
+  </header>
 
-    <section [hidden]="!(activePage == 'awards')" id="awards">
-      <div class="grid-container">
-        <div class="grid-item">
-          <div class="card">
-            <div class="card-details">
-              <p class="text-title" (click)="
-                  openDialog('awards', this.awardsData, null, 'add', null)
-                ">
-                Add New Award
-              </p>
-            </div>
-          </div>
-        </div>
-        <div *ngFor="let awards of awardsData; let ind = index">
-          <div class="grid-item">
-            <div class="card">
-              <div class="card-details" (click)="editAwardsData(ind)">
-                <img [src]="awards.img_name" style="height: 150px; margin: 0 auto" />
-                <p class="text-title">{{ awards.name }}</p>
-                <p class="text-body">{{ awards.timespan }}</p>
-                <p class="about-body">{{ awards.description }}</p>
-                <p class="text-body" *ngIf="awards.earnings != ''">
-                  Earnings: {{ awards.earnings }}
-                </p>
-              </div>
-              <a (click)="removeAward(ind, 'awards')" class="card-button">Delete</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <div class="admin__body">
+    <nav class="admin__nav" aria-label="Content sections">
+      <button
+        *ngFor="let section of sections"
+        type="button"
+        class="admin__nav-item"
+        [class.admin__nav-item--active]="activePage === section.id"
+        (click)="togglePage(section.id)"
+      >
+        {{ section.label }}
+      </button>
+    </nav>
 
-    <section [hidden]="!(activePage == 'publications')" id="publications">
-      <div class="container-pub">
-        <div class="search-container">
-          <h1 class="title-pub">Journals Published:</h1>
-          <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchJournals" />
-          <button class="search-button">Search</button>
-        </div>
-        <div class="publications">
-          <table>
-            <thead>
-              <tr>
-                <th>Paper Topic</th>
-                <th>Number</th>
-                <th>Journal</th>
-                <th>People</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a>
-                    <div style="color: red" (click)="
-                        openDialog(
-                          'journals',
-                          this.journalsData,
-                          null,
-                          'add',
-                          null
-                        )
-                      ">
-                      Add new Journal
-                    </div>
-                  </a>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-
-              <tr *ngFor="let journals of journalsData; let ind = index">
-                <td>
-                  <a (click)="editJournalsData(ind)">{{ journals.title }}</a>
-                  <button (click)="removeJournals(ind, 'journals')">
-                    delete
-                  </button>
-                </td>
-                <td>{{ journalsData.length - ind }}</td>
-                <td>{{ journals.journal }}</td>
-                <td>{{ journals.authors }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <br /><br />
-
-      <div class="line"></div>
-
-      <br /><br />
-
-      <!-- for Conferences -->
-      <div class="container-pub">
-        <div class="search-container">
-          <h1 class="title-pub">Conferences:</h1>
-          <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchPublications" />
-          <button class="search-button">Search</button>
-        </div>
-        <div class="publications">
-          <table>
-            <thead>
-              <tr>
-                <th>Conference Topic</th>
-                <th>Number</th>
-                <th>Year</th>
-                <th>Conference</th>
-                <th>People</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a>
-                    <div style="color: red" (click)="
-                        openDialog(
-                          'publications',
-                          this.conferencesData,
-                          null,
-                          'add',
-                          null
-                        )
-                      ">
-                      Add new Publication
-                    </div>
-                  </a>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr *ngFor="
-                  let conferences of conferencesData
-                    | search : searchPublications;
-                  let ind = index
-                ">
-                <td>
-                  <a (click)="editPublicationsData(ind)">{{
-                    conferences.title
-                    }}</a>
-                  <button (click)="removePublications(ind, 'publications')">
-                    delete
-                  </button>
-                </td>
-                <td>{{ conferencesData.length - ind }}</td>
-                <td>{{ conferences.year }}</td>
-                <td>{{ conferences.journal }}</td>
-                <td>{{ conferences.authors }}</td>
-              </tr>
-
-              <!-- Add more conferences here here -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <br /><br />
-    </section>
-
-    <section [hidden]="!(activePage == 'research')" id="research">
-      <div class="project-container">
-        <div class="project-card" (click)="openDialog('research', this.researchData, null, 'add', null)">
-          <div>
-            <br />
-            <h2 class="project-title">Add Research</h2>
-            <br />
-          </div>
-        </div>
-        <div class="project-card" *ngFor="let research of researchData; let ind = index">
-          <div (click)="editResearchData(ind)">
-            <img *ngIf="research.img_name" class="project-image" [src]="research.img_name" style="
-                height: auto;
-                width: auto;
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
-              " />
-            <br />
-            <h2 class="project-title">{{ research.title }}</h2>
-            <p class="project-description">{{ research.content }}</p>
-            <br />
-          </div>
-          <button class="project-read-more" (click)="removeResearch(ind, 'research')">
-            Delete
+    <main class="admin__main">
+      <!-- Awards -->
+      <section *ngIf="activePage === 'awards'" class="admin__section">
+        <div class="admin__section-header">
+          <h2 class="admin__section-title">Awards</h2>
+          <button type="button" class="btn btn--sm" (click)="openDialog('awards', awardsData, null, 'add', null)">
+            Add Award
           </button>
         </div>
-      </div>
-    </section>
-
-    <section [hidden]="!(activePage == 'students')" id="students">
-      <h1 class="title">PhD Students</h1>
-      <div class="phd-grid">
-        <div class="people" (click)="openDialog('students', this.phds, null, 'add', 'phds')">
-          <img [src]="" alt="Image 1" class="image" />
-          <h3>add Person</h3>
-        </div>
-        <ng-container *ngFor="let peoples of phds; let ind = index">
-          <div class="people" (click)="editStudentsData(ind, this.phds, 'phds')">
-            <img [src]="peoples.img_name" alt="Image 1" class="image" />
-            <h3>{{ peoples.name }}</h3>
-            <h6>{{ peoples.research }}</h6>
-            <button (click)="removeStudent(ind, 'students', this.phds, 'phds')">
-              Delete
-            </button>
-          </div>
-        </ng-container>
-      </div>
-
-      <h1 class="title">Master Students</h1>
-      <div class="phd-grid">
-        <div class="people" (click)="openDialog('students', this.masters, null, 'add', 'masters')">
-          <img [src]="" alt="Image 1" class="image" />
-          <h3>add Person</h3>
-        </div>
-        <ng-container *ngFor="let peoples of masters; let ind = index">
-          <div class="people" (click)="editStudentsData(ind, this.masters, 'masters')">
-            <img [src]="peoples.img_name" alt="Image 1" class="image" />
-            <h3>{{ peoples.name }}</h3>
-            <h6>{{ peoples.research }}</h6>
-            <button (click)="removeStudent(ind, 'students', this.masters, 'masters')">
-              Delete
-            </button>
-          </div>
-        </ng-container>
-      </div>
-
-      <h1 class="title">Undergraduate Students</h1>
-      <div class="phd-grid">
-        <ng-container *ngFor="let peoples of undergraduates">
-          <div class="people">
-            <h3>{{ peoples }}</h3>
-          </div>
-        </ng-container>
-      </div>
-
-      <h1 class="title">Post-Doc Alumni</h1>
-      <div class="phd-grid">
-        <div class="people2" (click)="
-            openDialog(
-              'students',
-              this.post_doc_alumni,
-              null,
-              'add',
-              'post_doc_alumni'
-            )
-          ">
-          <img [src]="" alt="Image 1" class="image2" />
-          <h3>add Person</h3>
-        </div>
-        <ng-container *ngFor="let peoples of post_doc_alumni; let ind = index">
-          <div class="people" (click)="
-              editStudentsData(ind, this.post_doc_alumni, 'post_doc_alumni')
-            ">
-            <img [src]="peoples.img_name" alt="Image 1" class="image" />
-            <h3>{{ peoples.name }}</h3>
-            <h6>{{ peoples.job }}</h6>
-            <button (click)="
-                removeStudent(
-                  ind,
-                  'students',
-                  this.post_doc_alumni,
-                  'post_doc_alumni'
-                )
-              ">
-              Delete
-            </button>
-          </div>
-        </ng-container>
-      </div>
-
-      <br />
-      <br />
-      <br />
-      <h1 class="title">PhD Alumni</h1>
-      <div class="phd-grid">
-        <div class="people2" (click)="
-            openDialog('students', this.phd_alumni, null, 'add', 'phd_alumni')
-          ">
-          <img [src]="" alt="Image 1" class="image2" />
-          <h3>add Person</h3>
-        </div>
-        <ng-container *ngFor="let peoples of phd_alumni; let ind = index">
-          <div class="people" (click)="editStudentsData(ind, this.phd_alumni, 'phd_alumni')">
-            <img [src]="peoples.img_name" alt="Image 1" class="image" />
-            <h3>{{ peoples.name }}</h3>
-            <h6>{{ peoples.job }}</h6>
-            <button (click)="
-                removeStudent(ind, 'students', this.phd_alumni, 'phd_alumni')
-              ">
-              Delete
-            </button>
-          </div>
-        </ng-container>
-      </div>
-
-      <br />
-      <br />
-      <br />
-      <h1 class="title">MS Alumni</h1>
-      <div class="phd-grid">
-        <div class="people2" (click)="
-            openDialog('students', this.ms_alumni, null, 'add', 'ms_alumni')
-          ">
-          <img [src]="" alt="Image 1" class="image2" />
-          <h3>add Person</h3>
-        </div>
-        <ng-container *ngFor="let peoples of ms_alumni; let ind = index">
-          <div class="people" (click)="editStudentsData(ind, this.ms_alumni, 'ms_alumni')">
-            <img [src]="peoples.img_name" alt="Image 1" class="image" />
-            <h3>{{ peoples.name }}</h3>
-            <h6>{{ peoples.job }}</h6>
-            <button (click)="
-                removeStudent(ind, 'students', this.ms_alumni, 'ms_alumni')
-              ">
-              Delete
-            </button>
-          </div>
-        </ng-container>
-      </div>
-    </section>
-
-    <section [hidden]="!(activePage == 'sponsoredResearch')" id="sponsoredResearch">
-      <div class="container">
-        <div class="search-container">
-          <h1 class="title" style="font-weight: bold">
-            Sponsored Research Total ${{ this.totalFunds }}
-          </h1>
-
-          <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchFunds" />
-          <button class="search-button">Search</button>
-        </div>
-        <div class="publications">
-          <table>
+        <div class="admin__table-wrap">
+          <table class="admin__table">
             <thead>
               <tr>
-                <th></th>
-                <th>Funding</th>
-                <th>Grant</th>
-                <th>Date</th>
-                <th>About</th>
-                <th>Role</th>
+                <th>Name</th>
+                <th>Timespan</th>
+                <th>Earnings</th>
+                <th>Description</th>
+                <th class="admin__col-actions">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <a>
-                    <div style="color: red" (click)="
-                        openDialog(
-                          'sponsoredResearch',
-                          this.fundsData,
-                          null,
-                          'add',
-                          null
-                        )
-                      ">
-                      Add new Sponsored Research
-                    </div>
-                  </a>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr *ngIf="!awardsData?.length">
+                <td colspan="5" class="admin__empty">No awards yet.</td>
               </tr>
-
-              <tr *ngFor="let funds of fundsData | search : searchFunds; let ind = index" (click)="editFundsData(ind)">
-                <td>
-                  <img [src]="funds.img_name" style="width: 50px; height: 50px" />
-                  <button (click)="removeFunds(ind, 'sponsoredResearch')">
-                    delete
-                  </button>
+              <tr *ngFor="let award of awardsData; let ind = index">
+                <td class="admin__cell-title">{{ award.name }}</td>
+                <td>{{ award.timespan }}</td>
+                <td>{{ award.earnings || '—' }}</td>
+                <td class="admin__cell-truncate">{{ award.description }}</td>
+                <td class="admin__col-actions">
+                  <button type="button" class="admin__action admin__action--edit" (click)="editAwardsData(ind)">Edit</button>
+                  <button type="button" class="admin__action admin__action--delete" (click)="removeAward(ind, 'awards')">Delete</button>
                 </td>
-                <td>${{ funds.amount }}</td>
-                <td>{{ funds.source }}</td>
-                <td>{{ funds.timespan }}</td>
-                <td>{{ funds.purpose }}</td>
-                <td>{{ funds.role }}</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- Publications -->
+      <section *ngIf="activePage === 'publications'" class="admin__section">
+        <div class="admin__section-header">
+          <h2 class="admin__section-title">Journals</h2>
+          <button type="button" class="btn btn--sm" (click)="openDialog('journals', journalsData, null, 'add', null)">
+            Add Journal
+          </button>
+        </div>
+        <div class="admin__toolbar">
+          <input type="search" class="admin__search form-control" placeholder="Search journals…" [(ngModel)]="searchJournals" />
+        </div>
+        <div class="admin__table-wrap">
+          <table class="admin__table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Journal</th>
+                <th>Authors</th>
+                <th class="admin__col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!journalsData?.length">
+                <td colspan="5" class="admin__empty">No journals yet.</td>
+              </tr>
+              <tr *ngFor="let journal of journalsData; let ind = index">
+                <td>{{ journalsData.length - ind }}</td>
+                <td class="admin__cell-title">{{ journal.title }}</td>
+                <td>{{ journal.journal }}</td>
+                <td>{{ journal.authors }}</td>
+                <td class="admin__col-actions">
+                  <button type="button" class="admin__action admin__action--edit" (click)="editJournalsData(ind)">Edit</button>
+                  <button type="button" class="admin__action admin__action--delete" (click)="removeJournals(ind, 'journals')">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admin__section-header admin__section-header--spaced">
+          <h2 class="admin__section-title">Conferences</h2>
+          <button type="button" class="btn btn--sm" (click)="openDialog('publications', conferencesData, null, 'add', null)">
+            Add Conference
+          </button>
+        </div>
+        <div class="admin__toolbar">
+          <input type="search" class="admin__search form-control" placeholder="Search conferences…" [(ngModel)]="searchPublications" />
+        </div>
+        <div class="admin__table-wrap">
+          <table class="admin__table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Conference</th>
+                <th>Authors</th>
+                <th class="admin__col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!conferencesData?.length">
+                <td colspan="6" class="admin__empty">No conferences yet.</td>
+              </tr>
+              <tr *ngFor="let conf of conferencesData | search : searchPublications">
+                <td>{{ conferencesData.length - conferencesData.indexOf(conf) }}</td>
+                <td class="admin__cell-title">{{ conf.title }}</td>
+                <td>{{ conf.year }}</td>
+                <td>{{ conf.journal }}</td>
+                <td>{{ conf.authors }}</td>
+                <td class="admin__col-actions">
+                  <button type="button" class="admin__action admin__action--edit" (click)="editPublicationsData(conferencesData.indexOf(conf))">Edit</button>
+                  <button type="button" class="admin__action admin__action--delete" (click)="removePublications(conferencesData.indexOf(conf), 'publications')">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Research -->
+      <section *ngIf="activePage === 'research'" class="admin__section">
+        <div class="admin__section-header">
+          <h2 class="admin__section-title">Research</h2>
+          <button type="button" class="btn btn--sm" (click)="openDialog('research', researchData, null, 'add', null)">
+            Add Research
+          </button>
+        </div>
+        <div class="admin__table-wrap">
+          <table class="admin__table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th class="admin__col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!researchData?.length">
+                <td colspan="3" class="admin__empty">No research items yet.</td>
+              </tr>
+              <tr *ngFor="let item of researchData; let ind = index">
+                <td class="admin__cell-title">{{ item.title }}</td>
+                <td class="admin__cell-truncate">{{ item.content }}</td>
+                <td class="admin__col-actions">
+                  <button type="button" class="admin__action admin__action--edit" (click)="editResearchData(ind)">Edit</button>
+                  <button type="button" class="admin__action admin__action--delete" (click)="removeResearch(ind, 'research')">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Students -->
+      <section *ngIf="activePage === 'students'" class="admin__section">
+        <ng-container *ngFor="let group of studentGroups">
+          <div class="admin__section-header" [class.admin__section-header--spaced]="group.spaced">
+            <h2 class="admin__section-title">{{ group.label }}</h2>
+            <button
+              *ngIf="group.editable"
+              type="button"
+              class="btn btn--sm"
+              (click)="openDialog('students', group.data, null, 'add', group.type)"
+            >
+              Add Person
+            </button>
+          </div>
+          <div class="admin__table-wrap">
+            <table class="admin__table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>{{ group.detailLabel }}</th>
+                  <th *ngIf="group.editable" class="admin__col-actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="!group.data?.length">
+                  <td [attr.colspan]="group.editable ? 3 : 2" class="admin__empty">No entries yet.</td>
+                </tr>
+                <tr *ngFor="let person of group.data; let ind = index">
+                  <td class="admin__cell-title">{{ person.name }}</td>
+                  <td>{{ person.research || person.job || '—' }}</td>
+                  <td *ngIf="group.editable" class="admin__col-actions">
+                    <button type="button" class="admin__action admin__action--edit" (click)="editStudentsData(ind, group.data, group.type)">Edit</button>
+                    <button type="button" class="admin__action admin__action--delete" (click)="removeStudent(ind, 'students', group.data, group.type)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+
+        <div class="admin__section-header admin__section-header--spaced">
+          <h2 class="admin__section-title">Undergraduate Students</h2>
+        </div>
+        <div class="admin__table-wrap">
+          <table class="admin__table">
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!undergraduates?.length">
+                <td class="admin__empty">No entries yet.</td>
+              </tr>
+              <tr *ngFor="let person of undergraduates">
+                <td class="admin__cell-title">{{ person.name || person }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Funding -->
+      <section *ngIf="activePage === 'sponsoredResearch'" class="admin__section">
+        <div class="admin__section-header">
+          <div>
+            <h2 class="admin__section-title">Funding</h2>
+            <p class="admin__section-meta" *ngIf="totalFunds">Total: ${{ totalFunds }}</p>
+          </div>
+          <button type="button" class="btn btn--sm" (click)="openDialog('sponsoredResearch', fundsData, null, 'add', null)">
+            Add Grant
+          </button>
+        </div>
+        <div class="admin__toolbar">
+          <input type="search" class="admin__search form-control" placeholder="Search funding…" [(ngModel)]="searchFunds" />
+        </div>
+        <div class="admin__table-wrap">
+          <table class="admin__table">
+            <thead>
+              <tr>
+                <th>Amount</th>
+                <th>Source</th>
+                <th>Date</th>
+                <th>Purpose</th>
+                <th>Role</th>
+                <th class="admin__col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!fundsData?.length">
+                <td colspan="6" class="admin__empty">No funding entries yet.</td>
+              </tr>
+              <tr *ngFor="let fund of fundsData | search : searchFunds">
+                <td>${{ fund.amount }}</td>
+                <td class="admin__cell-title">{{ fund.source }}</td>
+                <td>{{ fund.timespan }}</td>
+                <td class="admin__cell-truncate">{{ fund.purpose }}</td>
+                <td>{{ fund.role }}</td>
+                <td class="admin__col-actions">
+                  <button type="button" class="admin__action admin__action--edit" (click)="editFundsData(fundsData.indexOf(fund))">Edit</button>
+                  <button type="button" class="admin__action admin__action--delete" (click)="removeFunds(fundsData.indexOf(fund), 'sponsoredResearch')">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
   </div>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { DatabaseService } from '../services/database.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AwardModalComponent } from '../modals/award-modal/award-modal.component';
@@ -8,6 +10,31 @@ import { JournalsModalComponent } from '../modals/journals-modal/journals-modal.
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
 import { StudentsModalComponent } from '../modals/students-modal/students-modal.component';
 import { SponsoredResearchModalComponent } from '../modals/sponsored-research-modal/sponsored-research-modal.component';
+import {
+  Award,
+  Conference,
+  Fund,
+  Journal,
+  Person,
+  ResearchItem,
+  StudentCategory,
+  FIREBASE_PATHS,
+} from '../models/content.models';
+import { parsePeople } from '../utils/people-parser';
+
+interface AdminSection {
+  id: string;
+  label: string;
+}
+
+interface StudentGroup {
+  label: string;
+  detailLabel: string;
+  type: StudentCategory;
+  data: Person[];
+  editable: boolean;
+  spaced: boolean;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -15,29 +42,39 @@ import { SponsoredResearchModalComponent } from '../modals/sponsored-research-mo
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  researchData: any;
-  awardsData: any;
-  length: number  
+  readonly sections: AdminSection[] = [
+    { id: 'awards', label: 'Awards' },
+    { id: 'publications', label: 'Publications' },
+    { id: 'research', label: 'Research' },
+    { id: 'students', label: 'Students' },
+    { id: 'sponsoredResearch', label: 'Funding' },
+  ];
+
+  studentGroups: StudentGroup[] = [];
+
+  researchData: ResearchItem[];
+  awardsData: Award[];
+  length: number
   activePage: string;
 
-  journalsData: any;
-  conferencesData: any;
+  journalsData: Journal[];
+  conferencesData: Conference[];
   lengthOfConference: number = 0;
 
   searchJournals = '';
   searchPublications = '';
 
-  director: any[] = [];
-  masters: any[] = [];
-  ms_alumni: any[] = [];
-  phd_alumni: any[] = [];
-  phds: any[] = [];
-  post_doc_alumni: any[] = [];
-  undergrad_alumni: any[] = [];
-  undergraduates: any[] = [];
-  
-  fundsData: any;
-  totalFunds: any; 
+  director: Person[] = [];
+  masters: Person[] = [];
+  ms_alumni: Person[] = [];
+  phd_alumni: Person[] = [];
+  phds: Person[] = [];
+  post_doc_alumni: Person[] = [];
+  undergrad_alumni: Person[] = [];
+  undergraduates: Person[] = [];
+
+  fundsData: Fund[];
+  totalFunds: any;
   searchFunds: any;
 
   storageRef: AngularFireStorageReference;
@@ -45,8 +82,14 @@ export class DashboardComponent implements OnInit {
   constructor(
     private databaseService: DatabaseService,
     private dialogRef: MatDialog,
-    private afStorage: AngularFireStorage
+    private afStorage: AngularFireStorage,
+    private afAuth: AngularFireAuth,
+    private router: Router,
   ) { }
+
+  logout(): void {
+    this.afAuth.signOut().then(() => this.router.navigate(['/login']));
+  }
 
   ngOnInit(): void {
     this.activePage = "awards";
@@ -55,97 +98,77 @@ export class DashboardComponent implements OnInit {
 
   async getData(page: string) {
     if (page == "awards") {
-      await this.databaseService.getData('honors/awards').then((data) =>{
-        this.awardsData = data;
-        this.length = this.awardsData.length
-      })
+      const data = await this.databaseService.getAwards();
+      this.awardsData = data ?? [];
+      this.length = this.awardsData.length;
       console.log(this.awardsData);
     }
-    if ( page == "research") {
-      await this.databaseService.getData('research/research').then((data) =>{
-        this.researchData = data;
-        this.length = this.researchData.length
-      })
+    if (page == "research") {
+      const data = await this.databaseService.getResearch();
+      this.researchData = data ?? [];
+      this.length = this.researchData.length;
     }
-    if ( page == "sponsoredResearch") {
-      await this.databaseService.getData('funding/funds').then((data) => {
-        this.fundsData = data;
-        //this.awardsData = this.awardsData.flat();
-        console.log(this.fundsData)
-      });
-  
-      await this.databaseService.getData('funding').then((data: any) => {
-        this.totalFunds= data.total;;
-        //this.awardsData = this.awardsData.flat();
-        console.log(this.totalFunds)
-      });
+    if (page == "sponsoredResearch") {
+      const funds = await this.databaseService.getFunds();
+      this.fundsData = funds ?? [];
+      console.log(this.fundsData);
+
+      const funding = await this.databaseService.getFundingSummary();
+      this.totalFunds = funding?.total;
+      console.log(this.totalFunds);
     }
-    if ( page == "publications") {
+    if (page == "publications") {
       this.journalsData = []
       this.conferencesData = []
-      this.databaseService.getData("journals/journals").then((res: any) => {
-        this.journalsData = res;
-        this.length = this.journalsData.length;
-      })
-  
-      this.databaseService.getData("publications/conferences").then((res: any) => {
-        this.conferencesData = res;
-        this.lengthOfConference = this.conferencesData.length;
-      })
+
+      const journals = await this.databaseService.getJournals();
+      this.journalsData = journals ?? [];
+      this.length = this.journalsData.length;
+
+      const conferences = await this.databaseService.getConferences();
+      this.conferencesData = conferences ?? [];
+      this.lengthOfConference = this.conferencesData.length;
     }
 
     if (page == "students") {
       this.director = [];
-      this.masters  = [];
+      this.masters = [];
       this.ms_alumni = [];
       this.phd_alumni = [];
       this.phds = [];
       this.post_doc_alumni = [];
       this.undergrad_alumni = [];
-      this.undergraduates= [];
+      this.undergraduates = [];
 
-      await this.databaseService.getData('people').then((data) => {
-        const result = Object.keys(data).map((key) => {
-          return { [key]: data[key as keyof typeof data] };
-        });
-        result.forEach(mobile => {
-          for (let key in mobile) {
-            for (let i = 0; i < Object.keys(mobile[key]).length; i++) {
-              if (`${key}` == "director") {
-                this.director.push(mobile[key][i]);
-              }
-              if (`${key}` == "masters") {
-                this.masters.push(mobile[key][i]);
-              }
-              if (`${key}` == "ms_alumni") {
-                this.ms_alumni.push(mobile[key][i]);
-              }
-              if (`${key}` == "phd_alumni") {
-                this.phd_alumni.push(mobile[key][i]);
-              }
-              if (`${key}` == "phds") {
-                this.phds.push(mobile[key][i]);
-              }
-              if (`${key}` == "post_doc_alumni") {
-                this.post_doc_alumni.push(mobile[key][i]);
-              }
-              if (`${key}` == "undergrad_alumni") {
-                this.undergrad_alumni.push(mobile[key][i]);
-              }
-              if (`${key}` == "undergraduates") {
-                this.undergraduates.push(mobile[key][i]);
-              }
-            }
-          }
-        })
-      })
-    }    
+      const people = await this.databaseService.getPeople();
+      const parsed = parsePeople(people);
+
+      this.director = parsed.director;
+      this.masters = parsed.masters;
+      this.ms_alumni = parsed.ms_alumni;
+      this.phd_alumni = parsed.phd_alumni;
+      this.phds = parsed.phds;
+      this.post_doc_alumni = parsed.post_doc_alumni;
+      this.undergrad_alumni = parsed.undergrad_alumni;
+      this.undergraduates = parsed.undergraduates;
+      this.buildStudentGroups();
+    }
+  }
+
+  private buildStudentGroups(): void {
+    this.studentGroups = [
+      { label: 'PhD Students', detailLabel: 'Research', type: 'phds', data: this.phds, editable: true, spaced: false },
+      { label: 'Master Students', detailLabel: 'Research', type: 'masters', data: this.masters, editable: true, spaced: true },
+      { label: 'Post-Doc Alumni', detailLabel: 'Position', type: 'post_doc_alumni', data: this.post_doc_alumni, editable: true, spaced: true },
+      { label: 'PhD Alumni', detailLabel: 'Position', type: 'phd_alumni', data: this.phd_alumni, editable: true, spaced: true },
+      { label: 'MS Alumni', detailLabel: 'Position', type: 'ms_alumni', data: this.ms_alumni, editable: true, spaced: true },
+    ];
   }
 
   openDialog(page: string, data: any, index: number, type: any, studentType: string) {
     if (page == "awards") {
       const dialog = this.dialogRef.open(AwardModalComponent, {
-        data : {
+        data: {
           length: this.length,
           data: data,
           type: type,
@@ -154,14 +177,13 @@ export class DashboardComponent implements OnInit {
       });
 
       dialog.afterClosed().subscribe(() => {
-        // Do stuff after the dialog has closed
         this.getData(page);
       });
     }
-    
+
     if (page == "research") {
       const dialog = this.dialogRef.open(ResearchModalComponent, {
-        data : {
+        data: {
           length: this.length,
           data: data,
           type: type,
@@ -170,14 +192,13 @@ export class DashboardComponent implements OnInit {
       });
 
       dialog.afterClosed().subscribe(() => {
-        // Do stuff after the dialog has closed
         this.getData(page);
       });
     }
 
     if (page == "publications") {
       const dialog = this.dialogRef.open(PublicationsModalComponent, {
-        data : {
+        data: {
           length: this.length,
           data: data,
           type: type,
@@ -186,14 +207,13 @@ export class DashboardComponent implements OnInit {
       });
 
       dialog.afterClosed().subscribe(() => {
-        // Do stuff after the dialog has closed
         this.getData(page);
       });
     }
 
     if (page == "journals") {
       const dialog = this.dialogRef.open(JournalsModalComponent, {
-        data : {
+        data: {
           length: this.length,
           data: data,
           type: type,
@@ -202,14 +222,13 @@ export class DashboardComponent implements OnInit {
       });
 
       dialog.afterClosed().subscribe(() => {
-        // Do stuff after the dialog has closed
         this.getData(page);
       });
     }
 
     if (page == "students") {
       const dialog = this.dialogRef.open(StudentsModalComponent, {
-        data : {
+        data: {
           length: this.length,
           data: data,
           type: type,
@@ -219,14 +238,13 @@ export class DashboardComponent implements OnInit {
       });
 
       dialog.afterClosed().subscribe(() => {
-        // Do stuff after the dialog has closed
         this.getData(page);
       });
     }
 
     if (page == "sponsoredResearch") {
       const dialog = this.dialogRef.open(SponsoredResearchModalComponent, {
-        data : {
+        data: {
           length: this.length,
           data: data,
           type: type,
@@ -235,13 +253,10 @@ export class DashboardComponent implements OnInit {
       });
 
       dialog.afterClosed().subscribe(() => {
-        // Do stuff after the dialog has closed
         this.getData(page);
       });
     }
   }
-
-  
 
   togglePage(page: string) {
     this.activePage = page;
@@ -253,10 +268,10 @@ export class DashboardComponent implements OnInit {
     console.log(index, this.awardsData);
   }
 
-  async removeAward( index: number, page: string) {
+  async removeAward(index: number, page: string) {
     if (confirm("are you sure you want to delete this? ")) {
       this.awardsData.splice(index, 1);
-      await this.databaseService.remove(`honors/awards`, this.awardsData);
+      await this.databaseService.updateData(FIREBASE_PATHS.AWARDS, this.awardsData);
       this.getData(page);
     }
   }
@@ -269,7 +284,7 @@ export class DashboardComponent implements OnInit {
   async removeResearch(index: number, page: string) {
     if (confirm("are you sure you want to delete this? ")) {
       this.researchData.splice(index, 1);
-      await this.databaseService.remove(`research/research`, this.researchData);
+      await this.databaseService.updateData(FIREBASE_PATHS.RESEARCH, this.researchData);
       this.getData(page);
     }
   }
@@ -282,7 +297,7 @@ export class DashboardComponent implements OnInit {
   async removeJournals(index: number, page: string) {
     if (confirm("are you sure you want to delete this? ")) {
       this.journalsData.splice(index, 1);
-      await this.databaseService.remove(`journals/journals`, this.journalsData);
+      await this.databaseService.updateData(FIREBASE_PATHS.JOURNALS, this.journalsData);
       this.getData(page);
     }
   }
@@ -295,19 +310,19 @@ export class DashboardComponent implements OnInit {
   async removePublications(index: number, page: string) {
     if (confirm("are you sure you want to delete this? ")) {
       this.conferencesData.splice(index, 1);
-      await this.databaseService.remove(`publications/conferences/`, this.conferencesData);
+      await this.databaseService.updateData(FIREBASE_PATHS.CONFERENCES, this.conferencesData);
       this.getData(page);
     }
   }
 
-  editStudentsData(index: number, data: any, studentType: string) {
+  editStudentsData(index: number, data: Person[], studentType: StudentCategory) {
     this.openDialog("students", data, index, "edit", studentType);
   }
 
-  async removeStudent(index: number, page: string, data: any, studentType: string) {
+  async removeStudent(index: number, page: string, data: Person[], studentType: StudentCategory) {
     if (confirm("are you sure you want to delete this? ")) {
       data.splice(index, 1);
-      await this.databaseService.remove(`people/${studentType}/`, data);
+      await this.databaseService.updateData(FIREBASE_PATHS.peopleCategory(studentType), data);
       this.getData(page);
     }
   }
@@ -320,7 +335,7 @@ export class DashboardComponent implements OnInit {
   async removeFunds(index: number, page: string) {
     if (confirm("are you sure you want to delete this? ")) {
       this.fundsData.splice(index, 1);
-      await this.databaseService.remove(`funding/funds/`, this.fundsData);
+      await this.databaseService.updateData(FIREBASE_PATHS.FUNDS, this.fundsData);
       this.getData(page);
     }
   }

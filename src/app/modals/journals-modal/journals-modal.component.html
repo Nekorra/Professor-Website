@@ -1,11 +1,28 @@
-<h2> Add Journal </h2>
-<br>
-<input placeholder="title" [(ngModel)]="title">
-<br>
-<input  placeholder="url" [(ngModel)]="url">
-<br>
-<textarea  placeholder="journal" [(ngModel)]="journal" rows="4" cols="50"> </textarea>   
-<br>
-<textarea  placeholder="authors" [(ngModel)]="authors" rows="4" cols="50"> </textarea>   
-<br>
-<button (click)="addJournal()">Add</button>
+<h2 mat-dialog-title class="modal__title">{{ type === 'edit' ? 'Edit Journal' : 'Add Journal' }}</h2>
+
+<div mat-dialog-content class="modal__body">
+  <div class="form-field">
+    <label class="form-label" for="journal-title">Title</label>
+    <input id="journal-title" class="form-control" name="title" placeholder="Journal article title" [(ngModel)]="title" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="journal-url">URL</label>
+    <input id="journal-url" class="form-control" name="url" placeholder="https://…" [(ngModel)]="url" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="journal-journal">Journal</label>
+    <input id="journal-journal" class="form-control" name="journal" placeholder="Journal name" [(ngModel)]="journal" />
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="journal-authors">Authors</label>
+    <textarea id="journal-authors" class="form-control" name="authors" rows="3" placeholder="Author names" [(ngModel)]="authors"></textarea>
+  </div>
+</div>
+
+<div mat-dialog-actions class="modal__actions">
+  <button type="button" class="btn btn--secondary" mat-dialog-close>Cancel</button>
+  <button type="button" class="btn" (click)="addJournal()">Save</button>
+</div>

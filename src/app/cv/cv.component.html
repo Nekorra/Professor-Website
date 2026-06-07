@@ -1,46 +1,150 @@
-<header>
-  <nav class="main-nav navbar-expand-lg">
-    <div class="row">
-      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <ul class="nav-menu list-unstyled">
-          <li><a href="#home" class="smooth-scroll">Home</a></li>
-          <li><a href="#about" class="smooth-scroll">About</a></li>
-          <li><a href="#courses" class="smooth-scroll">Courses</a></li>
-          <li><a routerLink="/awards" class="smooth-scroll">Awards</a></li>
-          <li><a routerLink="/publications" class="smooth-scroll">Publications</a></li>
-          <li><a routerLink="/research" class="smooth-scroll">Research</a></li>
-          <li><a routerLink="/students" class="smooth-scroll">Students</a></li>
-          <li><a routerLink="/cv" class="smooth-scroll">Consulting/CV</a></li>
-        </ul>
+<div class="cv-page">
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero__eyebrow">Consulting &amp; CV</p>
+      <h1 class="page-hero__title">Curriculum Vitae &amp; Consulting</h1>
+      <p class="page-hero__subtitle">
+        Expert-witness and technology-consulting engagements spanning hardware
+        security, machine learning, and intellectual-property litigation.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cv-layout">
+        <div class="cv-main">
+          <div class="cv-intro reveal">
+            <h2 class="cv-intro__lead">
+              As an expert witness and technology consultant, Houman Homayoun
+              applies deep research expertise in hardware security, machine
+              learning, and computer architecture to intellectual-property
+              litigation, code review, and inter partes review proceedings.
+            </h2>
+            <p class="cv-intro__text">
+              Engagements range from preparing IPRs and authoring source-code
+              analyses to providing deposition and trial testimony for leading
+              law firms and technology companies.
+            </p>
+            <ul class="cv-tags" aria-label="Areas of expertise">
+              <li class="cv-tag">Hardware Security</li>
+              <li class="cv-tag">Machine Learning</li>
+              <li class="cv-tag">Computer Architecture</li>
+              <li class="cv-tag">IP Litigation</li>
+              <li class="cv-tag">Source-Code Review</li>
+              <li class="cv-tag">Inter Partes Review</li>
+            </ul>
+          </div>
+
+          <div class="cv-engagements reveal">
+            <div class="cv-engagements__head">
+              <h2 class="cv-engagements__title">Consulting Experience</h2>
+              <span class="cv-engagements__count">Selected engagements</span>
+            </div>
+
+            <ul class="engagements">
+              <li class="engagement">
+                <div class="engagement__main">
+                  <h3 class="engagement__role">Expert Witness &middot; Code Review</h3>
+                  <p class="engagement__firm">Quandarypeak and LTL Attorneys</p>
+                </div>
+                <span class="engagement__period">2022&ndash;2023</span>
+              </li>
+
+              <li class="engagement">
+                <div class="engagement__main">
+                  <h3 class="engagement__role">Expert Witness</h3>
+                  <p class="engagement__firm">Shore Chan Depumpo</p>
+                  <p class="engagement__note">More than 20 hours of testimony litigation</p>
+                </div>
+                <span class="engagement__period">2018&ndash;2020</span>
+              </li>
+
+              <li class="engagement">
+                <div class="engagement__main">
+                  <h3 class="engagement__role">Expert Witness</h3>
+                  <p class="engagement__firm">Janik Vinnakota LLP</p>
+                  <p class="engagement__note">Preparing 8 IPRs</p>
+                </div>
+                <span class="engagement__period">2019&ndash;2020</span>
+              </li>
+
+              <li class="engagement">
+                <div class="engagement__main">
+                  <h3 class="engagement__role">Technology Consultant</h3>
+                  <p class="engagement__firm">Netlist Inc.</p>
+                </div>
+                <span class="engagement__period">2014&ndash;2015</span>
+              </li>
+
+              <li class="engagement">
+                <div class="engagement__main">
+                  <h3 class="engagement__role">Expert Witness</h3>
+                  <p class="engagement__firm">McAndrews, Held &amp; Malloy</p>
+                </div>
+                <span class="engagement__period">2014&ndash;2015</span>
+              </li>
+
+              <li class="engagement">
+                <div class="engagement__main">
+                  <h3 class="engagement__role">Expert Witness</h3>
+                  <p class="engagement__firm">Bartko Zankel Bunzel</p>
+                </div>
+                <span class="engagement__period">2014&ndash;2015</span>
+              </li>
+
+              <li class="engagement">
+                <div class="engagement__main">
+                  <h3 class="engagement__role">Technology Consultant</h3>
+                  <p class="engagement__firm">Gerchen Keller Capital, LLC</p>
+                </div>
+                <span class="engagement__period">2014&ndash;2015</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="cv-aside">
+          <div class="card cv-card reveal">
+            <p class="cv-card__eyebrow">Curriculum Vitae</p>
+            <p class="cv-card__text">
+              A complete record of publications, funded research, teaching, and
+              professional service.
+            </p>
+
+            <a
+              href="https://www.ece.ucdavis.edu/~hhomayou/files/CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn cv-card__download"
+            >
+              Download CV
+              <span class="cv-card__download-icon" aria-hidden="true">&darr;</span>
+            </a>
+
+            <dl class="cv-card__list">
+              <div class="cv-card__row">
+                <dt class="cv-card__label">Email</dt>
+                <dd class="cv-card__value">
+                  <a href="mailto:hhomayoun@ucdavis.edu">hhomayoun@ucdavis.edu</a>
+                </dd>
+              </div>
+              <div class="cv-card__row">
+                <dt class="cv-card__label">Department</dt>
+                <dd class="cv-card__value">Electrical &amp; Computer Engineering</dd>
+              </div>
+              <div class="cv-card__row">
+                <dt class="cv-card__label">Institution</dt>
+                <dd class="cv-card__value">University of California, Davis</dd>
+              </div>
+            </dl>
+
+            <p class="cv-card__note">
+              Available for expert-witness and technology-consulting engagements.
+            </p>
+          </div>
+        </aside>
       </div>
     </div>
-  </nav>
-</header>
-
-<section id="CV">
-    <br>
-    <h1 class="title">Consulting/CV</h1>
-    <br><br>
-
-    <div class="button" style="margin: 0 auto; border: 2px solid black; ">
-        <a href="https://www.ece.ucdavis.edu/~hhomayou//files/CV.pdf" target="\blank" class="link"><h1 style="font-size: 200%;">Download CV</h1></a>
-      </div>
-
-      <br><br>
-
-    <div class="experience">
-        <ul  class="styled-list">
-            <li >Expert Witness, Code Review, Quandarypeak and LTL Attorneys, 2022-2023</li>
-            <li >Expert Witness, Shore Chan Depumpo, 2018-2020 (more than 20 hours of testimony litigation)</li>
-            <li >Expert Witness, Janik Vinnakota LLP, 2019-2020, (Preparing 8 IPRs)</li>
-            <li >Technology Consultant, Netlist Inc., 2014-2015</li>
-            <li >Expert Witness, McAndrews, Held & Malloy, 2014-2015</li>
-            <li >Expert Witness, Bartko Zankel Bunzel, 2014-2015</li>
-            <li >Technology Consultant, Gerchen Keller Capital, LLC, 2014-2015</li>
-        </ul>
-    </div>
-
-
-
-
-</section>
+  </section>
+</div>
