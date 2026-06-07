@@ -64,6 +64,15 @@ export class HomeComponent implements OnInit {
 
   toggleBio(): void {
     this.bioExpanded = !this.bioExpanded;
+
+    if (this.bioExpanded) {
+      requestAnimationFrame(() => {
+        document.getElementById('about-bio-more')?.scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          block: 'nearest',
+        });
+      });
+    }
   }
 
   async getData(): Promise<void> {

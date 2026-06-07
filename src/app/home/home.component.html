@@ -30,6 +30,16 @@
       </svg>
     </div>
 
+    <div class="hero__masthead" aria-label="Affiliation">
+      <span class="hero__masthead-rule" aria-hidden="true"></span>
+      <p class="hero__masthead-text">
+        <span class="hero__masthead-mark">UC Davis</span>
+        <span class="hero__masthead-sep" aria-hidden="true"></span>
+        <span class="hero__masthead-dept">Department of Electrical and Computer Engineering</span>
+      </p>
+      <span class="hero__masthead-rule" aria-hidden="true"></span>
+    </div>
+
     <a href="#about" class="hero__scroll" aria-label="Scroll to about section">
       <span class="hero__scroll-mouse"><span class="hero__scroll-dot"></span></span>
     </a>
@@ -40,13 +50,36 @@
     <div class="container">
       <div class="about">
         <div class="about__media reveal">
-          <div class="about__photo-frame">
-            <img src="assets/images/profile.png" alt="Portrait of Houman Homayoun" class="about__photo" />
+          <div class="about__portrait">
+            <div class="about__photo-frame">
+              <img src="assets/images/profile.png" alt="Portrait of Houman Homayoun" class="about__photo" />
+            </div>
+            <div class="about__chest">
+              <img src="assets/chest.png" alt="NSF CHEST Center" />
+              <span>Director, NSF CHEST Center</span>
+            </div>
           </div>
-          <div class="about__chest">
-            <img src="assets/chest.png" alt="NSF CHEST Center" />
-            <span>Director, NSF CHEST Center</span>
-          </div>
+
+          <address class="about__contact">
+            <dl class="about__contact-list">
+              <div class="about__contact-row">
+                <dt>Office</dt>
+                <dd>3184, Kemper Hall</dd>
+              </div>
+              <div class="about__contact-row">
+                <dt>Email</dt>
+                <dd>
+                  <a href="mailto:hhomayoun@ucdavis.edu">hhomayoun@ucdavis.edu</a>
+                </dd>
+              </div>
+              <div class="about__contact-row">
+                <dt>Phone</dt>
+                <dd>
+                  <a href="tel:+15307520583">(530) 752-0583</a>
+                </dd>
+              </div>
+            </dl>
+          </address>
         </div>
 
         <div class="about__content reveal">
@@ -73,31 +106,53 @@
               four-year Computer Science Department Chair Fellowship.
             </p>
 
-            <div class="about__more" *ngIf="bioExpanded">
-              <p>
-                He earned his Ph.D. from UC Irvine in 2010, an MS in computer
-                engineering from the University of Victoria in 2005, and a BS in
-                electrical engineering from Sharif University of Technology in 2003.
-              </p>
-              <p>
-                His research spans hardware security and trust, applied machine
-                learning and AI, data-intensive computing, and heterogeneous
-                computing. He has published more than 200 technical papers and
-                directed over $10M in research funding from NSF, DARPA, AFRL, NIST,
-                the US Congress, and industry sponsors &mdash; earning best-paper
-                recognition at GLSVLSI, ICCAD, ICDM, DCAS, ISVLSI, and DATE.
-              </p>
-              <p>
-                CHEST has received congressional support for hardware-security
-                research, included in the 2021 National Defense Authorization Act.
-                He has served on Virginia's Cybersecurity Research and Technology
-                Commercialization working group and as an Associate Editor of IEEE
-                Transactions on VLSI since 2017.
-              </p>
+            <div
+              class="about__more-shell"
+              id="about-bio-more"
+              [class.about__more-shell--open]="bioExpanded"
+              [attr.aria-hidden]="!bioExpanded"
+            >
+              <div class="about__more-inner">
+                <div class="about__more-rule" aria-hidden="true"></div>
+                <div class="about__more-body">
+                  <p class="about__more-para">
+                    He earned his Ph.D. from UC Irvine in 2010, an MS in computer
+                    engineering from the University of Victoria in 2005, and a BS in
+                    electrical engineering from Sharif University of Technology in 2003.
+                  </p>
+                  <p class="about__more-para">
+                    His research spans hardware security and trust, applied machine
+                    learning and AI, data-intensive computing, and heterogeneous
+                    computing. He has published more than 200 technical papers and
+                    directed over $10M in research funding from NSF, DARPA, AFRL, NIST,
+                    the US Congress, and industry sponsors &mdash; earning best-paper
+                    recognition at GLSVLSI, ICCAD, ICDM, DCAS, ISVLSI, and DATE.
+                  </p>
+                  <p class="about__more-para">
+                    CHEST has received congressional support for hardware-security
+                    research, included in the 2021 National Defense Authorization Act.
+                    He has served on Virginia's Cybersecurity Research and Technology
+                    Commercialization working group and as an Associate Editor of IEEE
+                    Transactions on VLSI since 2017.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <button type="button" class="btn--ghost about__toggle" (click)="toggleBio()">
-              {{ bioExpanded ? 'Show less' : 'Continue reading' }}
+            <button
+              type="button"
+              class="about__toggle"
+              [class.about__toggle--open]="bioExpanded"
+              [attr.aria-expanded]="bioExpanded"
+              aria-controls="about-bio-more"
+              (click)="toggleBio()"
+            >
+              <span class="about__toggle-label">{{ bioExpanded ? 'Show less' : 'Continue reading' }}</span>
+              <span class="about__toggle-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 5.25L7 9.25L11 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
             </button>
           </div>
         </div>

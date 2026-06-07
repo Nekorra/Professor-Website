@@ -12,9 +12,14 @@ export class SiteLayoutComponent implements OnInit, OnDestroy {
   menuOpen = false;
   scrolled = false;
   isHome = false;
+  homeIntroComplete = true;
+  homeHeaderRevealed = false;
   readonly year = new Date().getFullYear();
 
   private routerSub?: Subscription;
+  private homeIntroTimer?: ReturnType<typeof setTimeout>;
+  /** Matches hero masthead + wordmark finish — navbar enters after both. */
+  private readonly homeIntroMs = 2150;
 
   readonly navLinks = [
     { label: 'Home', path: '/' },
@@ -39,7 +44,13 @@ export class SiteLayoutComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.routerSub?.unsubscribe();
+    this.clearHomeIntro();
     document.body.style.overflow = '';
+  }
+
+  /** Hide navbar during the cinematic home hero intro. */
+  get homeIntroActive(): boolean {
+    return this.isHome && !this.homeIntroComplete && !this.scrolled && !this.menuOpen;
   }
 
   /** Header is transparent only over the home hero, before scrolling. */
@@ -50,11 +61,50 @@ export class SiteLayoutComponent implements OnInit, OnDestroy {
   private evaluateRoute(url: string): void {
     const path = (url.split('?')[0] || '').replace(/\/+$/, '');
     this.isHome = path === '' || path === '/home';
+
+    if (this.isHome) {
+      this.startHomeIntro();
+      return;
+    }
+
+    this.clearHomeIntro();
+    this.homeIntroComplete = true;
+    this.homeHeaderRevealed = false;
+  }
+
+  private startHomeIntro(): void {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.homeIntroComplete = true;
+      this.homeHeaderRevealed = false;
+      return;
+    }
+
+    this.homeIntroComplete = false;
+    this.homeHeaderRevealed = false;
+    this.clearHomeIntro();
+    this.homeIntroTimer = setTimeout(() => {
+      this.homeIntroComplete = true;
+      this.homeHeaderRevealed = true;
+    }, this.homeIntroMs);
+  }
+
+  private clearHomeIntro(): void {
+    if (this.homeIntroTimer) {
+      clearTimeout(this.homeIntroTimer);
+      this.homeIntroTimer = undefined;
+    }
   }
 
   @HostListener('window:scroll')
   onScroll(): void {
+    const wasScrolled = this.scrolled;
     this.scrolled = window.scrollY > 16;
+
+    if (this.scrolled && !wasScrolled && this.isHome && !this.homeIntroComplete) {
+      this.homeIntroComplete = true;
+      this.homeHeaderRevealed = true;
+      this.clearHomeIntro();
+    }
   }
 
   @HostListener('document:keydown.escape')
@@ -63,6 +113,12 @@ export class SiteLayoutComponent implements OnInit, OnDestroy {
   }
 
   toggleMenu(): void {
+    if (this.homeIntroActive) {
+      this.homeIntroComplete = true;
+      this.homeHeaderRevealed = true;
+      this.clearHomeIntro();
+    }
+
     this.menuOpen = !this.menuOpen;
     document.body.style.overflow = this.menuOpen ? 'hidden' : '';
   }

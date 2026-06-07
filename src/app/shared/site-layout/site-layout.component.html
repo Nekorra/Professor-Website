@@ -1,10 +1,12 @@
-<div class="site-layout" [class.site-layout--home]="isHome">
+<div class="site-layout" [class.site-layout--home]="isHome" [class.site-layout--home-intro]="homeIntroActive">
   <header
     class="site-header"
     [class.site-header--transparent]="transparent"
     [class.site-header--solid]="!transparent"
     [class.site-header--scrolled]="scrolled"
     [class.site-header--menu-open]="menuOpen"
+    [class.site-header--intro]="homeIntroActive"
+    [class.site-header--revealed]="homeHeaderRevealed"
   >
     <div class="site-header__inner container container--wide">
       <a routerLink="/" class="site-logo" (click)="closeMenu()">
@@ -64,6 +66,11 @@
           University of California, Davis<br />
           Department of Electrical and Computer Engineering
         </p>
+        <address class="site-footer__contact">
+          <span>3184, Kemper Hall</span>
+          <a href="mailto:hhomayoun@ucdavis.edu">hhomayoun@ucdavis.edu</a>
+          <a href="tel:+15307520583">(530) 752-0583</a>
+        </address>
       </div>
 
       <nav class="site-footer__nav" aria-label="Footer navigation">
