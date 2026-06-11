@@ -22,7 +22,7 @@
         class="menu-toggle"
         [class.menu-toggle--open]="menuOpen"
         [attr.aria-expanded]="menuOpen"
-        aria-controls="site-nav"
+        aria-controls="site-nav-mobile"
         aria-label="Toggle navigation menu"
         (click)="toggleMenu()"
       >
@@ -31,12 +31,7 @@
         <span class="menu-toggle__bar"></span>
       </button>
 
-      <nav
-        id="site-nav"
-        class="site-nav"
-        [class.site-nav--open]="menuOpen"
-        aria-label="Main navigation"
-      >
+      <nav class="site-nav site-nav--desktop" aria-label="Main navigation">
         <ul class="site-nav__list">
           <li class="site-nav__item" *ngFor="let link of navLinks">
             <a
@@ -44,7 +39,6 @@
               routerLinkActive="site-nav__link--active"
               [routerLinkActiveOptions]="{ exact: link.path === '/' }"
               class="site-nav__link"
-              (click)="closeMenu()"
             >
               <span class="site-nav__label">{{ link.label }}</span>
             </a>
@@ -54,7 +48,36 @@
     </div>
   </header>
 
-  <main class="site-main">
+  <div
+    class="site-nav-overlay"
+    [class.site-nav-overlay--open]="menuOpen"
+    [attr.aria-hidden]="!menuOpen"
+  >
+    <button
+      type="button"
+      class="site-nav-overlay__backdrop"
+      aria-label="Close navigation menu"
+      (click)="closeMenu()"
+    ></button>
+
+    <nav id="site-nav-mobile" class="site-nav site-nav--mobile" aria-label="Main navigation">
+      <ul class="site-nav__list">
+        <li class="site-nav__item" *ngFor="let link of navLinks">
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="site-nav__link--active"
+            [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+            class="site-nav__link"
+            (click)="closeMenu()"
+          >
+            <span class="site-nav__label">{{ link.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="site-main" [class.site-main--menu-open]="menuOpen">
     <router-outlet></router-outlet>
   </main>
 
